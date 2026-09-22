@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c9604a">
+<title>初一道德与法治上册复习 · 部编版 · 徐州</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(165deg,#e7f8ee 0%,#ddf0ff 55%,#f0f6e8 100%);background-attachment:fixed;color:#2c3a45;min-height:100vh}
+.wrap{max-width:520px;margin:0 auto;padding:0 12px 88px}
+header.app{background:linear-gradient(120deg,#c9604a,#da8870 60%,#eab39f);color:#fff;border-radius:0 0 22px 22px;padding:18px 16px 16px;margin:0 -12px 14px;box-shadow:0 4px 14px rgba(201,96,74,.28)}
+header.app h1{font-size:1.25rem;display:flex;align-items:center;gap:8px}
+header.app .sub{font-size:.78rem;opacity:.92;margin-top:4px;line-height:1.5}
+.card{background:#fff;border-radius:16px;box-shadow:0 3px 12px rgba(44,58,69,.08);padding:14px;margin-bottom:12px}
+.unit-card{display:flex;align-items:center;gap:12px;cursor:pointer;transition:transform .12s}
+.unit-card:active{transform:scale(.98)}
+.unit-emoji{font-size:2rem;background:#f0faf4;border-radius:14px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.unit-info{flex:1;min-width:0}
+.unit-name{font-weight:700;font-size:.98rem}
+.unit-meta{font-size:.75rem;color:#8a97a3;margin-top:3px}
+.pbar{height:6px;background:#eef2f5;border-radius:4px;margin-top:8px;overflow:hidden}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,#c9604a,#eab39f);border-radius:4px;transition:width .3s}
+.unit-arrow{color:#b9c4cc;font-size:1.1rem}
+h2.sec{font-size:1.05rem;margin:16px 4px 8px;display:flex;align-items:center;gap:6px}
+.back-row{display:flex;align-items:center;gap:8px;padding:4px 0 10px}
+.back-btn{background:#fff;border:none;border-radius:10px;padding:7px 14px;font-size:.85rem;color:#4a5a66;box-shadow:0 2px 8px rgba(44,58,69,.1);cursor:pointer}
+.ch-title{font-weight:800;font-size:1.02rem;line-height:1.45}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 4px;margin-bottom:10px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;background:#fff;border:none;border-radius:999px;padding:8px 15px;font-size:.83rem;color:#5a6a76;box-shadow:0 2px 6px rgba(44,58,69,.08);cursor:pointer;white-space:nowrap}
+.tab.active{background:linear-gradient(120deg,#c9604a,#da8870);color:#fff;font-weight:700}
+.pt{margin-bottom:12px}
+.pt .pt-t{font-weight:700;font-size:.92rem;line-height:1.5;color:#2b4a3d}
+.pt .pt-t b{color:#c9604a}
+.pt .pt-d{font-size:.84rem;color:#54636e;line-height:1.7;margin-top:3px}
+.pt.key{background:#fffdf3;border:1px solid #ffe9a8;border-radius:12px;padding:10px 12px}
+.pt.key .pt-t::before{content:"🔑重点 ";color:#d98f00;font-size:.8rem}
+.trap{border-left:4px solid #f2b8c0;background:#fff7f8;border-radius:0 12px 12px 0;padding:10px 12px;margin-bottom:10px}
+.trap .w{font-size:.85rem;color:#c0392b;line-height:1.6}
+.trap .w::before{content:"❌ 误区：";font-weight:700}
+.trap .r{font-size:.85rem;color:#1e7a48;line-height:1.6;margin-top:5px}
+.trap .r::before{content:"✅ 正确：";font-weight:700}
+.story{background:linear-gradient(150deg,#fff8ec,#fffdf7);border:1px solid #ffe3b0;border-radius:14px;padding:14px;margin-bottom:12px}
+.story .st-t{font-weight:800;font-size:.95rem;margin-bottom:8px;color:#8a5a00}
+.story p{font-size:.85rem;line-height:1.8;color:#5d5344;margin-bottom:8px}
+.story .st-tip{font-size:.78rem;background:#fff3d9;border-radius:8px;padding:7px 10px;color:#8a5a00;line-height:1.6}
+.story .st-tip::before{content:"💡 考点链接：";font-weight:700}
+.quiz-top{display:flex;justify-content:space-between;font-size:.78rem;color:#7b8894;margin-bottom:6px}
+.qbar{height:6px;background:#eef2f5;border-radius:4px;overflow:hidden;margin-bottom:12px}
+.qbar i{display:block;height:100%;background:linear-gradient(90deg,#3aa8d8,#eab39f);border-radius:4px;transition:width .25s}
+.qtext{font-size:.95rem;font-weight:700;line-height:1.6;margin-bottom:12px;color:#2c3a45}
+.opt{display:block;width:100%;text-align:left;background:#f7faf8;border:2px solid #e4ece7;border-radius:12px;padding:11px 13px;margin-bottom:9px;font-size:.88rem;line-height:1.5;color:#3a4a55;cursor:pointer;transition:all .12s}
+.opt:active{transform:scale(.99)}
+.opt.right{background:#e6f9ee;border-color:#c9604a;color:#1e6b46;font-weight:700}
+.opt.wrong{background:#ffecec;border-color:#e74c3c;color:#b03a2e;font-weight:700}
+.opt.dim{opacity:.55}
+.fb{border-radius:12px;padding:11px 13px;font-size:.85rem;line-height:1.7;margin-top:4px;display:none}
+.fb.ok{background:#e6f9ee;color:#1e6b46;display:block}
+.fb.bad{background:#fff0ef;color:#a33a2e;display:block}
+.fb .why{display:block;margin-top:5px;font-size:.82rem}
+.next-btn{display:block;width:100%;background:linear-gradient(120deg,#c9604a,#da8870);color:#fff;border:none;border-radius:14px;padding:13px;font-size:.95rem;font-weight:700;margin-top:12px;cursor:pointer;box-shadow:0 4px 10px rgba(201,96,74,.3)}
+.next-btn:active{transform:scale(.98)}
+.score-box{text-align:center;padding:22px 10px}
+.score-emoji{font-size:3.2rem}
+.score-num{font-size:1.5rem;font-weight:800;margin:8px 0 2px;color:#2b4a3d}
+.score-stars{font-size:1.3rem;letter-spacing:4px;margin:6px 0}
+.score-msg{font-size:.88rem;color:#7b8894;margin-bottom:10px}
+.wrong-mini{background:#fff7f8;border-radius:12px;padding:10px;font-size:.8rem;color:#a33a2e;line-height:1.6;text-align:left;margin-bottom:12px}
+.btn-row{display:flex;gap:10px}
+.btn-row .next-btn{flex:1;margin-top:0}
+.btn2{display:block;width:100%;background:#fff;color:#c9604a;border:2px solid #c9604a;border-radius:14px;padding:11px;font-size:.92rem;font-weight:700;margin-top:12px;cursor:pointer}
+.wrong-item{background:#fff;border-radius:14px;box-shadow:0 3px 12px rgba(44,58,69,.08);padding:13px;margin-bottom:11px}
+.wrong-item .w-tag{display:inline-block;background:#eef6f1;color:#c9604a;font-size:.72rem;border-radius:8px;padding:3px 8px;margin-bottom:7px}
+.wrong-item .w-q{font-size:.9rem;font-weight:700;line-height:1.55}
+.wrong-item .w-a{font-size:.83rem;color:#1e7a48;margin-top:6px;line-height:1.6}
+.wrong-item .w-a b{color:#c0392b}
+.wrong-item .w-why{font-size:.8rem;color:#7b8894;margin-top:5px;line-height:1.6}
+nav.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);display:flex;justify-content:space-around;border-top:1px solid #e8eef0;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:10}
+nav.bottom button{background:none;border:none;font-size:.72rem;color:#8a97a3;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:2px 14px}
+nav.bottom button .ic{font-size:1.25rem}
+nav.bottom button.active{color:#c9604a;font-weight:700}
+nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8px;padding:1px 6px;position:relative;top:-16px;left:10px;height:0}
+.about p{font-size:.84rem;color:#54636e;line-height:1.8;margin-bottom:8px}
+.about h3{font-size:.92rem;color:#2b4a3d;margin:12px 0 6px}
+.done-flag{display:inline-block;background:#e6f9ee;color:#1e6b46;font-size:.7rem;border-radius:8px;padding:3px 8px;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="app">
+  <h1>?? 初一道德与法治上册复习</h1>
+  <div class="sub">部编版 · 2024秋 · 江苏徐州｜知识点 · 重点分析 · 易错点 · 习题 · 趣味故事</div>
+</header>
+<div id="app"></div>
+</div>
+<nav class="bottom" id="nav">
+  <button data-v="home" class="active"><span class="ic">🏠</span>首页</button>
+  <button data-v="wrong"><span class="ic">📕</span>错题本<span class="badge" id="wbadge"></span></button>
+  <button data-v="about"><span class="ic">ℹ️</span>说明</button>
+</nav>
+
+<script type="application/json" id="DATA">
+{"units":[
+{"id":"u1","name":"第一单元 少年有梦","emoji":"🌟","chapters":[
+{"id":"c1","name":"第一单元 少年有梦（第1-3课）","emoji":"🌟","sections":[
+{"name":"第1课 开启初中生活","points":[
+{"t":"奏响中学序曲","d":"初中阶段是人生的新起点：我们从小学升入初中，身体、心理逐渐成熟，生活范围扩大，交往更加广泛。初中阶段是人生发展的新阶段，可以为我们的一生奠定重要基础。"},
+{"t":"规划初中生活","d":"凡事预则立，不预则废。规划的意义：让初中生活有序、高效。怎样规划：①明确发展目标；②制定具体行动方案；③在执行中根据实际情况调整完善。"}
+]},
+{"name":"第2课 正确认识自我","points":[
+{"t":"认识自己","d":"为什么认识自己：促进自我发展、促进与他人的交往。怎样认识自己：①从生理、心理、社会三个方面认识；②通过自我评价认识自己；③通过他人评价认识自己。他人评价是我们认识自己的一面镜子，要理性对待。认识自己是一个过程，随着成长不断发展。"},
+{"t":"做更好的自己","d":"①接纳自己：接纳自己的全部，包括优点和不足（不完美）；②欣赏自己；③做更好的自己：扬长避短、主动改正缺点、不断激发潜能、在为他人和社会服务中实现。"}
+]},
+{"name":"第3课 梦想始于当下","points":[
+{"t":"做有梦想的少年","d":"梦想的意义：对个人——激发潜能、指引方向、不断进步；对人类社会——推动社会发展。少年的梦想与时代脉搏紧密相连，与中国梦密不可分。做有梦想的少年，把个人梦想与国家和民族的需要结合起来。"},
+{"t":"学习成就梦想","d":"学习伴随我们成长，是成就梦想的重要阶梯。学习的重要性：提升素质、掌握本领、增长才干。怎样学习：①发现并保持对学习的兴趣；②掌握科学的学习方法；③善于运用不同方式学习、善于合作；④树立终身学习观念。梦想的实现靠当下的努力（千里之行，始于足下）。"}
+]}
+],
+"keypoints":[
+{"t":"初中阶段的意义","d":"人生发展的新阶段、新起点，为一生奠定重要基础。答题常用：把握机遇、迎接挑战、规划生活。"},
+{"t":"认识自己的两条途径","d":"自我评价（自省、比较）＋他人评价（镜子，要理性对待、不盲从不抵触）。同时要从生理、心理、社会三方面全面认识。"},
+{"t":"做更好的自己四步","d":"扬长避短→主动改正缺点→激发潜能→在服务他人和社会中实现。顺序可以调整，四条都要记。"},
+{"t":"梦想与学习的关系","d":"梦想指引方向，学习成就梦想。少年的梦想与时代、与中国梦紧密相连；实现梦想靠当下努力、终身学习。"}
+],
+"traps":[
+{"w":"初中阶段和小学差不多，就是换了个学校","r":"初中阶段是人生发展的新阶段、新起点，为一生奠定重要基础，要抓住机遇、规划好初中生活。"},
+{"w":"认识自己只要听别人怎么说就行","r":"认识自己要把自我评价和他人评价结合起来。他人评价是镜子，但要理性对待：不盲从、不抵触。"},
+{"w":"接纳自己就是认为自己已经很完美了","r":"接纳自己＝接纳全部，包括不完美。接纳不是自我满足，而是在此基础上扬长避短、改正缺点。"},
+{"w":"梦想必须特别远大才算数","r":"梦想可大可小，关键是要有梦想、并把个人梦想与时代和国家需要结合，用努力去实现。"},
+{"w":"学习只是学生阶段的任务","r":"学习伴随我们成长，是终身的事情。树立终身学习观念，梦想才能不断实现。"},
+{"w":"梦想实现不了就是白日做梦，干脆不立目标","r":"有梦想才能激发潜能、指引方向。即使没完全实现，追求梦想的过程也在成长进步。"}
+],
+"story":{"title":"为中华之崛起而读书","text":[
+"1911年，13岁的周恩来在沈阳东关模范学校读书。有一天，校长问同学们：你们为什么而读书？",
+"有人回答为明理而读书，有人说为做官而读书，还有人说为挣钱而读书。问到周恩来时，他站起来，声音响亮地回答：为中华之崛起而读书！",
+"那一年，中华大地内忧外患，山河破碎。13岁的少年把个人志向和国家的命运紧紧连在了一起。后来他远渡重洋寻求真理，走上革命道路，成为新中国第一任总理。",
+"少年的梦想与时代脉搏紧密相连。一百多年后，我们的中国梦正在变为现实——今天的少年，同样可以用自己的梦想，为中华之崛起添砖加瓦。"
+],"tip":"梦想的意义：激发潜能、指引方向；少年的梦想与时代和中国梦紧密相连；学习成就梦想。"},
+"quiz":[
+{"q":"关于初中阶段，下列说法正确的是（　）","opts":["A. 和小学没有区别","B. 是人生发展的新阶段，可以为一生奠定重要基础","C. 主要任务是玩，长大了再努力","D. 学习好就行，其他不重要"],"ans":1,"why":"初中阶段是人生的新起点，是人生发展的新阶段，为一生奠定重要基础。"},
+{"q":"凡事预则立，不预则废。这句话告诉我们要（　）","opts":["A. 顺其自然","B. 提前规划初中生活","C. 只做计划不行动","D. 完全听父母安排"],"ans":1,"why":"这句名言强调规划的重要性：明确目标、制定方案、执行中调整完善。"},
+{"q":"认识自己可以通过的途径有（　）","opts":["A. 只有自我评价","B. 只有他人评价","C. 自我评价和他人评价","D. 不需要任何途径"],"ans":2,"why":"自我评价和他人评价都是认识自己的途径，还要从生理、心理、社会三方面全面认识。"},
+{"q":"面对他人的评价，正确的态度是（　）","opts":["A. 全盘接受","B. 完全不理","C. 理性对待，有则改之无则加勉","D. 谁说的都对"],"ans":2,"why":"他人评价是认识自己的镜子，要理性对待：既不盲从，也不抵触。"},
+{"q":"做更好的自己，需要（　）","opts":["A. 只看到自己的优点","B. 扬长避短，主动改正缺点","C. 不用改变自己","D. 只和别人比较"],"ans":1,"why":"做更好的自己：扬长避短、改正缺点、激发潜能、在服务他人和社会中实现。"},
+{"q":"梦想对个人成长的作用是（　）","opts":["A. 没有作用","B. 激发潜能，指引前进方向","C. 只是空想","D. 让人变懒"],"ans":1,"why":"梦想激发潜能、指引方向，让生活更有意义。"},
+{"q":"少年的梦想应该（　）","opts":["A. 与时代脉搏紧密相连，与中国梦密不可分","B. 完全脱离现实","C. 只考虑自己","D. 越大越好不用努力"],"ans":0,"why":"少年的梦想与时代脉搏紧密相连，与中国梦密不可分，要把个人梦融入国家需要。"},
+{"q":"梦想的实现靠（　）","opts":["A. 等待机会","B. 运气","C. 当下的努力和不断学习","D. 别人的帮助"],"ans":2,"why":"千里之行始于足下，实现梦想靠当下努力；学习成就梦想。"},
+{"q":"下列关于学习的说法正确的是（　）","opts":["A. 学习是终身的事情","B. 学习只在课堂上","C. 考上大学就不用学习了","D. 学习只是背课本"],"ans":0,"why":"学习伴随我们成长，要树立终身学习观念。"},
+{"q":"学习成就梦想，这要求我们（　）","opts":["A. 死记硬背","B. 发现并保持兴趣，掌握科学方法","C. 只学喜欢的科目","D. 熬夜学习"],"ans":1,"why":"怎样学习：保持兴趣、科学方法、善于合作、终身学习。"}
+]}
+]},
+{"id":"u2","name":"第二单元 成长的时空","emoji":"🤝","chapters":[
+{"id":"c2","name":"第二单元 成长的时空（第4-7课）","emoji":"🤝","sections":[
+{"name":"第4课 幸福和睦的家庭","points":[
+{"t":"家的意味","d":"家是我们生命的居所、心灵的港湾。家中有亲人、有亲情：生育和抚养我们，给我们安全感和归属感。家风、家教、家训是家庭的精神财富。"},
+{"t":"让家更美好","d":"家庭和谐相处：①理解包容家人，学会换位思考；②分担家务，主动承担家庭责任；③多沟通交流，化解矛盾。孝亲敬长既是中华民族的传统美德，也是每个公民的法定义务。"
+}
+]},
+{"name":"第5课 和谐的师生关系","points":[
+{"t":"走近老师","d":"教师是一个古老的职业，是人类文明的传承者，承担着教书育人的使命。好老师要有理想信念、道德情操、扎实学识、仁爱之心（四有）。老师的风格各不相同，都值得我们尊重和接纳。"},
+{"t":"珍惜师生情谊","d":"新型师生关系：教学相长、亦师亦友。怎样与老师相处：①尊重老师、礼貌待人；②正确对待老师的表扬与批评（表扬是肯定鼓励，批评是关心爱护和期望）；③主动与老师沟通，坦诚交流。"}
+]},
+{"name":"第6课 友谊之树常青","points":[
+{"t":"友谊的真谛","d":"友谊的特质：①亲密；②平等；③双向。友谊不是一成不变的，会随时间变化。竞争并不必然伤害友谊，关键是对待竞争的态度。友谊不能没有原则——朋友做错事要劝阻，不能不分是非地帮忙。"},
+{"t":"交友的智慧","d":"①交友要真诚友善、平等尊重；②慎重选择朋友（近朱者赤，近墨者黑）；③网上交友要谨慎，增强自我保护意识：不轻信网友、不透露个人信息、不单独与网友见面。"}
+]},
+{"name":"第7课 在集体中成长","points":[
+{"t":"集体生活成就我","d":"集体的力量不是成员的简单相加，而来自成员的团结协作。集体生活对个人成长的作用：①涵养品格（责任、担当、包容）；②培养能力（沟通、合作、组织）。"},
+{"t":"共建美好集体","d":"美好集体的特征：共同的愿景和目标；民主公正；充满关怀与友爱；善于合作；有活力。怎样共建：①人人贡献力量；②各尽所能、发挥所长；③维护集体荣誉，正确处理个人利益与集体利益的关系。"}
+]}
+],
+"keypoints":[
+{"t":"家的两个定位","d":"生命的居所＋心灵的港湾。答题先答家的意义，再答怎样建设（理解包容、分担家务、沟通）。"},
+{"t":"孝亲敬长的双重身份","d":"既是中华民族传统美德（道德层面），也是法定义务（法律层面）。这个双属性是常考点。"},
+{"t":"师生关系的两个关键词","d":"教学相长、亦师亦友。正确对待表扬与批评：表扬是肯定鼓励；批评是关心爱护和期望。"},
+{"t":"友谊的四条真谛","d":"亲密、平等、双向＋两个辩证点：竞争不必然伤害友谊；友谊不能没有原则。"},
+{"t":"集体的力量来源","d":"不是成员简单相加，而是团结协作。共建美好集体：人人贡献力量、各尽所能、维护荣誉。"}
+],
+"traps":[
+{"w":"家就是住的地方、吃饭睡觉的房子","r":"家更是生命的居所、心灵的港湾，有亲情、有安全感和归属感，这是房子替代不了的。"},
+{"w":"孝敬父母只是传统美德","r":"孝亲敬长既是传统美德，也是法定义务。法律层面不能丢。"},
+{"w":"老师批评我就是不喜欢我、针对我","r":"批评是老师对学生的关心爱护和期望。要正确对待：理解老师的良苦用心，有错就改。"},
+{"w":"竞争一定会伤害友谊","r":"竞争并不必然伤害友谊，关键是对待竞争的态度。相互学习、共同进步的竞争反而加深友谊。"},
+{"w":"朋友有困难我必须全力帮忙，哪怕做错事","r":"友谊不能没有原则。朋友做错事要劝阻，不能不分是非地盲目帮忙。"},
+{"w":"网友聊得来就是真朋友，可以随便见面","r":"网上交友要增强自我保护意识：不轻信、不透露个人信息、不单独与网友见面。"},
+{"w":"集体人多力量就大","r":"集体的力量来自成员的团结协作，不是人数简单相加。一盘散沙的人多也成不了事。"},
+{"w":"在集体里我只要管好自己就行","r":"美好集体靠共建：人人贡献力量、各尽所能、维护集体荣誉，个人与集体相互成就。"}
+],
+"story":{"title":"管鲍之交——两千多年前的友谊范本","text":[
+"春秋时期，管仲和鲍叔牙是一对好朋友。两人合伙做生意，管仲本钱少，分钱时却拿得多，别人说管仲贪心，鲍叔牙却替他解释：他家贫，需要钱。管仲三次做官三次被免，别人说他没本事，鲍叔牙说：那是没遇到明主。管仲三次打仗三次逃跑，别人笑他胆小，鲍叔牙说：他有老母亲要奉养。",
+"管仲感叹：生我者父母，知我者鲍叔牙也！后来两人各为其主：鲍叔牙辅佐公子小白，管仲辅佐公子纠。小白即位为齐桓公，要杀管仲，鲍叔牙却极力推荐管仲当相国。齐桓公听从了，管仲改革强国，成就了春秋第一个霸主。",
+"真正的友谊是什么？是理解、是信任、是双向奔赴——鲍叔牙懂管仲，管仲也以自己的才能回报了这份情谊。两千多年过去了，管鲍之交仍然是友谊的最高范本。"
+],"tip":"友谊的真谛：亲密、平等、双向；竞争不必然伤害友谊；友谊不能没有原则。"},
+"quiz":[
+{"q":"家对我们来说最重要的意义是（　）","opts":["A. 只是休息的地方","B. 生命的居所、心灵的港湾","C. 只是吃饭的地方","D. 只是学习的地方"],"ans":1,"why":"家是生命的居所、心灵的港湾，有亲情、安全感和归属感。"},
+{"q":"孝亲敬长是（　）","opts":["A. 只是传统美德","B. 只是法定义务","C. 既是传统美德，也是法定义务","D. 与法律无关"],"ans":2,"why":"孝亲敬长既是中华民族传统美德，也是每个公民的法定义务。"},
+{"q":"让家更美好，我们中学生可以（　）","opts":["A. 只学习不闻不问","B. 理解包容家人、分担家务、多沟通","C. 让父母全部顺着自己","D. 有矛盾就冷战"],"ans":1,"why":"理解包容、分担家务、主动沟通，是中学生让家更美好的做法。"},
+{"q":"好老师应具备的素质是（　）","opts":["A. 有理想信念、道德情操、扎实学识、仁爱之心","B. 只把课上完就行","C. 只有学识没有爱心","D. 只有爱心不用学识"],"ans":0,"why":"四有好老师：理想信念、道德情操、扎实学识、仁爱之心。"},
+{"q":"新型师生关系的特点是（　）","opts":["A. 命令与服从","B. 教学相长、亦师亦友","C. 互不相干","D. 只讲课不交流"],"ans":1,"why":"新型师生关系：教学相长、亦师亦友。"},
+{"q":"面对老师的批评，正确的做法是（　）","opts":["A. 顶撞老师","B. 认为老师针对自己","C. 正确对待：批评是关心爱护，有错就改","D. 从此不理这个老师"],"ans":2,"why":"表扬是肯定鼓励，批评是关心爱护和期望，要正确对待。"},
+{"q":"关于竞争与友谊的关系，正确的是（　）","opts":["A. 竞争必然伤害友谊","B. 竞争并不必然伤害友谊","C. 友谊中不能有竞争","D. 竞争了就不是朋友"],"ans":1,"why":"竞争并不必然伤害友谊，关键是对待竞争的态度。"},
+{"q":"好朋友让你考试时给他传答案，你应该（　）","opts":["A. 照做，朋友最重要","B. 拒绝并劝他诚实应考","C. 装没看见","D. 帮他抄别人的"],"ans":1,"why":"友谊不能没有原则，朋友做错事要劝阻。"},
+{"q":"网上交友的正确做法是（　）","opts":["A. 把个人信息都告诉网友","B. 单独与网友见面","C. 增强自我保护意识，不轻信不透露","D. 网友说什么都信"],"ans":2,"why":"网上交友要谨慎：不轻信、不透露个人信息、不单独与网友见面。"},
+{"q":"集体的力量来源于（　）","opts":["A. 成员数量的简单相加","B. 成员的团结协作","C. 一个能干的人","D. 集体荣誉"],"ans":1,"why":"集体的力量来自成员的团结协作，不是简单相加。"},
+{"q":"共建美好集体，需要我们（　）","opts":["A. 人人贡献力量、各尽所能","B. 只靠班干部","C. 各管各的","D. 有能力的人才参与"],"ans":0,"why":"共建美好集体：人人贡献力量、各尽所能、维护集体荣誉。"}
+]}
+]},
+{"id":"u3","name":"第三单元 珍爱我们的生命","emoji":"❤️","chapters":[
+{"id":"c3","name":"第三单元 珍爱我们的生命（第8-10课）","emoji":"❤️","sections":[
+{"name":"第8课 生命可贵","points":[
+{"t":"认识生命","d":"生命的特点：①来之不易；②独特的；③不可逆的；④短暂的。生命的接续：个体的生命是一代一代传承接续的，我们也在延续人类文明。"},
+{"t":"敬畏生命","d":"为什么要敬畏生命：生命至上，生命是宝贵的、不可替代的。怎样敬畏生命：①珍视自己的生命；②尊重、关怀他人的生命；③爱护大自然中的一切生命。敬畏生命是发自内心的自愿选择。"}
+]},
+{"name":"第9课 守护生命安全","points":[
+{"t":"增强安全意识","d":"生命只有一次，安全无小事。增强安全意识：①不抱侥幸心理，防患于未然；②学习安全知识，掌握安全技能；③遵守交通规则、学校安全规定。"},
+{"t":"提高防护能力","d":"掌握自救自护技能：火灾逃生（湿毛巾捂口鼻、弯腰低姿走安全通道、不乘电梯）；地震避险（就近躲到坚固家具旁或墙角，护住头部，震后有序撤离）；防溺水（不私自下水游泳，不盲目施救）。遇险时沉着冷静、及时正确求救。保护自己生命的同时，也要不伤害他人。"}
+]},
+{"name":"第10课 保持身心健康","points":[
+{"t":"爱护身体","d":"身体健康是幸福生活的前提。做法：①合理饮食、均衡营养；②规律作息、充足睡眠；③科学锻炼身体；④讲究卫生、预防疾病。"},
+{"t":"滋养心灵","d":"身心健康包括身体健康和心理健康。滋养心灵：①保持积极乐观的心态；②正确面对挫折，学会调节情绪；③培养高雅的生活情趣，丰富精神世界。"}
+]}
+],
+"keypoints":[
+{"t":"生命的四个特点","d":"来之不易、独特、不可逆、短暂——每条都能出选择题。再加上生命的接续（代代传承）。"},
+{"t":"敬畏生命的三个层次","d":"珍视自己的生命＋尊重关怀他人的生命＋爱护大自然中的生命。答题容易漏掉他人和自然。"},
+{"t":"安全两件事","d":"增强安全意识（不侥幸、学知识、守规则）＋提高防护能力（火灾地震溺水自救技能、沉着求救）。"},
+{"t":"身心健康的两个方面","d":"爱护身体（饮食、作息、锻炼、卫生）＋滋养心灵（乐观、抗挫、情趣）。只答身体是不完整的。"}
+],
+"traps":[
+{"w":"生命可以重来，不用太珍惜","r":"生命是不可逆的、短暂的，失去了就不会再来，必须珍爱。"},
+{"w":"敬畏生命就是珍惜自己的生命","r":"敬畏生命还包括尊重、关怀他人的生命，爱护大自然中的一切生命。"},
+{"w":"安全事故靠运气，躲也躲不过","r":"很多事故可以预防：增强安全意识、不抱侥幸心理、掌握防护技能，能大大减少伤亡。"},
+{"w":"火灾逃生要乘电梯，跑得快","r":"火灾时电梯可能断电或充满浓烟，要湿毛巾捂口鼻、弯腰低姿走安全通道。"},
+{"w":"我会游泳，去哪儿游都没事","r":"野外的水域情况复杂（水草、漩涡、水温低），要在有安全保障的场所游泳，不私自下河。"},
+{"w":"身心健康就是身体没病","r":"身心健康包括身体健康和心理健康，还要滋养心灵：乐观心态、正确面对挫折、培养情趣。"},
+{"w":"遇到挫折就说明我很失败","r":"挫折是成长的一部分。正确面对挫折能磨炼意志、增长才干，要学会调节情绪。"}
+],
+"story":{"title":"敬礼娃娃——被救起的那一刻，他举起了右手","text":[
+"2008年汶川地震，3岁的小男孩郎铮被埋在废墟里。解放军官兵把他救出来，用门板抬着他下山。躺在门板上，这个浑身是灰、手臂受伤的小男孩，艰难地举起右手，向救他的解放军叔叔敬了一个礼。",
+"这个瞬间被记者拍下来，感动了全中国——人们叫他敬礼娃娃。后来郎铮左手手指部分坏死，做了手术；他慢慢长大，阳光开朗，学习成绩优异。2023年高考，他以优异的成绩考入北京大学。",
+"谈起当年的敬礼，郎铮说：那不是刻意，就是心里感激。救命之恩他一直记着，也把这份感恩变成了努力学习的动力。",
+"一个被废墟掩埋的孩子，因为无数人拼尽全力的救援活了下来；而他回报的，是感恩和向上的成长。生命至上，敬重生命——这就是这个故事最朴素的道理。"
+],"tip":"生命至上、敬畏生命：珍视自己的生命，尊重关怀他人的生命，爱护自然；守护生命安全、保持身心健康。"},
+"quiz":[
+{"q":"下列不属于生命特点的是（　）","opts":["A. 来之不易","B. 独特的","C. 可以重来","D. 短暂的"],"ans":2,"why":"生命的特点：来之不易、独特、不可逆、短暂。生命不可逆，不能重来。"},
+{"q":"生命至上，敬畏生命要求我们（　）","opts":["A. 只珍惜自己的生命","B. 珍视自己的生命，尊重关怀他人生命，爱护自然","C. 只要自己活着就行","D. 别人的生命与我无关"],"ans":1,"why":"敬畏生命：珍视自己生命＋尊重关怀他人生命＋爱护大自然中的生命。"},
+{"q":"增强安全意识，正确的做法是（　）","opts":["A. 偶尔闯红灯没事","B. 不抱侥幸心理，学习安全知识","C. 事故轮不到我","D. 安全规则是给小孩定的"],"ans":1,"why":"增强安全意识：不抱侥幸心理、学习安全知识、遵守规则。"},
+{"q":"发生火灾时，正确的逃生方法是（　）","opts":["A. 乘电梯下楼","B. 湿毛巾捂口鼻，弯腰低姿走安全通道","C. 跳楼逃生","D. 躲在衣柜里"],"ans":1,"why":"火灾逃生：湿毛巾捂口鼻、弯腰低姿、走安全通道、不乘电梯。"},
+{"q":"地震发生时，在教室里的正确做法是（　）","opts":["A. 慌乱拥挤冲出教室","B. 就近躲到课桌下护住头部，震后有序撤离","C. 站在窗边看","D. 从楼上跳下"],"ans":1,"why":"地震避险：就近躲避、护住头部，震后有序撤离到空旷处。"},
+{"q":"关于防溺水，正确的是（　）","opts":["A. 会游泳就可以去野泳","B. 不私自下水游泳，不盲目施救","C. 结伴就能去河里游","D. 只要水浅就安全"],"ans":1,"why":"防溺水：不私自下水、到有安全保障的场所游泳、不盲目施救。"},
+{"q":"爱护身体，我们应该（　）","opts":["A. 熬夜打游戏","B. 暴饮暴食","C. 合理饮食、规律作息、科学锻炼","D. 生病硬扛不吃药"],"ans":2,"why":"爱护身体：合理饮食、规律作息、科学锻炼、预防疾病。"},
+{"q":"身心健康包括（　）","opts":["A. 只有身体健康","B. 身体健康和心理健康","C. 只有心理健康","D. 身体健康和成绩好"],"ans":1,"why":"身心健康＝身体健康＋心理健康，滋养心灵同样重要。"},
+{"q":"面对挫折，正确的态度是（　）","opts":["A. 一蹶不振","B. 正确面对，磨炼意志，调节情绪","C. 怨天尤人","D. 从此放弃"],"ans":1,"why":"挫折是成长的一部分，正确面对能磨炼意志、增长才干。"},
+{"q":"滋养心灵的做法是（　）","opts":["A. 整天刷手机短视频","B. 保持乐观心态，培养高雅情趣","C. 只追求物质享受","D. 遇到困难就逃避"],"ans":1,"why":"滋养心灵：积极乐观、正确面对挫折、培养高雅情趣、丰富精神世界。"}
+]}
+]},
+{"id":"u4","name":"第四单元 追求美好人生","emoji":"🌈","chapters":[
+{"id":"c4","name":"第四单元 追求美好人生（第11-13课）","emoji":"🌈","sections":[
+{"name":"第11课 确立人生目标","points":[
+{"t":"探问人生目标","d":"人生目标的意义：①指引前进方向，让生活有奔头；②激发前进动力，让奋斗更有力量。没有目标的人生，就像没有航向的船。"},
+{"t":"树立正确的人生目标","d":"怎样树立：①与个人兴趣、特长相结合；②与社会需要相结合；③与国家和民族的利益相结合；④长远目标与近期目标相结合。人生目标要与时代、与国家的命运紧密相连。"}
+]},
+{"name":"第12课 端正人生态度","points":[
+{"t":"拥有积极的人生态度","d":"人生态度影响人生道路。积极的人生态度：乐观向上、积极进取、勤奋努力、永不满足于现状。消极悲观会让人止步不前。"},
+{"t":"正确对待顺境和逆境","d":"顺境：不骄不躁、居安思危、再接再厉；逆境：不悲观失望、不自暴自弃——逆境可以磨炼意志、增长才干。塞翁失马，焉知非福：顺逆可以相互转化，关键看态度。"}
+]},
+{"name":"第13课 实现人生价值","points":[
+{"t":"在劳动中创造人生价值","d":"劳动的意义：劳动创造价值，美好生活靠劳动创造。各行各业的劳动者都在为社会作贡献。我们要热爱劳动、尊重劳动者、学习劳动本领。"},
+{"t":"在奉献中成就精彩人生","d":"实现人生价值的途径：①在劳动中创造；②在奉献中成就（服务社会、关爱他人）。平凡中见伟大：认真做好每一件小事，在平凡岗位上也能创造不平凡的价值。把个人的价值融入社会发展和国家需要，生命才更有意义。"}
+]}
+],
+"keypoints":[
+{"t":"人生目标的意义与确立","d":"意义：指引方向＋激发动力。确立：兴趣特长＋社会需要＋国家民族利益＋长短结合——四个结合缺一不可。"},
+{"t":"顺境逆境的态度","d":"顺境：不骄不躁、居安思危；逆境：不悲观、磨炼意志、增长才干；顺逆相互转化（塞翁失马）。"},
+{"t":"实现人生价值的两个途径","d":"在劳动中创造＋在奉献中成就。要记住：劳动创造价值，奉献成就精彩。"},
+{"t":"平凡与伟大的关系","d":"平凡中见伟大：认真做好每件小事，平凡岗位也能创造不平凡价值；把个人价值融入社会和国家需要。"}
+],
+"traps":[
+{"w":"确立人生目标是大人以后的事","r":"青少年就要确立人生目标，目标指引方向、激发动力，越早确立越能指导成长。"},
+{"w":"树立目标只考虑自己喜欢不喜欢","r":"要四个结合：兴趣特长＋社会需要＋国家民族利益＋长短结合。"},
+{"w":"人生一帆风顺就是最好的","r":"顺境要不骄不躁、居安思危；逆境也能磨炼意志、增长才干。顺逆相互转化。"},
+{"w":"逆境就是坏事，遇到就完了","r":"逆境不悲观失望，可以磨炼意志、增长才干。塞翁失马，焉知非福。"},
+{"w":"只有伟人、名人才能实现人生价值","r":"平凡中见伟大：认真做好每件小事，在平凡岗位上也能创造不平凡的价值。"},
+{"w":"人生价值就是挣很多钱","r":"人生价值在于劳动创造和奉献社会。金钱不是衡量人生价值的标准。"},
+{"w":"我还小，不能为社会作贡献","r":"青少年可以从身边小事做起：认真学习、帮助同学、参加志愿服务，都是在奉献中成就自己。"}
+],
+"story":{"title":"张桂梅——点亮大山女孩的灯","text":[
+"云南华坪县，山高路远。张桂梅发现一个现象：许多大山里的女孩上着上着学就不见了——有的早早嫁人，有的回家干活。她下定决心：办一所免费的女子高中，让大山里的女孩都能读书！",
+"没有钱，她就到处奔走募捐；招不来老师，她就自己干。2008年，华坪女子高级中学开学了。十几年来，张桂梅拖着病体，每天清晨5点多起床，晚上12点多才休息。她把2000多名女孩送进了大学。",
+"有人问她图什么。她说：一个女孩受教育，可以改变三代人。学生毕业了，她叮嘱她们：飞出大山，也别忘了这片土地。许多学生当了医生、老师、警察，回到大山，建设家乡。",
+"张桂梅在平凡的岗位上，用一生的奉献点亮了无数孩子的人生。这就是平凡中的伟大——在劳动中创造价值，在奉献中成就精彩人生。"
+],"tip":"实现人生价值：在劳动中创造、在奉献中成就；平凡中见伟大；把个人价值融入社会和国家。"},
+"quiz":[
+{"q":"人生目标的作用是（　）","opts":["A. 没有实际作用","B. 指引方向，激发动力","C. 让人有压力","D. 只是口号"],"ans":1,"why":"人生目标指引前进方向、激发前进动力。"},
+{"q":"树立正确的人生目标，要（　）","opts":["A. 只考虑个人兴趣","B. 只考虑社会需要","C. 与兴趣特长、社会需要、国家民族利益相结合","D. 完全听父母的"],"ans":2,"why":"四个结合：兴趣特长＋社会需要＋国家民族利益＋长短结合。"},
+{"q":"下列关于人生态度的说法正确的是（　）","opts":["A. 态度不影响人生道路","B. 乐观向上、积极进取是积极的人生态度","C. 消极一点无所谓","D. 人生态度是天生的"],"ans":1,"why":"人生态度影响人生道路，积极的人生态度：乐观向上、积极进取、勤奋努力。"},
+{"q":"处于顺境时，正确的态度是（　）","opts":["A. 得意忘形","B. 不骄不躁、居安思危","C. 躺平享受","D. 目中无人"],"ans":1,"why":"顺境不骄不躁、居安思危、再接再厉。"},
+{"q":"处于逆境时，正确的态度是（　）","opts":["A. 自暴自弃","B. 悲观失望","C. 把逆境当作磨炼意志、增长才干的机会","D. 怨天尤人"],"ans":2,"why":"逆境不悲观，可以磨炼意志、增长才干；顺逆相互转化。"},
+{"q":"塞翁失马焉知非福说明（　）","opts":["A. 顺逆可以相互转化","B. 坏事永远是坏事","C. 好事永远是好事","D. 人生没有规律"],"ans":0,"why":"塞翁失马说明顺境逆境可以相互转化，关键看态度。"},
+{"q":"实现人生价值的途径是（　）","opts":["A. 在劳动中创造，在奉献中成就","B. 只要赚钱","C. 只要出名","D. 等机会降临"],"ans":0,"why":"在劳动中创造价值，在奉献中成就精彩人生。"},
+{"q":"关于平凡与伟大，下列说法正确的是（　）","opts":["A. 平凡人不可能伟大","B. 平凡中见伟大，认真做好每件小事也能创造价值","C. 只有名人伟大","D. 伟大与普通人无关"],"ans":1,"why":"平凡中见伟大：认真做好每件小事，在平凡岗位上也能创造不平凡的价值。"},
+{"q":"张桂梅老师的事迹告诉我们（　）","opts":["A. 只有办学校才有价值","B. 在奉献中能成就精彩人生","C. 先出名再奉献","D. 奉献是大人专属"],"ans":1,"why":"张桂梅在平凡岗位上无私奉献，说明在劳动中创造、在奉献中成就。"},
+{"q":"中学生实现人生价值，可以从（　）做起","opts":["A. 长大以后再考虑","B. 认真学习、帮助他人、参加志愿服务","C. 只关心自己","D. 什么也不做"],"ans":1,"why":"从身边小事做起：认真学习、关爱他人、服务社会，就是在创造价值。"}
+]}
+]}
+]}
+
+</script>
+<script>
+'use strict';
+const DATA = JSON.parse(document.getElementById('DATA').textContent);
+const app = document.getElementById('app');
+function lsGet(k,f){try{const v=localStorage.getItem('daofa_'+k);return v==null?f:JSON.parse(v);}catch(e){return f;}}
+function lsSet(k,v){try{localStorage.setItem('daofa_'+k,JSON.stringify(v));}catch(e){}}
+const state={view:'home',unit:0,ch:0,quiz:null};
+const PRAISE=['太棒了！🎉','厉害！👏','满分选手就是你！🏆','继续保持！💪','真不错！⭐','完全正确！🎯','好样的！🚀'];
+const TRYAGAIN=['没关系，记下解析，再练一遍就会了！💪','别灰心，错题已进错题本，下次一定行！📕','进步都是从错题开始的！🌱'];
+function navActive(){
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===state.view));
+}
+function updateBadge(){
+  const wb=lsGet('wrongbook',[]);
+  const b=document.getElementById('wbadge');
+  b.textContent=wb.length||'';b.style.display=wb.length?'inline-block':'none';
+}
+function allChapters(){const r=[];DATA.units.forEach((u,ui)=>u.chapters.forEach((c,ci)=>r.push({u:ui,c:ci,ch:c})));return r;}
+function chapterDone(uid,cid){return !!lsGet('done_'+uid+'_'+cid,false);}
+function setDone(uid,cid,v){lsSet('done_'+uid+'_'+cid,v);}
+function wrongCount(){return lsGet('wrongbook',[]).length;}
+function wrongAdd(q){
+  let wb=lsGet('wrongbook',[]);
+  if(!wb.some(w=>w.chid===q.chid&&w.q===q.q)){wb.unshift(q);lsSet('wrongbook',wb);}
+  updateBadge();
+}
+function wrongRemove(q){
+  let wb=lsGet('wrongbook',[]).filter(w=>!(w.chid===q.chid&&w.q===q.q));
+  lsSet('wrongbook',wb);updateBadge();
+}
+function render(){
+  updateBadge();navActive();
+  if(state.view==='home')renderHome();
+  else if(state.view==='chapters')renderChapters();
+  else if(state.view==='chapter')renderChapter();
+  else if(state.view==='quiz')renderQuiz();
+  else if(state.view==='wrong')renderWrong();
+  else if(state.view==='about')renderAbout();
+  window.scrollTo(0,0);
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function renderHome(){
+  let h='';
+  DATA.units.forEach((u,ui)=>{
+    const chs=u.chapters;
+    const done=chs.filter(c=>chapterDone(u.id,c.id)).length;
+    h+='<div class="card unit-card" onclick="openUnit('+ui+')">'
+      +'<div class="unit-emoji">'+u.emoji+'</div>'
+      +'<div class="unit-info"><div class="unit-name">'+esc(u.name)+'</div>'
+      +'<div class="unit-meta">'+chs.length+'章 · 已掌握 '+done+'/'+chs.length+'</div>'
+      +'<div class="pbar"><i style="width:'+(chs.length?Math.round(done/chs.length*100):0)+'%"></i></div></div>'
+      +'<div class="unit-arrow">›</div></div>';
+  });
+  app.innerHTML='<h2 class="sec">📚 选择单元开始复习</h2>'+h
+    +'<div class="card about"><p style="font-size:.8rem;color:#8a97a3">💡 学完一章后做“练习”，答对率60%以上自动标记为已掌握；答错的题自动进“错题本”，可以反复重做。</p></div>';
+}
+function openUnit(ui){state.unit=ui;state.view='chapters';render();}
+function renderChapters(){
+  const u=DATA.units[state.unit];
+  let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">'+u.emoji+' '+esc(u.name)+'</div></div>';
+  u.chapters.forEach((c,ci)=>{
+    const d=chapterDone(u.id,c.id);
+    h+='<div class="card unit-card" onclick="openChapter('+ci+')">'
+      +'<div class="unit-emoji" style="font-size:1.5rem">'+c.emoji+'</div>'
+      +'<div class="unit-info"><div class="unit-name">'+esc(c.name)+(d?'<span class="done-flag">✓ 已掌握</span>':'')+'</div>'
+      +'<div class="unit-meta">'+c.sections.length+'节 · 练习'+c.quiz.length+'题</div></div>'
+      +'<div class="unit-arrow">›</div></div>';
+  });
+  app.innerHTML=h;
+}
+function goHome(){state.view='home';render();}
+function openChapter(ci){state.ch=ci;state.view='chapter';state.tab='points';render();}
+function goBackChapters(){state.view='chapters';render();}
+function setTab(t){state.tab=t;render();}
+function renderChapter(){
+  const u=DATA.units[state.unit],c=u.chapters[state.ch];
+  const tabs=[['points','📖 知识点'],['key','🎯 重点'],['trap','⚠️ 易错'],['story','📚 故事'],['quiz','✍️ 练习']];
+  let tabh='<div class="tabs">'+tabs.map(t=>'<button class="tab'+(state.tab===t[0]?' active':'')+'" onclick="setTab(\''+t[0]+'\')">'+t[1]+'</button>').join('')+'</div>';
+  let body='';
+  if(state.tab==='points'){
+    body=c.sections.map(s=>{
+      const pts=s.points.map(p=>'<div class="pt'+(p.k?' key':'')+'"><div class="pt-t">'+(p.k?'':'▫️ ')+esc(p.t)+'</div><div class="pt-d">'+esc(p.d)+'</div></div>').join('');
+      return '<div class="card"><div style="font-weight:800;font-size:.9rem;color:#2b4a3d;margin-bottom:8px">'+esc(s.name)+'</div>'+pts+'</div>';
+    }).join('');
+  }else if(state.tab==='key'){
+    body='<div class="card">'+c.keypoints.map(k=>'<div class="pt key"><div class="pt-t">'+esc(k.t)+'</div><div class="pt-d">'+esc(k.d)+'</div></div>').join('')+'</div>';
+  }else if(state.tab==='trap'){
+    body='<div class="card">'+c.traps.map(t=>'<div class="trap"><div class="w">'+esc(t.w)+'</div><div class="r">'+esc(t.r)+'</div></div>').join('')+'</div>';
+  }else if(state.tab==='story'){
+    body='<div class="story"><div class="st-t">📖 '+esc(c.story.title)+'</div>'
+      +c.story.text.map(p=>'<p>'+esc(p)+'</p>').join('')
+      +'<div class="st-tip">'+esc(c.story.tip)+'</div></div>';
+  }else if(state.tab==='quiz'){
+    body='<div class="card"><div style="font-weight:800;font-size:.92rem;color:#2b4a3d">✍️ 本章练习（'+c.quiz.length+'题）</div>'
+      +'<div style="font-size:.8rem;color:#8a97a3;line-height:1.6;margin:6px 0 10px">每道题选择后立即判对错并看解析。答错的题会进错题本。</div>'
+      +'<button class="next-btn" onclick="startQuiz(false)">开始练习 🚀</button></div>';
+  }
+  const d=chapterDone(u.id,c.id);
+  app.innerHTML='<div class="back-row"><button class="back-btn" onclick="goBackChapters()">← 返回</button><div class="ch-title">'+c.emoji+' '+esc(c.name)+(d?'<span class="done-flag">✓ 已掌握</span>':'')+'</div></div>'
+    +tabh+body
+    +'<button class="btn2" onclick="toggleDone()">'+(d?'✓ 已标记掌握（点此取消）':'☆ 手动标记本章已复习')+'</button>';
+}
+function toggleDone(){
+  const u=DATA.units[state.unit],c=u.chapters[state.ch];
+  setDone(u.id,c.id,!chapterDone(u.id,c.id));render();
+}
+function startQuiz(redo){
+  if(redo){
+    const wb=lsGet('wrongbook',[]);
+    if(!wb.length){return;}
+    state.quiz={list:wb.map(w=>({q:w.q,opts:w.opts,ans:w.ans,why:w.why,chid:w.chid,chn:w.chn})),i:0,score:0,wrong:[],fromWrong:true};
+  }else{
+    const u=DATA.units[state.unit],c=u.chapters[state.ch];
+    state.quiz={list:c.quiz.map((q,qi)=>({q:q.q,opts:q.opts,ans:q.ans,why:q.why,chid:u.id+'_'+c.id,chn:u.emoji+' '+c.name})),i:0,score:0,wrong:[],fromWrong:false};
+  }
+  state.view='quiz';render();
+}
+function pick(oi){
+  const qz=state.quiz;if(qz.done)return;
+  const cur=qz.list[qz.i];
+  const optEls=document.querySelectorAll('.opt');
+  optEls.forEach(o=>o.classList.add('dim'));
+  const fb=document.getElementById('fb');
+  if(oi===cur.ans){
+    optEls[oi].classList.add('right');qz.score++;
+    fb.className='fb ok';fb.innerHTML='🎉 '+(PRAISE[Math.floor(Math.random()*PRAISE.length)])+'<span class="why">📝 解析：'+esc(cur.why)+'</span>';
+  }else{
+    optEls[oi].classList.add('wrong');optEls[cur.ans].classList.add('right');
+    qz.wrong.push(cur);
+    fb.className='fb bad';fb.innerHTML='❌ 答错了<span class="why">📝 解析：'+esc(cur.why)+'</span>';
+  }
+  qz.done=true;
+  const nb=document.getElementById('nextbtn');
+  nb.style.display='block';
+  nb.textContent=(qz.i<qz.list.length-1)?'下一题 →':'查看成绩 🏁';
+}
+function nextQ(){
+  const qz=state.quiz;
+  if(qz.i<qz.list.length-1){qz.i++;qz.done=false;renderQuiz();}
+  else{finishQuiz();}
+}
+function renderQuiz(){
+  const qz=state.quiz,cur=qz.list[qz.i],n=qz.list.length;
+  const pct=Math.round(qz.i/n*100);
+  app.innerHTML='<div class="back-row"><button class="back-btn" onclick="quitQuiz()">← 退出</button><div class="ch-title">✍️ 练习'+(qz.fromWrong?'（错题重做）':'')+'</div></div>'
+    +'<div class="card"><div class="quiz-top"><span>第 '+(qz.i+1)+' / '+n+' 题</span><span>已对 '+qz.score+' 题</span></div>'
+    +'<div class="qbar"><i style="width:'+pct+'%"></i></div>'
+    +'<div class="qtext">'+esc(cur.q)+'</div>'
+    +cur.opts.map((o,oi)=>'<button class="opt" onclick="pick('+oi+')"><b>'+(oi===0?'A':oi===1?'B':oi===2?'C':'D')+'</b>　'+esc(o.slice(2))+'</button>').join('')
+    +'<div class="fb" id="fb"></div>'
+    +'<button class="next-btn" id="nextbtn" style="display:none" onclick="nextQ()">下一题 →</button></div>';
+  document.getElementById('nextbtn').style.display='none';
+}
+function quitQuiz(){
+  if(state.quiz&&state.quiz.fromWrong)state.view='wrong';
+  else state.view='chapter';
+  state.quiz=null;render();
+}
+function finishQuiz(){
+  const qz=state.quiz,n=qz.list.length,pct=Math.round(qz.score/n*100);
+  if(qz.fromWrong){
+    const wb=lsGet('wrongbook',[]);
+    const keep=qz.wrong.map(w=>w.chid+'|'+w.q);
+    wb.forEach(w=>{if(!keep.includes(w.chid+'|'+w.q))wrongRemove(w);});
+  }else{
+    qz.wrong.forEach(w=>wrongAdd(w));
+    if(pct>=60){const u=DATA.units[state.unit];setDone(u.id,u.chapters[state.ch].id,true);}
+  }
+  const stars=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':pct>=60?'⭐':'';
+  const msg=pct>=90?'完美通关！知识全在脑子里了！':pct>=70?'掌握得不错，错题多看看！':pct>=60?'及格啦！把错题本过一遍更稳！':(TRYAGAIN[Math.floor(Math.random()*TRYAGAIN.length)]);
+  const wl=qz.wrong.map((w,i)=>'<div style="padding:4px 0;border-bottom:1px dashed #f0d5d8">'+(i+1)+'. '+esc(w.q)+' <b style="color:#c0392b">答案：'+(w.ans===0?'A':w.ans===1?'B':w.ans===2?'C':'D')+'</b></div>').join('');
+  app.innerHTML='<div class="card score-box">'
+    +'<div class="score-emoji">'+(pct>=90?'🏆':pct>=70?'🎉':pct>=60?'😊':'💪')+'</div>'
+    +'<div class="score-num">'+qz.score+' / '+n+' 题</div>'
+    +'<div class="score-stars">'+stars+'</div>'
+    +'<div class="score-msg">'+msg+'</div>'
+    +(qz.wrong.length?'<div class="wrong-mini"><b>本次错题：</b>'+wl+'</div>':'<div class="score-msg" style="color:#1e7a48">全对！一个错题都没有！🎊</div>')
+    +'<div class="btn-row"><button class="next-btn" onclick="startQuiz('+(qz.fromWrong?'true':'false')+')">再来一遍 🔄</button>'
+    +'<button class="next-btn" style="background:#fff;color:#c9604a;box-shadow:none;border:2px solid #c9604a" onclick="afterQuiz()">完成 ✅</button></div></div>';
+}
+function afterQuiz(){
+  if(state.quiz&&state.quiz.fromWrong){state.view='wrong';}
+  else{state.view='chapter';state.tab='points';}
+  state.quiz=null;render();
+}
+function renderWrong(){
+  const wb=lsGet('wrongbook',[]);
+  if(!wb.length){
+    app.innerHTML='<div class="card score-box"><div class="score-emoji">🎊</div><div class="score-num" style="font-size:1.1rem">错题本是空的！</div><div class="score-msg">做题时答错的题会自动收集到这里，方便反复复习。</div><button class="next-btn" onclick="goHome()">去学习 📚</button></div>';
+    return;
+  }
+  let h='<div class="back-row"><div class="ch-title">📕 错题本（'+wb.length+'题）</div></div>';
+  h+=wb.map((w,i)=>'<div class="wrong-item"><span class="w-tag">'+esc(w.chn)+'</span>'
+    +'<div class="w-q">'+(i+1)+'. '+esc(w.q)+'</div>'
+    +'<div class="w-a">正确答案：<b>'+(w.ans===0?'A':w.ans===1?'B':w.ans===2?'C':'D')+'</b>　'+esc(w.opts[w.ans].slice(2))+'</div>'
+    +'<div class="w-why">📝 '+esc(w.why)+'</div></div>').join('');
+  h+='<div class="btn-row"><button class="next-btn" onclick="startQuiz(true)">错题重做 🔁</button>'
+    +'<button class="btn2" style="color:#c0392b;border-color:#c0392b" onclick="clearWrong()">清空错题本 🗑</button></div>';
+  app.innerHTML=h;
+}
+function clearWrong(){if(confirm('确定清空所有错题吗？')){lsSet('wrongbook',[]);updateBadge();render();}}
+function renderAbout(){
+  app.innerHTML='<div class="card about">'
+    +'<h3>📕 关于本复习助手</h3>'
+    +'<p>内容依据 <b>部编版（人民教育出版社）义务教育教科书·道德与法治七年级上册（2024秋版）</b> 整理，适用于江苏徐州初一学生。</p>'
+    +'<h3>🧭 怎么用</h3>'
+    +'<p>①按单元逐章学习“知识点”，重点看🔑标记和“重点”页；②考前重点过“易错点”页，考试避坑；③学完做“练习”，答对率60%以上自动标记已掌握；④错题自动进错题本，反复重做到全会为止。</p>'
+    +'<h3>📱 离线使用</h3>'
+    +'<p>本文件是单文件网页，不需要联网。发送到手机后用浏览器打开即可；建议收藏到浏览器书签或添加到桌面。</p>'
+    +'<h3>⚠️ 说明</h3>'
+    +'<p>内容依据教材整理，供复习参考；具体考点范围请以学校老师要求为准。发现内容有误可直接告诉我修改。</p>'
+    +'</div>';
+}
+document.getElementById('nav').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const v=b.dataset.v;
+  if(v==='home')state.view='home';
+  else if(v==='wrong')state.view='wrong';
+  else if(v==='about')state.view='about';
+  state.quiz=null;render();
+});
+render();
+</script>
+</body>
+</html>
