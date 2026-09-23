@@ -1842,10 +1842,21 @@ function gradeTap(it,oi){
   }
   return {ok:ok,got:ok?(it.pt||1):0,html:fb.innerHTML};
 }
+function matchFill(s,al){
+  s=normAns(s);
+  if(s.length<2)return false;  // 少于2个字不判（防虚词/误触）
+  return al.some(a=>{
+    const na=normAns(a);
+    if(s===na)return true;
+    // 关键词判定：孩子的答案含标准答案（或其关键词），或反之——有关键词就判对
+    return (na.length>=2&&s.includes(na))||(s.length>=2&&na.includes(s));
+  });
+}
 function gradeFill(it,arr){
-  const okAll=(it.a||it.ans).every((al,k)=>al.some(a=>normAns(arr[k])===normAns(a)));
-  const near=(it.a||it.ans).some((al,k)=>!al.some(a=>normAns(arr[k])===normAns(a))&&al.some(a=>nearMiss(arr[k],a)));
-  const ansShow=(it.a||it.ans).map(al=>al[0]).join('、');
+  const pairs=(it.a||it.ans);
+  const okAll=pairs.every((al,k)=>matchFill(arr[k],al));
+  const near=pairs.some((al,k)=>!matchFill(arr[k],al)&&al.some(a=>nearMiss(arr[k],a)));
+  const ansShow=pairs.map(al=>al[0]).join('、');
   const fb=document.getElementById('fb');
   if(okAll){
     fb.className='fb ok';fb.innerHTML='🎉 填空正确！<span class="why">📝 解析：'+esc(it.why)+'</span>';
