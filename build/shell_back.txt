@@ -1,0 +1,621 @@
+
+<script>
+'use strict';
+const DATA = JSON.parse(document.getElementById('DATA').textContent);
+const app = document.getElementById('app');
+function lsGet(k,f){try{const v=localStorage.getItem('biosw_'+k);return v==null?f:JSON.parse(v);}catch(e){return f;}}
+function lsSet(k,v){try{localStorage.setItem('biosw_'+k,JSON.stringify(v));return true;}catch(e){return false;}}
+const KIND={choice:{n:'选择'},tf:{n:'判断'},fill:{n:'填空'},order:{n:'排序'},essay:{n:'材料'}};
+const RANKS=[{n:'青铜',min:0,ic:'🥉'},{n:'白银',min:50,ic:'🥈'},{n:'黄金',min:150,ic:'🥇'},{n:'王者',min:350,ic:'👑'}];
+const state={view:'home',unit:0,ch:0,quiz:null,tab:'points',pick:{show:false,secs:[],lvs:[1,2,3]}};
+const PRAISE=['太棒了！🎉','厉害！👏','满分选手就是你！🏆','继续保持！💪','真不错！⭐','完全正确！🎯','好样的！🚀'];
+const TRYAGAIN=['没关系，记下解析，再练一遍就会了！💪','别灰心，错题已进错题本，下次一定行！📕','进步都是从错题开始的！🌱'];
+function qKind(it){return it.t||it.type||'choice';}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function ymd(d){d=d||new Date();return ''+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');}
+function shuffle(a,seed){
+  const arr=a.slice();
+  if(seed==null){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+  let s=seed>>>0;const rnd=()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296;};
+  for(let i=arr.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  return arr;
+}
+function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function navActive(){document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===state.view));}
+function updateBadge(){const wb=lsGet('wrongbook',[]);const b=document.getElementById('wbadge');b.textContent=wb.length||'';b.style.display=wb.length?'inline-block':'none';}
+function allChapters(){const r=[];DATA.units.forEach((u,ui)=>u.chapters.forEach((c,ci)=>r.push({u:ui,c:ci,ch:c})));return r;}
+function chapterDone(uid,cid){return !!lsGet('done_'+uid+'_'+cid,false);}
+function setDone(uid,cid,v){lsSet('done_'+uid+'_'+cid,v);}
+function wrongCount(){return lsGet('wrongbook',[]).length;}
+function keyOf(w){return w.qi!=null?w.chid+'|i'+w.qi:w.chid+'|q'+w.q;}
+function wrongAdd(q){
+  let wb=lsGet('wrongbook',[]);
+  if(!wb.some(w=>keyOf(w)===keyOf(q))){wb.unshift(q);lsSet('wrongbook',wb);}
+  updateBadge();
+}
+function wrongRemove(q){
+  let wb=lsGet('wrongbook',[]).filter(w=>keyOf(w)!==keyOf(q));
+  lsSet('wrongbook',wb);updateBadge();
+}
+function statsAdd(ok,essayGot){const s=lsGet('stats',{ans:0,right:0,essay:0});s.ans++;if(ok)s.right++;if(essayGot)s.essay+=essayGot;lsSet('stats',s);}
+function rankOf(right){let r=RANKS[0];for(const x of RANKS){if(right>=x.min)r=x;}return r;}
+function rankNext(right){for(const x of RANKS){if(right<x.min)return x;}return null;}
+let timerId=null;
+function stopTimer(){if(timerId!=null){clearInterval(timerId);timerId=null;}}
+function ensureTimer(){
+  const qz=state.quiz;if(!qz||!qz.deadline)return;
+  if(timerId!=null)return;
+  const tick=()=>{
+    const el=document.getElementById('timer');
+    if(!el){stopTimer();return;}
+    const left=qz.deadline-Date.now();
+    if(left<=0){stopTimer();el.textContent='⏱ 0:00';finishQuiz();return;}
+    const m=Math.floor(left/60000),s=Math.floor(left%60000/1000);
+    el.textContent='⏱ '+m+':'+String(s).padStart(2,'0');
+  };
+  tick();
+  timerId=setInterval(tick,1000);
+}
+function render(){
+  updateBadge();navActive();
+  if(state.view!=='quiz')stopTimer();
+  if(state.view==='home')renderHome();
+  else if(state.view==='chapters')renderChapters();
+  else if(state.view==='chapter')renderChapter();
+  else if(state.view==='quiz')renderQuiz();
+  else if(state.view==='wrong')renderWrong();
+  else if(state.view==='gates')renderGates();
+  else if(state.view==='rank')renderRank();
+  else if(state.view==='mnemo')renderMnemo();
+  else if(state.view==='daily')renderDaily();
+  else if(state.view==='about')renderAbout();
+  window.scrollTo(0,0);
+}
+/* ---------- 首页 ---------- */
+function renderHome(){
+  const st=lsGet('stats',{ans:0,right:0});
+  const r=rankOf(st.right),nx=rankNext(st.right);
+  const dk='daily_'+ymd();
+  const dv=lsGet(dk,null);
+  const pct=nx?Math.round(st.right/Math.max(nx.min,1)*100):100;
+  let h='<div class="rank-card" onclick="goView(\'rank\')">'
+    +'<div class="rank-top"><div class="rank-ic">'+r.ic+'</div><div><div class="rank-name">'+r.n+'段位 · 已答对 '+st.right+' 题</div>'
+    +'<div class="rank-sub">'+(nx?('再答对 '+(nx.min-st.right)+' 题升到 '+nx.n+' '+nx.ic):'已是最高段位！')+'</div></div></div>'
+    +'<div class="rank-pbar"><i style="width:'+Math.min(pct,100)+'%"></i></div></div>';
+  h+='<div class="daily-card" onclick="goView(\'daily\')"><div class="dc-ic">⚡</div>'
+    +'<div class="dc-info"><div class="dc-t">每日挑战</div>'
+    +'<div class="dc-s">'+(dv?('今日最高 '+dv.best+' 分 · 可反复刷'):'今天还没挑战 · 随机10题 · 限时5分钟')+'</div></div>'
+    +'<div class="dc-go">'+(dv?'再战':'开战')+' ›</div></div>';
+  h+='<h2 class="sec">📚 选择单元开始复习</h2>';
+  DATA.units.forEach((u,ui)=>{
+    const chs=u.chapters;
+    const done=chs.filter(c=>chapterDone(u.id,c.id)).length;
+    h+='<div class="card unit-card" onclick="openUnit('+ui+')">'
+      +'<div class="unit-emoji">'+u.emoji+'</div>'
+      +'<div class="unit-info"><div class="unit-name">'+esc(u.name)+'</div>'
+      +'<div class="unit-meta">'+chs.length+'章 · 已掌握 '+done+'/'+chs.length+'</div>'
+      +'<div class="pbar"><i style="width:'+(chs.length?Math.round(done/chs.length*100):0)+'%"></i></div></div>'
+      +'<div class="unit-arrow">›</div></div>';
+  });
+  h+='<div class="daily-card" style="border-color:#d8e6ff;background:linear-gradient(120deg,#f2f7ff,#fbfdff)" onclick="goView(\'mnemo\')">'
+    +'<div class="dc-ic">🧠</div><div class="dc-info"><div class="dc-t" style="color:#2563a8">记忆口诀卡</div>'
+    +'<div class="dc-s">把知识点编成顺口溜，背得快记得牢</div></div><div class="dc-go" style="color:#2563a8">查看 ›</div></div>';
+  app.innerHTML=h+'<div class="card about"><p style="font-size:.8rem;color:#8a97a3">💡 学完一章后做“练习”，答对率60%以上自动标记为已掌握；答错的题自动进“错题本”，可以反复重做。</p></div>';
+}
+function goView(v){state.view=v;render();}
+function openUnit(ui){state.unit=ui;state.view='chapters';render();}
+function goHome(){state.view='home';render();}
+/* ---------- 章节 ---------- */
+function renderChapters(){
+  const u=DATA.units[state.unit];
+  let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">'+u.emoji+' '+esc(u.name)+'</div></div>';
+  u.chapters.forEach((c,ci)=>{
+    const d=chapterDone(u.id,c.id);
+    h+='<div class="card unit-card" onclick="openChapter('+ci+')">'
+      +'<div class="unit-emoji" style="font-size:1.5rem">'+c.emoji+'</div>'
+      +'<div class="unit-info"><div class="unit-name">'+esc(c.name)+(d?'<span class="done-flag">✓ 已掌握</span>':'')+'</div>'
+      +'<div class="unit-meta">'+c.sections.length+'节 · 练习'+c.quiz.length+'题</div></div>'
+      +'<div class="unit-arrow">›</div></div>';
+  });
+  app.innerHTML=h;
+}
+function openChapter(ci){state.ch=ci;state.view='chapter';state.tab='points';state.pick={show:false,secs:[],lvs:[1,2,3]};render();}
+function goBackChapters(){state.view='chapters';render();}
+function setTab(t){state.tab=t;render();}
+function renderChapter(){
+  const u=DATA.units[state.unit],c=u.chapters[state.ch];
+  const tabs=[['points','📖 知识点'],['key','🎯 重点'],['trap','⚠️ 易错'],['story','📚 故事'],['quiz','✍️ 练习']];
+  let tabh='<div class="tabs">'+tabs.map(t=>'<button class="tab'+(state.tab===t[0]?' active':'')+'" onclick="setTab(\''+t[0]+'\')">'+t[1]+'</button>').join('')+'</div>';
+  let body='';
+  if(state.tab==='points'){
+    body=c.sections.map(s=>{
+      const pts=s.points.map(p=>'<div class="pt'+(p.k?' key':'')+'"><div class="pt-t">'+(p.k?'':'▫️ ')+esc(p.t)+'</div><div class="pt-d">'+esc(p.d)+'</div>'+(p.mn?'<div class="pt-mn">'+esc(p.mn)+'</div>':'')+'</div>').join('');
+      return '<div class="card"><div style="font-weight:800;font-size:.9rem;color:#2b4a3d;margin-bottom:8px">'+esc(s.name)+(s.mn?'<span style="font-size:.72rem;color:#b08a1a;margin-left:6px">🧠'+esc(s.mn)+'</span>':'')+'</div>'+pts+'</div>';
+    }).join('');
+  }else if(state.tab==='key'){
+    body='<div class="card">'+c.keypoints.map(k=>'<div class="pt key"><div class="pt-t">'+esc(k.t)+'</div><div class="pt-d">'+esc(k.d)+'</div>'+(k.mn?'<div class="pt-mn">'+esc(k.mn)+'</div>':'')+'</div>').join('')+'</div>';
+  }else if(state.tab==='trap'){
+    body='<div class="card">'+c.traps.map(t=>'<div class="trap"><div class="w">'+esc(t.w)+'</div><div class="r">'+esc(t.r)+'</div></div>').join('')+'</div>';
+  }else if(state.tab==='story'){
+    body='<div class="story"><div class="st-t">📖 '+esc(c.story.title)+'</div>'
+      +c.story.text.map(p=>'<p>'+esc(p)+'</p>').join('')
+      +'<div class="st-tip">'+esc(c.story.tip)+'</div></div>';
+  }else if(state.tab==='quiz'){
+    body=renderQuizPanel(u,c);
+  }
+  const d=chapterDone(u.id,c.id);
+  app.innerHTML='<div class="back-row"><button class="back-btn" onclick="goBackChapters()">← 返回</button><div class="ch-title">'+c.emoji+' '+esc(c.name)+(d?'<span class="done-flag">✓ 已掌握</span>':'')+'</div></div>'
+    +tabh+body
+    +'<button class="btn2" onclick="toggleDone()">'+(d?'✓ 已标记掌握（点此取消）':'☆ 手动标记本章已复习')+'</button>';
+}
+function toggleDone(){
+  const u=DATA.units[state.unit],c=u.chapters[state.ch];
+  setDone(u.id,c.id,!chapterDone(u.id,c.id));render();
+}
+/* ---------- 练习面板（全部 / 自选 / 闯关） ---------- */
+function renderQuizPanel(u,c){
+  const byT={},byLv={};
+  c.quiz.forEach(q=>{const t=qKind(q);byT[t]=(byT[t]||0)+1;const lv=q.lv||1;byLv[lv]=(byLv[lv]||0)+1;});
+  let h='<div class="card"><div style="font-weight:800;font-size:.92rem;color:#2b4a3d">✍️ 本章练习（'+c.quiz.length+'题）</div>'
+    +'<div style="font-size:.78rem;color:#8a97a3;line-height:1.6;margin:6px 0 10px">题型：'+Object.keys(byT).map(t=>KIND[t].n+byT[t]).join(' · ')+'　难度：基础'+byLv[1]+' 进阶'+byLv[2]+' 挑战'+byLv[3]+'</div>'
+    +'<button class="next-btn" onclick="startQuiz(\'chapter\')">开始练习（全部） 🚀</button>'
+    +'<button class="btn2" onclick="togglePickPanel()">🎯 自选知识点练习'+(state.pick.show?'（收起）':'')+'</button>'
+    +'<button class="btn2" onclick="goView(\'gates\')">🎮 闯关模式（逐节解锁）</button></div>';
+  if(state.pick.show){
+    const secs=c.sections.map((s,si)=>({id:s.id||('s'+(si+1)),name:s.name}));
+    const pc=state.pick;
+    const poolCount=c.quiz.filter(q=>{const it=mkItem(q,u.id,c.id,0,u.emoji+' '+c.name);return (!it.sec||pc.secs.includes(it.sec))&&pc.lvs.includes(it.lv);}).length;
+    h+='<div class="card"><div style="font-weight:800;font-size:.88rem;color:#2b4a3d;margin-bottom:8px">选择知识点（节）</div>'
+      +secs.map(s=>'<div class="pick-sec'+(pc.secs.includes(s.id)?' on':'')+'" onclick="toggleSecPick(\''+s.id+'\')"><input type="checkbox" '+(pc.secs.includes(s.id)?'checked':'')+' disabled><span class="ps-name">'+esc(s.name)+'</span><span class="ps-n">'+c.quiz.filter(q=>(q.sec||null)===s.id).length+'题</span></div>').join('')
+      +'<div style="font-weight:800;font-size:.88rem;color:#2b4a3d;margin:10px 0 8px">选择难度</div>'
+      +'<div class="lv-row">'+[1,2,3].map(l=>'<div class="lv-btn'+(pc.lvs.includes(l)?' on':'')+'" onclick="toggleLvPick('+l+')">'+['基础','进阶','挑战'][l-1]+'</div>').join('')+'</div>'
+      +'<button class="next-btn" onclick="startQuiz(\'custom\')">开始自选练习（'+poolCount+'题）</button></div>';
+  }
+  return h;
+}
+function togglePickPanel(){
+  const pc=state.pick;
+  pc.show=!pc.show;
+  if(pc.show&&!pc.secs.length){
+    const c=DATA.units[state.unit].chapters[state.ch];
+    pc.secs=c.sections.map((s,si)=>s.id||('s'+(si+1)));
+  }
+  render();
+}
+function toggleSecPick(id){const pc=state.pick;const i=pc.secs.indexOf(id);if(i<0)pc.secs.push(id);else pc.secs.splice(i,1);render();}
+function toggleLvPick(l){const pc=state.pick;const i=pc.lvs.indexOf(l);if(i<0)pc.lvs.push(l);else pc.lvs.splice(i,1);render();}
+/* ---------- 组卷 ---------- */
+function mkItem(q,uid,cid,qi,chn){
+  return Object.assign({t:qKind(q),lv:q.lv||1,pt:q.pt||1,sec:q.sec||null,chid:uid+'_'+cid,chn,qi},q);
+}
+function poolOfChapter(uid,cid){
+  const u=DATA.units[uid],c=u.chapters[cid];
+  return c.quiz.map((q,qi)=>mkItem(q,u.id,c.id,qi,u.emoji+' '+c.name));
+}
+function poolOfAll(){
+  const r=[];
+  DATA.units.forEach((u,ui)=>u.chapters.forEach((c,ci)=>r.push.apply(r,poolOfChapter(ui,ci))));
+  return r;
+}
+function startQuiz(mode,extra){
+  extra=extra||{};
+  const qz={i:0,got:0,score:0,objScore:0,objN:0,max:0,wrong:[],done:false,mode:mode,deadline:null,work:{}};
+  if(mode==='wrong'){
+    const wb=lsGet('wrongbook',[]);
+    if(!wb.length){return;}
+    qz.list=wb.map(w=>Object.assign({},w,{t:w.t||'choice'}));
+    qz.title='错题重做';
+  }else if(mode==='daily'){
+    qz.list=shuffle(poolOfAll(),hashStr(ymd())).slice(0,10);
+    qz.title='每日挑战';
+    qz.deadline=Date.now()+5*60000;
+  }else if(mode==='gate'){
+    const u=DATA.units[state.unit],c=u.chapters[state.ch];
+    const si=extra.si;const sid=c.sections[si].id||('s'+(si+1));
+    qz.list=poolOfChapter(state.unit,state.ch).filter(it=>it.sec===sid);
+    qz.title='闯关 · '+c.sections[si].name;
+    qz.gateSi=si;qz.gateSid=sid;
+  }else{
+    const u=DATA.units[state.unit],c=u.chapters[state.ch];
+    let pool=poolOfChapter(state.unit,state.ch);
+    if(mode==='custom'){
+      const pc=state.pick;
+      pool=pool.filter(it=>((!it.sec||pc.secs.includes(it.sec))&&pc.lvs.includes(it.lv)));
+      if(!pool.length){alert('所选范围内没有题目，请调整选择。');return;}
+      qz.title='自选练习';
+    }else{
+      qz.title='本章练习';
+    }
+    qz.list=shuffle(pool);
+  }
+  if(!qz.list.length){alert('这个范围内没有题目。');return;}
+  qz.list.forEach(it=>{const t=qKind(it);if(t!=='essay'){qz.max+=(it.pt||1);qz.objN++;}else{qz.max+=(it.subs||[]).reduce((a,s)=>a+(s.score||0),0);}});
+  state.quiz=qz;state.view='quiz';render();
+}
+/* ---------- 答题页 ---------- */
+function renderQuiz(){
+  const qz=state.quiz,cur=qz.list[qz.i],n=qz.list.length;
+  const t=qKind(cur);
+  const pct=Math.round(qz.i/n*100);
+  const top='<div class="back-row"><button class="back-btn" onclick="quitQuiz()">← 退出</button><div class="ch-title">✍️ '+esc(qz.title||'练习')+'</div></div>';
+  const head='<div class="card"><div class="quiz-top"><span>第 '+(qz.i+1)+' / '+n+' 题</span>'
+    +'<span>已对 '+qz.score+' 题'+(qz.mode==='daily'?'':' · 得分 '+qz.got)+'</span>'
+    +(qz.deadline?'<span id="timer"></span>':'')+'</div>'
+    +'<div class="qbar"><i style="width:'+pct+'%"></i></div>'
+    +'<div class="badges"><span class="qtype '+t+'">'+KIND[t].n+'题</span><span class="lv lv'+(cur.lv||1)+'">'+['基础','进阶','挑战'][(cur.lv||1)-1]+'</span></div>'
+    +'<div class="qtext">'+esc(cur.q||'')+'</div>';
+  let mid='';
+  if(t==='choice')mid=cur.opts.map((o,oi)=>'<button class="opt" onclick="pick('+oi+')"><b>'+String.fromCharCode(65+oi)+'</b>　'+esc(optText(o))+'</button>').join('');
+  else if(t==='tf')mid='<div class="judge-row"><button class="opt" onclick="pick(0)">✔ 正确</button><button class="opt" onclick="pick(1)">✘ 错误</button></div>';
+  else if(t==='fill')mid=(cur.a||cur.ans).map((al,k)=>'<div class="fill-row"><span class="fi-no">第'+(k+1)+'空</span><input class="fill-in" id="fill'+k+'" placeholder="输入答案" autocomplete="off"></div>').join('')+'<button class="next-btn" onclick="submitFill()">提交答案</button>';
+  else if(t==='order'){if(!qz.work.shuf)initOrder(cur);mid=renderOrderQ(cur);}
+  else if(t==='essay')mid=renderEssayQ(cur);
+  app.innerHTML=top+head+mid+'<div class="fb" id="fb"></div>'
+    +'<button class="next-btn" id="nextbtn" style="display:none" onclick="nextQ()">下一题 →</button></div>';
+  const nb=document.getElementById('nextbtn');if(nb)nb.style.display='none';
+  ensureTimer();
+}
+function optText(o){return String(o).replace(/^[A-Da-d][.、．]\s?/,'');}
+function pick(oi){submitAns(oi);}
+function submitFill(){
+  const qz=state.quiz,cur=qz.list[qz.i];
+  const n=(cur.a||cur.ans).length;
+  const arr=[];for(let k=0;k<n;k++){const el=document.getElementById('fill'+k);arr.push(el?el.value:'');}
+  submitAns(arr);
+}
+/* --- 排序题 --- */
+function initOrder(cur){
+  const qz=state.quiz;
+  qz.work.shuf=shuffle(cur.items.map((x,i)=>i));  // 展示顺序 -> 原始下标
+  qz.work.picked=[];  // 已选的展示下标序列
+}
+function renderOrderQ(cur){
+  const qz=state.quiz;
+  return '<div style="font-size:.78rem;color:#8a97a3;margin-bottom:6px">按顺序点击下方选项（可点已选项撤回）</div>'
+    +'<div class="ord-pool">'+qz.work.shuf.map((orig,d)=>'<button class="ord-chip'+(qz.work.picked.includes(d)?' used':'')+'" id="oc'+d+'" onclick="orderPick('+d+')">'+esc(cur.items[orig])+'</button>').join('')+'</div>'
+    +'<div class="ord-line" id="ordline">'+(qz.work.picked.length?qz.work.picked.map((d,k)=>'<span class="ord-chip" onclick="orderPick('+d+')"><span class="ord-no">'+(k+1)+'. </span>'+esc(cur.items[qz.work.shuf[d]])+'</span>').join(''):'<span style="font-size:.78rem;color:#b9c4cc">把选项按正确顺序点进来…</span>')+'</div>'
+    +'<button class="next-btn" onclick="submitOrder()">提交排序</button>';
+}
+function orderPick(d){
+  const qz=state.quiz;if(qz.done)return;
+  const i=qz.work.picked.indexOf(d);
+  if(i>=0)qz.work.picked.splice(i,1);
+  else qz.work.picked.push(d);
+  const pool=document.querySelector('.ord-pool'),line=document.getElementById('ordline');
+  if(pool)pool.innerHTML=renderOrderPoolHTML(qz.list[qz.i]);
+  if(line)line.innerHTML=qz.work.picked.length?qz.work.picked.map((x,k)=>'<span class="ord-chip" onclick="orderPick('+x+')"><span class="ord-no">'+(k+1)+'. </span>'+esc(qz.list[qz.i].items[qz.work.shuf[x]])+'</span>').join(''):'<span style="font-size:.78rem;color:#b9c4cc">把选项按正确顺序点进来…</span>';
+}
+function renderOrderPoolHTML(cur){
+  return state.quiz.work.shuf.map((orig,d)=>'<button class="ord-chip'+(state.quiz.work.picked.includes(d)?' used':'')+'" onclick="orderPick('+d+')">'+esc(cur.items[orig])+'</button>').join('');
+}
+function submitOrder(){const qz=state.quiz;submitAns(qz.work.picked.slice());}
+/* --- 材料分析题 --- */
+function renderEssayQ(cur){
+  const m=cur.mat||{};
+  let h='<div class="essay">';
+  if(m.title)h+='<div class="mat"><div class="mat-t">📄 '+esc(m.title)+'</div>'+((m.text||[]).map(p=>'<p>'+esc(p)+'</p>').join(''))+(m.table?'<div class="mat-table-wrap"><table><thead><tr>'+m.table.head.map(x=>'<th>'+esc(x)+'</th>').join('')+'</tr></thead><tbody>'+m.table.rows.map(r=>'<tr>'+r.map(x=>'<td>'+esc(x)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':'')+'</div>';
+  h+='<div id="essaybody">'
+    +(cur.subs||[]).map((s,si)=>'<div class="subq"><div class="subq-q">('+(si+1)+') '+esc(s.q)+'<span class="sc">'+(s.score||0)+'分</span></div><textarea class="essay-ta" id="essay'+si+'" placeholder="先在这里默写你的答案，再点下方提交对照要点…"></textarea></div>').join('')
+    +'<button class="next-btn" onclick="essaySubmit()">提交答案，对照要点</button></div>';
+  h+='</div>';
+  return h;
+}
+function essaySubmit(){
+  const qz=state.quiz;if(qz.done)return;
+  const cur=qz.list[qz.i];
+  qz.work.essayState='review';
+  const subs=(cur.subs||[]).map((s,si)=>{
+    const val=document.getElementById('essay'+si);qz.work['essayA'+si]=val?val.value:'';
+    return '<div class="subq"><div class="subq-q">('+(si+1)+') '+esc(s.q)+'<span class="sc">'+(s.score||0)+'分</span></div>'
+      +'<div class="keylist"><div class="k-t">📝 参考要点（勾选你答到的）</div>'
+      +s.key.map((k,ki)=>'<label class="on" id="key'+si+'_'+ki+'" onclick="toggleKey('+si+','+ki+')">☑ '+esc(k)+'</label>').join('')
+      +'<div class="self-row"><button class="self-btn" id="self'+si+'_1" onclick="selfPick('+si+',1)">满分 ✓</button><button class="self-btn" id="self'+si+'_h" onclick="selfPick('+si+',.5)">答到部分</button><button class="self-btn" id="self'+si+'_0" onclick="selfPick('+si+',0)">没答到</button></div></div></div>';
+  }).join('');
+  const wrap=document.getElementById('essaybody');
+  wrap.innerHTML=subs+'<button class="next-btn" id="essayDoneBtn" style="display:none" onclick="essayDone()">完成自评，看得分</button>';
+  (cur.subs||[]).forEach((s,si)=>qz.work['self'+si]=null);
+}
+function toggleKey(si,ki){
+  const el=document.getElementById('key'+si+'_'+ki);
+  el.classList.toggle('on');
+  el.textContent=(el.classList.contains('on')?'☑ ':'☐ ')+state.quiz.list[state.quiz.i].subs[si].key[ki];
+}
+function selfPick(si,k){
+  const qz=state.quiz;
+  qz.work['self'+si]=k;
+  ['1','h','0'].forEach(x=>{const el=document.getElementById('self'+si+'_'+x);if(el)el.classList.toggle('on',(x==='1'&&k===1)||(x==='h'&&k===.5)||(x==='0'&&k===0));});
+  const cur=qz.list[qz.i];
+  if(cur.subs.every((s,i2)=>qz.work['self'+i2]!=null)){
+    const b=document.getElementById('essayDoneBtn');if(b)b.style.display='block';
+  }
+}
+function essayDone(){
+  const qz=state.quiz,cur=qz.list[qz.i];
+  const ks=cur.subs.map((s,si)=>qz.work['self'+si]||0);
+  submitAns(ks);
+}
+/* ---------- 判分 ---------- */
+function normAns(s){return String(s).replace(/\s+/g,'').replace(/[，。、；：！？,.;:!?（）()]/g,'').toLowerCase();}
+function nearMiss(a,b){
+  a=normAns(a);b=normAns(b);
+  if(Math.abs(a.length-b.length)>1)return false;
+  if(a===b)return true;
+  const s=a.length<b.length?a:b,l=a.length<b.length?b:a;
+  if(s.length===l.length){let d=0;for(let i=0;i<s.length;i++){if(s[i]!==l[i])d++;}return d<=1;}
+  let i=0,j=0,d=0;while(i<s.length&&j<l.length){if(s[i]!==l[j]){d++;j++;if(d>1)return false;}else{i++;j++;}}return d<=1;
+}
+function submitAns(val){
+  const qz=state.quiz;if(qz.done)return;
+  const cur=qz.list[qz.i],t=qKind(cur);
+  let res=null;
+  if(t==='choice'||t==='tf')res=gradeTap(cur,val);
+  else if(t==='fill')res=gradeFill(cur,val);
+  else if(t==='order')res=gradeOrder(cur,val);
+  else if(t==='essay')res=gradeEssay(cur,val);
+  afterAnswer(cur,res);
+}
+function gradeTap(it,oi){
+  const t=qKind(it);
+  const ok=t==='tf'?((oi===0)===it.ans):(oi===Number(it.ans));
+  const rightIdx=t==='tf'?(it.ans?0:1):Number(it.ans);
+  const optEls=document.querySelectorAll('.opt');
+  optEls.forEach(o=>o.classList.add('dim'));
+  const fb=document.getElementById('fb');
+  if(ok){
+    optEls[oi].classList.add('right');
+    fb.className='fb ok';fb.innerHTML='🎉 '+(PRAISE[Math.floor(Math.random()*PRAISE.length)])+'<span class="why">📝 解析：'+esc(it.why)+'</span>';
+  }else{
+    optEls[oi].classList.add('wrong');optEls[rightIdx].classList.add('right');
+    fb.className='fb bad';fb.innerHTML='❌ 答错了<span class="why">📝 解析：'+esc(it.why)+'</span>';
+  }
+  return {ok:ok,got:ok?(it.pt||1):0,html:fb.innerHTML};
+}
+function gradeFill(it,arr){
+  const okAll=(it.a||it.ans).every((al,k)=>al.some(a=>normAns(arr[k])===normAns(a)));
+  const near=(it.a||it.ans).some((al,k)=>!al.some(a=>normAns(arr[k])===normAns(a))&&al.some(a=>nearMiss(arr[k],a)));
+  const ansShow=(it.a||it.ans).map(al=>al[0]).join('、');
+  const fb=document.getElementById('fb');
+  if(okAll){
+    fb.className='fb ok';fb.innerHTML='🎉 填空正确！<span class="why">📝 解析：'+esc(it.why)+'</span>';
+  }else{
+    fb.className='fb bad';
+    fb.innerHTML='❌ 有空格不对<span class="why">📝 答案：'+esc(ansShow)+'｜解析：'+esc(it.why)+'</span>'
+      +(near?'<button class="btn2" style="margin-top:8px" onclick="fillOverride()">我写的其实是对的（拼写小误差）</button>':'');
+  }
+  return {ok:okAll,got:okAll?(it.pt||1):0,html:fb.innerHTML,near:near};
+}
+function fillOverride(){
+  const qz=state.quiz,cur=qz.list[qz.i];
+  qz.work.fillOverride=true;
+  afterAnswer(cur,{ok:true,got:(cur.pt||1),html:'👍 算你对！<span class="why">📝 解析：'+esc(cur.why)+'</span>',override:true});
+}
+function gradeOrder(it,seq){
+  const qz=state.quiz,shuf=qz.work.shuf;
+  const ok=seq.length===it.items.length&&seq.every((d,k)=>shuf[d]===k);
+  const fb=document.getElementById('fb');
+  if(ok){
+    fb.className='fb ok';fb.innerHTML='🎉 顺序完全正确！<span class="why">📝 解析：'+esc(it.why)+'</span>';
+  }else{
+    fb.className='fb bad';fb.innerHTML='❌ 顺序有误<span class="why">📝 正确顺序：'+esc(it.items.join(' → '))+'｜解析：'+esc(it.why)+'</span>';
+  }
+  return {ok:ok,got:ok?(it.pt||1):0,html:fb.innerHTML};
+}
+function gradeEssay(it,ks){
+  let got=0,full=true;
+  it.subs.forEach((s,si)=>{
+    const k=ks[si]||0;got+=Math.round((s.score||0)*k);
+    if(k!==1)full=false;
+  });
+  const fb=document.getElementById('fb');
+  const max=(it.subs||[]).reduce((a,s)=>a+(s.score||0),0);
+  if(full){
+    fb.className='fb ok';fb.innerHTML='🏆 全部要点都答到了，满分 '+max+' 分！<span class="why">📝 解析：'+esc(it.why)+'</span>';
+  }else{
+    fb.className='fb bad';fb.innerHTML='📝 自评得分 '+got+' / '+max+' 分<span class="why">没答全的要点要记住哦：'+esc(it.why)+'</span>';
+  }
+  return {ok:full,got:got,html:fb.innerHTML};
+}
+function afterAnswer(cur,res){
+  const qz=state.quiz;
+  qz.got+=res.got;
+  if(res.ok){qz.score++;if(qKind(cur)!=='essay')qz.objScore++;}
+  else if(!res.override)qz.wrong.push(cur);
+  statsAdd(res.ok,qKind(cur)==='essay'?res.got:0);
+  qz.done=true;
+  const nb=document.getElementById('nextbtn');
+  nb.style.display='block';
+  nb.textContent=(qz.i<qz.list.length-1)?'下一题 →':'查看成绩 🏁';
+}
+/* ---------- 收尾 ---------- */
+function nextQ(){
+  const qz=state.quiz;
+  if(qz.i<qz.list.length-1){qz.i++;qz.done=false;qz.work={};renderQuiz();}
+  else{finishQuiz();}
+}
+function quitQuiz(){
+  stopTimer();
+  if(state.quiz&&state.quiz.mode==='wrong')state.view='wrong';
+  else if(state.quiz&&state.quiz.mode==='gate')state.view='gates';
+  else if(state.quiz&&state.quiz.mode==='daily')state.view='daily';
+  else state.view='chapter';
+  state.quiz=null;render();
+}
+function finishQuiz(){
+  stopTimer();
+  const qz=state.quiz,n=qz.list.length;
+  const pct=qz.max?Math.round(qz.got/qz.max*100):0;
+  const pctObj=qz.objN?Math.round(qz.objScore/qz.objN*100):0;
+  if(qz.mode==='wrong'){
+    const wb=lsGet('wrongbook',[]);
+    const keep=qz.wrong.map(w=>keyOf(w));
+    wb.forEach(w=>{if(!keep.includes(keyOf(w)))wrongRemove(w);});
+  }else{
+    qz.wrong.forEach(w=>wrongAdd(w));
+    if(qz.mode==='chapter'&&pctObj>=60){const u=DATA.units[state.unit];setDone(u.id,u.chapters[state.ch].id,true);}
+    if(qz.mode==='daily'){
+      const dk='daily_'+ymd();
+      const old=lsGet(dk,null);
+      if(!old||pct>old.best)lsSet(dk,{best:pct,right:qz.score,total:n,ts:Date.now()});
+    }
+    if(qz.mode==='gate'&&pctObj>=80)gatePass(qz.gateSi,pctObj);
+  }
+  const st=lsGet('stats',{ans:0,right:0});
+  const r=rankOf(st.right),nx=rankNext(st.right);
+  const stars=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':pct>=60?'⭐':'';
+  const msg=pct>=90?'完美通关！知识全在脑子里了！':pct>=70?'掌握得不错，错题多看看！':pct>=60?'及格啦！把错题本过一遍更稳！':(TRYAGAIN[Math.floor(Math.random()*TRYAGAIN.length)]);
+  const wl=qz.wrong.map((w,i)=>'<div style="padding:4px 0;border-bottom:1px dashed #f0d5d8">'+(i+1)+'. '+esc(w.q)+'</div>').join('');
+  let gateNote='';
+  if(qz.mode==='gate'){
+    gateNote=pctObj>=80?'<div class="score-msg" style="color:#1e7a48;font-weight:700">🎉 闯关成功！下一节已解锁！</div>':('<div class="score-msg">闯关需答对80%（客观题），再来一次！</div>');
+  }
+  app.innerHTML='<div class="card score-box">'
+    +'<div class="score-emoji">'+(pct>=90?'🏆':pct>=70?'🎉':pct>=60?'😊':'💪')+'</div>'
+    +'<div class="score-num">'+qz.score+' / '+n+' 题'+(qz.mode==='daily'?' · '+pct+'分':'')+'</div>'
+    +'<div class="score-stars">'+stars+'</div>'
+    +'<div class="score-msg">'+msg+'　'+r.ic+' '+r.n+'段位'+(nx?' · 再对'+(nx.min-st.right)+'题升'+nx.n:'')+'</div>'
+    +gateNote
+    +(qz.wrong.length?'<div class="wrong-mini"><b>本次错题：</b>'+wl+'</div>':'<div class="score-msg" style="color:#1e7a48">全对！一个错题都没有！🎊</div>')
+    +'<div class="btn-row"><button class="next-btn" onclick="startQuiz(\''+qz.mode+'\','+(qz.mode==='gate'?'{si:'+qz.gateSi+'}':'{}')+')">再来一遍 🔄</button>'
+    +'<button class="btn2" onclick="afterQuiz()">完成 ✅</button></div></div>';
+}
+function afterQuiz(){
+  const m=state.quiz?state.quiz.mode:'chapter';
+  state.quiz=null;
+  if(m==='wrong')state.view='wrong';
+  else if(m==='gate')state.view='gates';
+  else if(m==='daily')state.view='daily';
+  else{state.view='chapter';state.tab='points';}
+  render();
+}
+/* ---------- 错题本 ---------- */
+function ansText(w){
+  const t=w.t||w.type||'choice';
+  if(t==='tf')return w.ans?'✔ 正确':'✘ 错误';
+  if(t==='fill')return ((w.a||w.ans||[[]])[0]&&(w.a||w.ans)[0][0])||'见解析';
+  if(t==='order')return w.items?w.items.join(' → '):'见解析';
+  if(t==='essay')return '见要点（重做时对照）';
+  if(w.opts&&w.opts[w.ans]!=null)return optText(w.opts[w.ans]);
+  return '';
+}
+function renderWrong(){
+  const wb=lsGet('wrongbook',[]);
+  if(!wb.length){
+    app.innerHTML='<div class="card score-box"><div class="score-emoji">🎊</div><div class="score-num" style="font-size:1.1rem">错题本是空的！</div><div class="score-msg">做题时答错的题会自动收集到这里，方便反复复习。</div><button class="next-btn" onclick="goHome()">去学习 📚</button></div>';
+    return;
+  }
+  let h='<div class="back-row"><div class="ch-title">📕 错题本（'+wb.length+'题）</div></div>';
+  h+=wb.map((w,i)=>{
+    const t=w.t||w.type||'choice';
+    return '<div class="wrong-item"><span class="w-tag">'+esc(w.chn||'')+' · '+(KIND[t]?KIND[t].n:'选择')+'</span>'
+      +'<div class="w-q">'+(i+1)+'. '+esc(w.q||'')+'</div>'
+      +'<div class="w-a">正确答案：<b>'+esc(ansText(w))+'</b></div>'
+      +(w.why?'<div class="w-why">📝 '+esc(w.why)+'</div>':'')+'</div>';
+  }).join('');
+  h+='<div class="btn-row"><button class="next-btn" onclick="startQuiz(\'wrong\')">错题重做 🔁</button>'
+    +'<button class="btn2" style="color:#c0392b;border-color:#c0392b" onclick="clearWrong()">清空错题本 🗑</button></div>';
+  app.innerHTML=h;
+}
+function clearWrong(){if(confirm('确定清空所有错题吗？')){lsSet('wrongbook',[]);updateBadge();render();}}
+/* ---------- 每日挑战 ---------- */
+function renderDaily(){
+  const dk='daily_'+ymd();
+  const dv=lsGet(dk,null);
+  let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">⚡ 每日挑战</div></div>';
+  h+='<div class="card"><div style="font-weight:800;font-size:.95rem;color:#8a5a00;margin-bottom:8px">规则</div>'
+    +'<p style="font-size:.83rem;color:#54636e;line-height:1.8">①每天从全册随机抽 10 题，限时 5 分钟；②同一人当天反复进入拿到同一套题，刷的是速度不是运气；③只记当日最高分；④答对的题累计进段位。</p>'
+    +(dv?'<div style="margin-top:10px;font-size:.85rem;color:#2b4a3d;font-weight:700">今日最高：'+dv.best+' 分（'+dv.right+'/'+dv.total+' 题）</div>':'')
+    +'<button class="next-btn" onclick="startQuiz(\'daily\')">'+(dv?'再战今日挑战 ⚡':'开始今日挑战 ⚡')+'</button></div>';
+  app.innerHTML=h;
+}
+/* ---------- 闯关 ---------- */
+function gateKey(uid,cid){return 'gate_'+uid+'_'+cid;}
+function gateState(uid,cid){return lsGet(gateKey(uid,cid),{});}
+function gatePass(si,pct){
+  const uid=DATA.units[state.unit].id,cid=DATA.units[state.unit].chapters[state.ch].id;
+  const g=gateState(uid,cid);
+  const old=g[si]||{};
+  g[si]={p:1,best:Math.max(old.best||0,pct)};
+  lsSet(gateKey(uid,cid),g);
+}
+function renderGates(){
+  const u=DATA.units[state.unit],c=u.chapters[state.ch];
+  const g=gateState(u.id,c.id);
+  let h='<div class="back-row"><button class="back-btn" onclick="goBackChapters()">← 返回</button><div class="ch-title">🎮 闯关 · '+esc(c.name)+'</div></div>';
+  h+='<div class="card"><p style="font-size:.8rem;color:#8a97a3;line-height:1.7">按节逐关挑战：本节的题答对80%以上，自动解锁下一节。全部通关你就是本章擂主！</p></div>';
+  c.sections.forEach((s,si)=>{
+    const sid=s.id||('s'+(si+1));
+    const unlocked=(si===0)||!!g[si-1];
+    const passed=!!g[si];
+    h+='<div class="gate-item'+(unlocked?'':' lock')+'" '+(unlocked?'onclick="startGate('+si+')"':'')+'>'
+      +'<div class="gate-no">'+(passed?'✓':(si+1))+'</div>'
+      +'<div class="gate-info"><div class="gate-name">'+esc(s.name)+'</div>'
+      +'<div class="gate-meta">'+(passed?('已通关 · 最高 '+g[si].best+'%'):(unlocked?'点击开始闯关':'先通过上一关'))+'</div></div>'
+      +'<div class="gate-go">'+(passed?'✅':(unlocked?'挑战 ›':'🔒'))+'</div></div>';
+  });
+  app.innerHTML=h;
+}
+function startGate(si){
+  state.tab='quiz';
+  startQuiz('gate',{si:si});
+}
+/* ---------- 段位 ---------- */
+function renderRank(){
+  const st=lsGet('stats',{ans:0,right:0});
+  const r=rankOf(st.right),nx=rankNext(st.right);
+  let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">🏆 段位称号</div></div>';
+  h+='<div class="rank-card"><div class="rank-top"><div class="rank-ic">'+r.ic+'</div><div><div class="rank-name">'+r.n+'段位</div>'
+    +'<div class="rank-sub">累计答对 '+st.right+' 题 · 共答题 '+st.ans+' 题</div></div></div>'
+    +'<div class="rank-pbar"><i style="width:'+(nx?Math.round(st.right/Math.max(nx.min,1)*100):100)+'%"></i></div>'
+    +'<div class="rank-sub" style="margin-top:6px">'+(nx?('再答对 '+(nx.min-st.right)+' 题升到 '+nx.n+' '+nx.ic):'已是最高段位！')+'</div></div>';
+  RANKS.forEach(x=>{
+    h+='<div class="card unit-card"><div class="unit-emoji" style="font-size:1.5rem">'+x.ic+'</div>'
+      +'<div class="unit-info"><div class="unit-name">'+x.n+(x===r?'（当前）':'')+'</div>'
+      +'<div class="unit-meta">累计答对 '+x.min+' 题'+(x===RANKS[0]?'以上':'解锁')+'</div></div></div>';
+  });
+  app.innerHTML=h;
+}
+/* ---------- 口诀卡 ---------- */
+function renderMnemo(){
+  let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">🧠 记忆口诀卡</div></div>';
+  let n=0;
+  DATA.units.forEach(u=>{
+    u.chapters.forEach(c=>{
+      const items=[];
+      c.sections.forEach(s=>{if(s.mn)items.push({t:s.name,mn:s.mn});s.points.forEach(p=>{if(p.mn)items.push({t:p.t,mn:p.mn});});});
+      c.keypoints.forEach(k=>{if(k.mn)items.push({t:k.t,mn:k.mn});});
+      if(items.length){
+        h+='<h2 class="sec">'+u.emoji+' '+esc(c.name)+'</h2>';
+        items.forEach(it=>{n++;h+='<div class="mn-card"><div class="mn-t">'+esc(it.t)+'</div><div class="mn-m">'+esc(it.mn)+'</div></div>';});
+      }
+    });
+  });
+  if(!n)h+='<div class="card score-box"><div class="score-emoji">🧠</div><div class="score-msg">口诀还在收集中，先去看看知识点吧！</div></div>';
+  app.innerHTML=h;
+}
+/* ---------- 关于 ---------- */
+function renderAbout(){
+  app.innerHTML='<div class="card about">'
+    +'<h3>📕 关于本复习助手</h3>'
+    +'<p>内容依据 <b>苏科版（江苏凤凰科学技术出版社）义务教育教科书·生物学七年级上册（2024秋版）</b> 整理，适用于江苏徐州初一学生。</p>'
+    +'<h3>🧭 怎么用</h3>'
+    +'<p>①按单元逐章学习“知识点”，重点看🔑标记和“重点”页；②考前重点过“易错点”页，考试避坑；③学完做“练习”，答对率60%以上自动标记已掌握；④错题自动进错题本，反复重做到全会为止。</p>'
+    +'<h3>🎮 趣味玩法</h3>'
+    +'<p>⚡每日挑战：每天10题限时赛；🏆段位称号：答题升级青铜→白银→黄金→王者；🎮闯关模式：按节逐关解锁；🧠记忆口诀卡：顺口溜背得快。</p>'
+    +'<h3>📱 离线使用</h3>'
+    +'<p>本文件是单文件网页，不需要联网。发送到手机后用浏览器打开即可；建议收藏到浏览器书签或添加到桌面。</p>'
+    +'<h3>⚠️ 说明</h3>'
+    +'<p>内容依据教材整理，供复习参考；具体考点范围请以学校老师要求为准。发现内容有误可直接告诉我修改。</p>'
+    +'</div>';
+}
+document.getElementById('nav').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const v=b.dataset.v;
+  if(v==='home')state.view='home';
+  else if(v==='wrong')state.view='wrong';
+  else if(v==='about')state.view='about';
+  stopTimer();state.quiz=null;render();
+});
+render();
+</script>
+</body>
+</html>
