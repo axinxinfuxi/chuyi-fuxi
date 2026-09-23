@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#34a86b">
+<meta name="theme-color" content="#2fa866">
 <title>初一生物上册复习 · 苏科版 · 徐州</title>
 <style>
+:root{--acc:#2fa866;--mid:#57c785;--lite:#7fd9a4;--accrgb:47,168,102}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{font-size:16px}
 body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(165deg,#e7f8ee 0%,#ddf0ff 55%,#f0f6e8 100%);background-attachment:fixed;color:#2c3a45;min-height:100vh}
 .wrap{max-width:520px;margin:0 auto;padding:0 12px 88px}
-header.app{background:linear-gradient(120deg,#2fa866,#57c785 60%,#7fd9a4);color:#fff;border-radius:0 0 22px 22px;padding:18px 16px 16px;margin:0 -12px 14px;box-shadow:0 4px 14px rgba(47,168,102,.28)}
+header.app{background:linear-gradient(120deg,var(--acc),var(--mid) 60%,var(--lite));color:#fff;border-radius:0 0 22px 22px;padding:18px 16px 16px;margin:0 -12px 14px;box-shadow:0 4px 14px rgba(var(--accrgb),.28)}
 header.app h1{font-size:1.25rem;display:flex;align-items:center;gap:8px}
 header.app .sub{font-size:.78rem;opacity:.92;margin-top:4px;line-height:1.5}
 .card{background:#fff;border-radius:16px;box-shadow:0 3px 12px rgba(44,58,69,.08);padding:14px;margin-bottom:12px}
@@ -21,7 +22,7 @@ header.app .sub{font-size:.78rem;opacity:.92;margin-top:4px;line-height:1.5}
 .unit-name{font-weight:700;font-size:.98rem}
 .unit-meta{font-size:.75rem;color:#8a97a3;margin-top:3px}
 .pbar{height:6px;background:#eef2f5;border-radius:4px;margin-top:8px;overflow:hidden}
-.pbar i{display:block;height:100%;background:linear-gradient(90deg,#2fa866,#7fd9a4);border-radius:4px;transition:width .3s}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--lite));border-radius:4px;transition:width .3s}
 .unit-arrow{color:#b9c4cc;font-size:1.1rem}
 h2.sec{font-size:1.05rem;margin:16px 4px 8px;display:flex;align-items:center;gap:6px}
 .back-row{display:flex;align-items:center;gap:8px;padding:4px 0 10px}
@@ -30,11 +31,13 @@ h2.sec{font-size:1.05rem;margin:16px 4px 8px;display:flex;align-items:center;gap
 .tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 4px;margin-bottom:10px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex-shrink:0;background:#fff;border:none;border-radius:999px;padding:8px 15px;font-size:.83rem;color:#5a6a76;box-shadow:0 2px 6px rgba(44,58,69,.08);cursor:pointer;white-space:nowrap}
-.tab.active{background:linear-gradient(120deg,#2fa866,#57c785);color:#fff;font-weight:700}
+.tab.active{background:linear-gradient(120deg,var(--acc),var(--mid));color:#fff;font-weight:700}
 .pt{margin-bottom:12px}
 .pt .pt-t{font-weight:700;font-size:.92rem;line-height:1.5;color:#2b4a3d}
-.pt .pt-t b{color:#2fa866}
+.pt .pt-t b{color:var(--acc)}
 .pt .pt-d{font-size:.84rem;color:#54636e;line-height:1.7;margin-top:3px}
+.pt-mn{background:#fff8e1;border:1px dashed #e6c65c;border-radius:10px;padding:8px 10px;margin-top:6px;font-size:.8rem;color:#8a6d00;line-height:1.6}
+.pt-mn::before{content:"🧠 记忆口诀：";font-weight:700}
 .pt.key{background:#fffdf3;border:1px solid #ffe9a8;border-radius:12px;padding:10px 12px}
 .pt.key .pt-t::before{content:"🔑重点 ";color:#d98f00;font-size:.8rem}
 .trap{border-left:4px solid #f2b8c0;background:#fff7f8;border-radius:0 12px 12px 0;padding:10px 12px;margin-bottom:10px}
@@ -49,18 +52,63 @@ h2.sec{font-size:1.05rem;margin:16px 4px 8px;display:flex;align-items:center;gap
 .story .st-tip::before{content:"💡 考点链接：";font-weight:700}
 .quiz-top{display:flex;justify-content:space-between;font-size:.78rem;color:#7b8894;margin-bottom:6px}
 .qbar{height:6px;background:#eef2f5;border-radius:4px;overflow:hidden;margin-bottom:12px}
-.qbar i{display:block;height:100%;background:linear-gradient(90deg,#3aa8d8,#7fd9a4);border-radius:4px;transition:width .25s}
+.qbar i{display:block;height:100%;background:linear-gradient(90deg,#3aa8d8,var(--lite));border-radius:4px;transition:width .25s}
 .qtext{font-size:.95rem;font-weight:700;line-height:1.6;margin-bottom:12px;color:#2c3a45}
+.badges{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.qtype{font-size:.68rem;border-radius:8px;padding:2px 8px;font-weight:700}
+.qtype.choice{background:#eef6f1;color:#1e7a48}
+.qtype.tf{background:#fff3e6;color:#b06000}
+.qtype.fill{background:#e8f1fb;color:#2563a8}
+.qtype.order{background:#f3ecfb;color:#6b3fa8}
+.qtype.essay{background:#fdeeee;color:#a33a2e}
+.lv{font-size:.68rem;border-radius:8px;padding:2px 8px;font-weight:700;background:#f2f4f6;color:#8a97a3}
+.lv1{background:#e6f9ee;color:#1e7a48}
+.lv2{background:#fff3e6;color:#b06000}
+.lv3{background:#fdeeee;color:#c0392b}
 .opt{display:block;width:100%;text-align:left;background:#f7faf8;border:2px solid #e4ece7;border-radius:12px;padding:11px 13px;margin-bottom:9px;font-size:.88rem;line-height:1.5;color:#3a4a55;cursor:pointer;transition:all .12s}
 .opt:active{transform:scale(.99)}
-.opt.right{background:#e6f9ee;border-color:#2fa866;color:#1e6b46;font-weight:700}
+.opt.right{background:#e6f9ee;border-color:var(--acc);color:#1e6b46;font-weight:700}
 .opt.wrong{background:#ffecec;border-color:#e74c3c;color:#b03a2e;font-weight:700}
 .opt.dim{opacity:.55}
+.judge-row{display:flex;gap:10px}
+.judge-row .opt{flex:1;text-align:center;font-size:1rem;font-weight:700}
+.fill-in{width:100%;font-size:16px;padding:10px 12px;border:2px solid #dde6e0;border-radius:12px;margin-bottom:9px;background:#fbfdfc;color:#2c3a45;outline:none}
+.fill-in:focus{border-color:var(--acc);background:#fff}
+.fill-row{display:flex;gap:8px;align-items:center;margin-bottom:9px}
+.fill-row .fi-no{flex-shrink:0;font-weight:700;color:#8a97a3;font-size:.85rem}
+.fill-row .fill-in{flex:1;margin-bottom:0}
+.ord-pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.ord-chip{background:#f2f5f3;border:2px solid #dde6e0;border-radius:999px;padding:8px 14px;font-size:.86rem;cursor:pointer;transition:all .12s;color:#3a4a55}
+.ord-chip:active{transform:scale(.95)}
+.ord-chip.used{opacity:.3;pointer-events:none}
+.ord-line{background:#fbfdfc;border:2px dashed #d5e0d9;border-radius:12px;padding:10px;min-height:46px;margin-bottom:9px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.ord-line .ord-chip{background:#eef9f1;border-color:var(--lite);color:#1e6b46;cursor:pointer}
+.ord-line .ord-no{font-size:.72rem;color:#8a97a3;font-weight:700}
+.essay .mat{background:#fbf7ee;border:1px solid #eee0c2;border-radius:12px;padding:11px 12px;margin-bottom:10px}
+.essay .mat .mat-t{font-weight:800;font-size:.85rem;color:#8a5a00;margin-bottom:6px}
+.essay .mat p{font-size:.83rem;line-height:1.75;color:#5d5344;margin-bottom:6px}
+.mat-table-wrap{overflow-x:auto;margin:6px 0}
+.mat table{border-collapse:collapse;font-size:.78rem;width:100%;background:#fff}
+.mat th,.mat td{border:1px solid #e3d8bc;padding:6px 8px;text-align:left;color:#4a5a66}
+.mat th{background:#f6efdd;color:#7a5a1e}
+.subq{background:#fff;border:1px solid #eef0e8;border-radius:12px;padding:11px 12px;margin-bottom:10px}
+.subq-q{font-weight:700;font-size:.86rem;line-height:1.55;margin-bottom:8px}
+.subq-q .sc{display:inline-block;background:#eef6f1;color:var(--acc);font-size:.7rem;border-radius:8px;padding:2px 7px;margin-left:6px;font-weight:700}
+.essay-ta{width:100%;font-size:16px;padding:10px 12px;border:2px solid #dde6e0;border-radius:12px;min-height:72px;margin-bottom:8px;background:#fbfdfc;color:#2c3a45;outline:none;font-family:inherit;resize:vertical}
+.essay-ta:focus{border-color:var(--acc);background:#fff}
+.keylist{background:#fbfdfc;border:1px solid #e6ece8;border-radius:12px;padding:10px;margin-bottom:8px}
+.keylist .k-t{font-size:.78rem;font-weight:800;color:#2b4a3d;margin-bottom:6px}
+.keylist label{display:block;font-size:.83rem;line-height:1.6;padding:6px 8px;border-radius:8px;color:#54636e;cursor:pointer}
+.keylist label.on{background:#e6f9ee;color:#1e6b46;font-weight:700}
+.keylist input{accent-color:var(--acc)}
+.self-row{display:flex;gap:8px;margin-top:4px}
+.self-btn{flex:1;background:#fff;border:2px solid #d5e0d9;border-radius:10px;padding:8px;font-size:.82rem;cursor:pointer;font-weight:700;color:#5a6a76}
+.self-btn.on{border-color:var(--acc);background:#e6f9ee;color:#1e6b46}
 .fb{border-radius:12px;padding:11px 13px;font-size:.85rem;line-height:1.7;margin-top:4px;display:none}
 .fb.ok{background:#e6f9ee;color:#1e6b46;display:block}
 .fb.bad{background:#fff0ef;color:#a33a2e;display:block}
 .fb .why{display:block;margin-top:5px;font-size:.82rem}
-.next-btn{display:block;width:100%;background:linear-gradient(120deg,#2fa866,#57c785);color:#fff;border:none;border-radius:14px;padding:13px;font-size:.95rem;font-weight:700;margin-top:12px;cursor:pointer;box-shadow:0 4px 10px rgba(47,168,102,.3)}
+.next-btn{display:block;width:100%;background:linear-gradient(120deg,var(--acc),var(--mid));color:#fff;border:none;border-radius:14px;padding:13px;font-size:.95rem;font-weight:700;margin-top:12px;cursor:pointer;box-shadow:0 4px 10px rgba(var(--accrgb),.3)}
 .next-btn:active{transform:scale(.98)}
 .score-box{text-align:center;padding:22px 10px}
 .score-emoji{font-size:3.2rem}
@@ -70,9 +118,9 @@ h2.sec{font-size:1.05rem;margin:16px 4px 8px;display:flex;align-items:center;gap
 .wrong-mini{background:#fff7f8;border-radius:12px;padding:10px;font-size:.8rem;color:#a33a2e;line-height:1.6;text-align:left;margin-bottom:12px}
 .btn-row{display:flex;gap:10px}
 .btn-row .next-btn{flex:1;margin-top:0}
-.btn2{display:block;width:100%;background:#fff;color:#2fa866;border:2px solid #2fa866;border-radius:14px;padding:11px;font-size:.92rem;font-weight:700;margin-top:12px;cursor:pointer}
+.btn2{display:block;width:100%;background:#fff;color:var(--acc);border:2px solid var(--acc);border-radius:14px;padding:11px;font-size:.92rem;font-weight:700;margin-top:12px;cursor:pointer}
 .wrong-item{background:#fff;border-radius:14px;box-shadow:0 3px 12px rgba(44,58,69,.08);padding:13px;margin-bottom:11px}
-.wrong-item .w-tag{display:inline-block;background:#eef6f1;color:#2fa866;font-size:.72rem;border-radius:8px;padding:3px 8px;margin-bottom:7px}
+.wrong-item .w-tag{display:inline-block;background:#eef6f1;color:var(--acc);font-size:.72rem;border-radius:8px;padding:3px 8px;margin-bottom:7px}
 .wrong-item .w-q{font-size:.9rem;font-weight:700;line-height:1.55}
 .wrong-item .w-a{font-size:.83rem;color:#1e7a48;margin-top:6px;line-height:1.6}
 .wrong-item .w-a b{color:#c0392b}
@@ -80,17 +128,51 @@ h2.sec{font-size:1.05rem;margin:16px 4px 8px;display:flex;align-items:center;gap
 nav.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);display:flex;justify-content:space-around;border-top:1px solid #e8eef0;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:10}
 nav.bottom button{background:none;border:none;font-size:.72rem;color:#8a97a3;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:2px 14px}
 nav.bottom button .ic{font-size:1.25rem}
-nav.bottom button.active{color:#2fa866;font-weight:700}
+nav.bottom button.active{color:var(--acc);font-weight:700}
 nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8px;padding:1px 6px;position:relative;top:-16px;left:10px;height:0}
 .about p{font-size:.84rem;color:#54636e;line-height:1.8;margin-bottom:8px}
 .about h3{font-size:.92rem;color:#2b4a3d;margin:12px 0 6px}
 .done-flag{display:inline-block;background:#e6f9ee;color:#1e6b46;font-size:.7rem;border-radius:8px;padding:3px 8px;margin-left:6px}
+.rank-card{background:linear-gradient(120deg,#3a3f4d,#565d6e);color:#fff;border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 3px 12px rgba(44,58,69,.2)}
+.rank-top{display:flex;align-items:center;gap:10px}
+.rank-ic{font-size:2rem;background:rgba(255,255,255,.12);border-radius:14px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rank-name{font-weight:800;font-size:1.02rem}
+.rank-sub{font-size:.74rem;opacity:.85;margin-top:2px}
+.rank-pbar{height:7px;background:rgba(255,255,255,.2);border-radius:4px;margin-top:10px;overflow:hidden}
+.rank-pbar i{display:block;height:100%;background:linear-gradient(90deg,#ffd76a,#ffb545);border-radius:4px;transition:width .3s}
+.daily-card{display:flex;align-items:center;gap:12px;background:linear-gradient(120deg,#fff7e8,#fffdf5);border:1px solid #ffe3b0;border-radius:16px;padding:14px;margin-bottom:12px;cursor:pointer;box-shadow:0 3px 12px rgba(44,58,69,.08)}
+.daily-card .dc-ic{font-size:1.9rem;flex-shrink:0}
+.daily-card .dc-info{flex:1;min-width:0}
+.daily-card .dc-t{font-weight:800;font-size:.95rem;color:#8a5a00}
+.daily-card .dc-s{font-size:.74rem;color:#a08a5a;margin-top:3px}
+.daily-card .dc-go{color:#c0392b;font-weight:800;font-size:.8rem;flex-shrink:0}
+#timer{font-weight:800;color:#c0392b;font-variant-numeric:tabular-nums}
+.pick-sec{display:flex;align-items:center;gap:8px;padding:9px 10px;border:1.5px solid #e4ece7;border-radius:12px;margin-bottom:8px;cursor:pointer;background:#fbfdfc}
+.pick-sec.on{border-color:var(--acc);background:#eef9f1}
+.pick-sec input{accent-color:var(--acc)}
+.pick-sec .ps-name{flex:1;font-size:.85rem;color:#3a4a55;font-weight:600}
+.pick-sec .ps-n{font-size:.72rem;color:#8a97a3}
+.lv-row{display:flex;gap:8px;margin-bottom:10px}
+.lv-btn{flex:1;border:2px solid #e4ece7;border-radius:10px;padding:8px;font-size:.83rem;font-weight:700;color:#5a6a76;background:#fff;cursor:pointer;text-align:center}
+.lv-btn.on{border-color:var(--acc);background:#eef9f1;color:#1e6b46}
+.gate-item{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;box-shadow:0 3px 12px rgba(44,58,69,.08);padding:13px;margin-bottom:10px}
+.gate-item.lock{opacity:.55}
+.gate-no{width:30px;height:30px;border-radius:50%;background:linear-gradient(120deg,var(--acc),var(--mid));color:#fff;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gate-item.lock .gate-no{background:#c5ced3}
+.gate-info{flex:1;min-width:0}
+.gate-name{font-weight:700;font-size:.88rem}
+.gate-meta{font-size:.72rem;color:#8a97a3;margin-top:2px}
+.gate-go{color:var(--acc);font-weight:800;font-size:.8rem;flex-shrink:0}
+.gate-item.lock .gate-go{color:#b9c4cc}
+.mn-card{background:#fffdf3;border:1px solid #ffe9a8;border-radius:14px;padding:12px;margin-bottom:10px}
+.mn-card .mn-t{font-weight:700;font-size:.88rem;color:#2b4a3d;margin-bottom:6px}
+.mn-card .mn-m{font-size:.85rem;color:#8a6d00;line-height:1.6;background:#fff8e1;border-radius:10px;padding:8px 10px}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="app">
-  <h1>🔬 初一生物上册复习</h1>
+  <h1>?? 初一生物上册复习</h1>
   <div class="sub">苏科版 · 2024秋 · 江苏徐州｜知识点 · 重点分析 · 易错点 · 习题 · 趣味故事</div>
 </header>
 <div id="app"></div>
@@ -102,33 +184,34 @@ nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8
 </nav>
 
 <script type="application/json" id="DATA">
+
 {"units":[
 {"id":"u1","name":"第1单元 走进生命世界","emoji":"🌱","chapters":[
 {"id":"c1s1","name":"第1章 生物学——研究生命的科学","emoji":"🔬","sections":[
-{"name":"第1节 生物与生物学","points":[
+{"id":"s1","name":"第1节 生物与生物学","mn":"七特征：营养呼吸排废物，应激生长和繁殖，遗传变异细胞成","points":[
 {"t":"什么是生物？","d":"自然界中凡是有生命的物体，统称为生物。判断一个物体是不是生物，看它是否具有生命的基本特征。"},
-{"t":"生物的基本特征（7条，必背）","d":"①生物的生活需要营养；②生物能进行呼吸；③生物能排出身体内产生的废物（如出汗、排尿、落叶）；④生物能对外界刺激作出反应（叫应激性，如含羞草被碰后叶片合拢）；⑤生物能生长和繁殖；⑥生物都有遗传和变异的特性；⑦除病毒外，生物都由细胞构成。"},
-{"t":"生物与非生物的本质区别","d":"是否具有生命（生命的基本特征）。钟乳石能“长大”、机器人能“运动”，但它们没有生命特征，属于非生物。"},
+{"t":"生物的基本特征（7条，必背）","mn":"一需二呼三排四应，五长六遗七细胞","d":"①生物的生活需要营养；②生物能进行呼吸；③生物能排出身体内产生的废物（如出汗、排尿、落叶）；④生物能对外界刺激作出反应（叫应激性，如含羞草被碰后叶片合拢）；⑤生物能生长和繁殖；⑥生物都有遗传和变异的特性；⑦除病毒外，生物都由细胞构成。"},
+{"t":"生物与非生物的本质区别","mn":"看生命特征，不看像不像、动不动","d":"是否具有生命（生命的基本特征）。钟乳石能“长大”、机器人能“运动”，但它们没有生命特征，属于非生物。"},
 {"t":"病毒是生物吗？","d":"是！病毒没有细胞结构，但它能繁殖后代，具有生命特征，所以属于生物。病毒是“特殊”的生物。"},
 {"t":"什么是生物学？","d":"生物学是研究生命现象和生命活动规律的科学。生物科学是自然科学中发展最快的学科之一。"},
 {"t":"生物学与人类生活的关系","d":"①医学与健康：青霉素、疫苗、抗生素的发现与应用；②农业：袁隆平培育杂交水稻，解决粮食问题；③环境保护：治理污染、保护生态；④食品工业：发酵食品（酸奶、面包）等。"},
 {"t":"生物学的未来","d":"基因工程、克隆技术、精准医疗等，都与生物学密切相关，是21世纪的前沿科学。"}
 ]},
-{"name":"第2节 生物学研究的基本方法","points":[
+{"id":"s2","name":"第2节 生物学研究的基本方法","mn":"探究六步：提问→假设→订计划→实施→得结论→交流","points":[
 {"t":"科学探究的一般过程（6步）","d":"提出问题 → 作出假设 → 制订计划（设计实验）→ 实施计划（进行实验）→ 得出结论 → 表达和交流。"},
 {"t":"科学探究的基本方法","d":"观察法、实验法、调查法、比较法、资料分析法（文献法）。其中最常用的是观察法和实验法。"},
-{"t":"对照实验的三个关键","d":"①控制变量：实验中除要研究的因素（变量）外，其他条件必须完全相同；②设置对照组和实验组：对照组不做处理，实验组做处理；③重复实验：多次重复取平均值，减小实验误差。"},
-{"t":"变量是什么？","d":"实验中人为改变的、要研究的因素就是变量。例如探究“光对鼠妇分布的影响”，变量是光（有光/无光），其余条件（湿度、温度、鼠妇数量等）都要相同。"},
-{"t":"观察法vs实验法","d":"观察法是直接用感官或仪器观察研究对象（如观察鸟的形态）；实验法是在人为控制条件下研究（如探究实验），必要时两者结合。"}
+{"t":"对照实验的三个关键","mn":"单一变量、设对照、重复做","d":"①控制变量：实验中除要研究的因素（变量）外，其他条件必须完全相同；②设置对照组和实验组：对照组不做处理，实验组做处理；③重复实验：多次重复取平均值，减小实验误差。"},
+{"t":"变量是什么？","mn":"要研究什么，就只改变什么","d":"实验中人为改变的、要研究的因素就是变量。例如探究“光对鼠妇分布的影响”，变量是光（有光/无光），其余条件（湿度、温度、鼠妇数量等）都要相同。"},
+{"t":"观察法vs实验法","mn":"观察用感官看，实验动手指控","d":"观察法是直接用感官或仪器观察研究对象（如观察鸟的形态）；实验法是在人为控制条件下研究（如探究实验），必要时两者结合。"}
 ]},
-{"name":"跨学科实践活动","points":[
+{"id":"s3","name":"跨学科实践活动","mn":"水族箱＝鱼＋草＋水光砂石＋微生物；勤换水、控喂食","points":[
 {"t":"自制水族箱，饲养金鱼","d":"课本实践活动。水族箱是一个“微型生态系统”：金鱼（动物）＋水草（植物）＋水、砂石、温度光照（环境）＋水中微生物。注意：水草放养适量、定期换水、控制喂食量。"},
 {"t":"实践活动里学的科学方法","d":"提出问题（金鱼喜欢怎样的水？）→ 作出假设 → 对照实验（变量：水温/水质）→ 记录数据 → 得出结论。这就是把“科学探究”用到生活中。"}
 ]}
 ],"keypoints":[
-{"t":"生物基本特征的判断","d":"考试最爱出“下列属于生物的是”“生物具有而机器人没有的特征是”。逐条套7个特征：机器人不能繁殖、不能呼吸，不是生物；钟乳石长大不是生长；病毒能繁殖，是生物。"},
-{"t":"科学探究6步的顺序","d":"顺序不能乱，第一步永远是“提出问题”。常考“探究实验的第一步是什么”。"},
-{"t":"对照实验的设计","d":"单一变量＋对照组＋重复实验是高频考点。常见错误：实验中变量设置多个、没有对照组、只用1只鼠妇（样本太少）。"}
+{"t":"生物基本特征的判断","mn":"套七特征，不看外表","d":"考试最爱出“下列属于生物的是”“生物具有而机器人没有的特征是”。逐条套7个特征：机器人不能繁殖、不能呼吸，不是生物；钟乳石长大不是生长；病毒能繁殖，是生物。"},
+{"t":"科学探究6步的顺序","mn":"第一步永远是提问","d":"顺序不能乱，第一步永远是“提出问题”。常考“探究实验的第一步是什么”。"},
+{"t":"对照实验的设计","mn":"单变量＋对照组＋重复实验","d":"单一变量＋对照组＋重复实验是高频考点。常见错误：实验中变量设置多个、没有对照组、只用1只鼠妇（样本太少）。"}
 ],
 "traps":[
 {"w":"能运动的都是生物，会跑的机器人是生物","r":"机器人不具备生命特征，不能繁殖、不需营养，属于非生物。判断依据是生命特征，不是能否运动。"},
@@ -146,42 +229,57 @@ nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8
 "巴斯德靠这个“会拐弯的瓶子”推翻了流传几百年的“自然发生说”，还发明了“巴氏消毒法”——你现在喝的牛奶保鲜，就要感谢他！"
 ],"tip":"鹅颈瓶实验就是典型的对照实验：变量是“微生物能否进入”。实验的每一步都对应科学探究的过程：提出问题→假设→设计实验→实施→得出结论。"},
 "quiz":[
-{"q":"下列各项中，属于生物的是（　）","opts":["A. 会跳舞的机器人","B. 慢慢变大的钟乳石","C. 使人患病的病毒","D. 缓缓流动的河水"],"ans":2,"why":"病毒虽然结构特殊（无细胞结构），但能繁殖后代，具有生命特征，属于生物。其余三项都没有生命特征。"},
-{"q":"生物能对外界刺激作出反应，这叫做（　）","opts":["A. 适应性","B. 应激性","C. 变异性","D. 遗传性"],"ans":1,"why":"应激性是生物对刺激作出反应的特性。如含羞草叶片合拢、猫见了鱼流口水。"},
-{"q":"“离离原上草，一岁一枯荣”说明生物具有的特征是（　）","opts":["A. 需要营养","B. 排出废物","C. 生长和繁殖","D. 呼吸"],"ans":2,"why":"草一年一度枯黄又繁荣，说明生物能生长和繁殖。古诗考生物特征是常见题型。"},
-{"q":"科学探究的一般过程，正确的顺序是（　）","opts":["A. 提出问题→作出假设→实施计划→制订计划→得出结论","B. 提出问题→作出假设→制订计划→实施计划→得出结论→表达交流","C. 作出假设→提出问题→实施计划→得出结论→表达交流","D. 提出问题→得出结论→制订计划→实施计划→表达交流"],"ans":1,"why":"6步顺序：提出问题→作出假设→制订计划→实施计划→得出结论→表达交流。第一步一定是提出问题。"},
-{"q":"探究“光对鼠妇生活的影响”实验中，实验变量是（　）","opts":["A. 温度","B. 湿度","C. 光","D. 鼠妇的数量"],"ans":2,"why":"实验要研究“光”的影响，所以变量是光；温度、湿度等其他条件都必须相同（控制单一变量）。"},
-{"q":"巴斯德的鹅颈瓶实验证明了（　）","opts":["A. 肉汤自己会长出微生物","B. 肉汤变质是空气中的微生物引起的","C. 微生物必须生活在肉汤里","D. 加热能使微生物繁殖加快"],"ans":1,"why":"鹅颈瓶阻挡微生物进入后肉汤不变质，敲断瓶颈后变质，证明变质由空气中的微生物引起，否定了“自然发生说”。"},
-{"q":"下列哪项不属于生物的基本特征？（　）","opts":["A. 能生长和繁殖","B. 由细胞构成","C. 能进行光合作用","D. 能对外界刺激作出反应"],"ans":2,"why":"光合作用只有绿色植物等能进行，不是所有生物的基本特征；其余三项是所有生物共有的特征。"},
-{"q":"在探究实验中，设置“对照组”的目的是（　）","opts":["A. 让实验更复杂","B. 与其他组形成对照，使实验结果更有说服力","C. 增加实验的趣味性","D. 节省实验材料"],"ans":1,"why":"对照组不做处理（自然状态），实验组做处理，两相对照才能说明变量引起的变化。"},
-{"q":"观察法常用的工具或手段不包括（　）","opts":["A. 放大镜","B. 显微镜","C. 对照实验","D. 望远镜"],"ans":2,"why":"对照实验属于实验法；放大镜、显微镜、望远镜都是观察工具。观察法和实验法是最常用的两种方法。"},
-{"q":"袁隆平爷爷的杂交水稻解决了粮食问题，这体现了生物学在哪个方面的作用？（　）","opts":["A. 医药卫生","B. 农业生产","C. 环境保护","D. 食品工业"],"ans":1,"why":"杂交水稻属于农业育种，体现了生物学对农业生产的巨大贡献。"}
+{"type":"choice","lv":1,"sec":"s1","q":"下列各项中，属于生物的是（　）","opts":["A. 会跳舞的机器人","B. 慢慢变大的钟乳石","C. 使人患病的病毒","D. 缓缓流动的河水"],"ans":2,"why":"病毒虽然结构特殊（无细胞结构），但能繁殖后代，具有生命特征，属于生物。其余三项都没有生命特征。"},
+{"type":"choice","lv":1,"sec":"s1","q":"生物能对外界刺激作出反应，这叫做（　）","opts":["A. 适应性","B. 应激性","C. 变异性","D. 遗传性"],"ans":1,"why":"应激性是生物对刺激作出反应的特性。如含羞草叶片合拢、猫见了鱼流口水。"},
+{"type":"choice","lv":2,"sec":"s1","q":"“离离原上草，一岁一枯荣”说明生物具有的特征是（　）","opts":["A. 需要营养","B. 排出废物","C. 生长和繁殖","D. 呼吸"],"ans":2,"why":"草一年一度枯黄又繁荣，说明生物能生长和繁殖。古诗考生物特征是常见题型。"},
+{"type":"choice","lv":1,"sec":"s2","q":"科学探究的一般过程，正确的顺序是（　）","opts":["A. 提出问题→作出假设→实施计划→制订计划→得出结论","B. 提出问题→作出假设→制订计划→实施计划→得出结论→表达交流","C. 作出假设→提出问题→实施计划→得出结论→表达交流","D. 提出问题→得出结论→制订计划→实施计划→表达交流"],"ans":1,"why":"6步顺序：提出问题→作出假设→制订计划→实施计划→得出结论→表达交流。第一步一定是提出问题。"},
+{"type":"choice","lv":1,"sec":"s2","q":"探究“光对鼠妇生活的影响”实验中，实验变量是（　）","opts":["A. 温度","B. 湿度","C. 光","D. 鼠妇的数量"],"ans":2,"why":"实验要研究“光”的影响，所以变量是光；温度、湿度等其他条件都必须相同（控制单一变量）。"},
+{"type":"choice","lv":2,"sec":"s2","q":"巴斯德的鹅颈瓶实验证明了（　）","opts":["A. 肉汤自己会长出微生物","B. 肉汤变质是空气中的微生物引起的","C. 微生物必须生活在肉汤里","D. 加热能使微生物繁殖加快"],"ans":1,"why":"鹅颈瓶阻挡微生物进入后肉汤不变质，敲断瓶颈后变质，证明变质由空气中的微生物引起，否定了“自然发生说”。"},
+{"type":"choice","lv":3,"sec":"s1","q":"下列哪项不属于生物的基本特征？（　）","opts":["A. 能生长和繁殖","B. 由细胞构成","C. 能进行光合作用","D. 能对外界刺激作出反应"],"ans":2,"why":"光合作用只有绿色植物等能进行，不是所有生物的基本特征；其余三项是所有生物共有的特征。"},
+{"type":"choice","lv":2,"sec":"s2","q":"在探究实验中，设置“对照组”的目的是（　）","opts":["A. 让实验更复杂","B. 与其他组形成对照，使实验结果更有说服力","C. 增加实验的趣味性","D. 节省实验材料"],"ans":1,"why":"对照组不做处理（自然状态），实验组做处理，两相对照才能说明变量引起的变化。"},
+{"type":"choice","lv":2,"sec":"s2","q":"观察法常用的工具或手段不包括（　）","opts":["A. 放大镜","B. 显微镜","C. 对照实验","D. 望远镜"],"ans":2,"why":"对照实验属于实验法；放大镜、显微镜、望远镜都是观察工具。观察法和实验法是最常用的两种方法。"},
+{"type":"choice","lv":1,"sec":"s1","q":"袁隆平爷爷的杂交水稻解决了粮食问题，这体现了生物学在哪个方面的作用？（　）","opts":["A. 医药卫生","B. 农业生产","C. 环境保护","D. 食品工业"],"ans":1,"why":"杂交水稻属于农业育种，体现了生物学对农业生产的巨大贡献。"},
+{"type":"choice","lv":3,"sec":"s3","q":"小明自制水族箱养金鱼：缸里放了几条金鱼、几棵水草、水和砂石，放在有光照的窗台上。一周后金鱼有些无精打采，水也变浑了。他最应该采取的做法是（　）","opts":["A. 再多放几条金鱼","B. 适量换水，并控制喂食量","C. 把水族箱搬到阴暗无光的角落","D. 把水草全部捞出来"],"ans":1,"why":"水族箱要定期换水、控制喂食量；金鱼、水草的数量要合适，放在有光照但不过热的地方。"},
+{"type":"choice","lv":2,"sec":"s1","q":"奶奶腌的泡菜、妈妈做的酸奶，都离不开微生物的“功劳”。这体现了生物学与哪个方面的关系？（　）","opts":["A. 医学与健康","B. 环境保护","C. 食品工业","D. 农业"],"ans":2,"why":"酸奶、面包等发酵食品属于食品工业，是生物学与人类生活关系的重要体现。"},
+{"type":"tf","lv":1,"sec":"s1","q":"能运动的都是生物，会跑会跳的机器人也是生物。","ans":false,"why":"机器人不具备生命特征，不能繁殖、不需营养，属于非生物。判断依据是生命特征，不是能否运动。"},
+{"type":"tf","lv":1,"sec":"s1","q":"钟乳石能慢慢“长大”，所以钟乳石是生物。","ans":false,"why":"钟乳石的“长大”是矿物质不断沉积造成的，不是生长（生长是细胞数目增多、体积增大），所以不是生物。"},
+{"type":"tf","lv":2,"sec":"s1","q":"病毒没有细胞结构，所以病毒不是生物。","ans":false,"why":"病毒是生物！它虽然没有细胞结构，但能繁殖后代。生物特征的判断不能只看“由细胞构成”这一条。"},
+{"type":"tf","lv":2,"sec":"s2","q":"探究实验中，变量可以同时研究两个，比如光和水分一起变，这样实验更省时间。","ans":false,"why":"对照实验必须控制单一变量，一次只研究一个因素，否则无法判断是哪个因素引起的实验结果。"},
+{"type":"tf","lv":1,"sec":"s1","q":"含羞草被碰后叶片合拢，是生物对外界刺激作出的反应（应激性）。","ans":true,"why":"这是生物对外界刺激作出的反应（应激性），属于生命特征。植物也有应激性。"},
+{"type":"fill","lv":1,"sec":"s1","q":"自然界中凡是有生命的物体，统称为____。","a":[["生物"]],"why":"判断一个物体是不是生物，看它是否具有生命的基本特征。"},
+{"type":"fill","lv":1,"sec":"s1","q":"除病毒外，生物都由____构成。","a":[["细胞"]],"why":"除病毒外，生物都由细胞构成，这是生物的基本特征之一。"},
+{"type":"fill","lv":1,"sec":"s2","q":"科学探究的一般过程，第一步是____。","a":[["提出问题"]],"why":"科学探究6步的顺序不能乱，第一步永远是“提出问题”。"},
+{"type":"fill","lv":2,"sec":"s2","q":"对照实验中，除了要研究的因素（变量）外，其他条件必须____。","a":[["完全相同","相同","一样"]],"why":"控制变量：实验中除要研究的因素（变量）外，其他条件必须完全相同。"},
+{"type":"order","lv":2,"sec":"s2","q":"请按正确顺序排列科学探究的一般过程：","items":["提出问题","作出假设","制订计划（设计实验）","实施计划（进行实验）","得出结论","表达和交流"],"why":"科学探究6步：提出问题→作出假设→制订计划→实施计划→得出结论→表达和交流。"},
+{"type":"order","lv":3,"sec":"s3","q":"在“自制水族箱，饲养金鱼”的实践活动中，请按正确顺序排列科学探究的过程：","items":["提出问题（金鱼喜欢怎样的水？）","作出假设","对照实验（变量：水温/水质）","记录数据","得出结论"],"why":"这就是把“科学探究”用到生活中：提出问题→作出假设→对照实验→记录数据→得出结论。"},
+{"type":"essay","lv":3,"sec":"s2","mat":{"title":"探究“光对鼠妇分布的影响”","text":["生物课上，小明发现花盆下、石块下藏着许多鼠妇（潮虫）。他提出问题：光会影响鼠妇的分布吗？","他作出假设：光会影响鼠妇的分布。然后设计实验：在纸盒内铺上一层湿土，一侧盖上玻璃板（明亮），另一侧盖上黑纸板（阴暗），两侧都保持湿润、温度相同。他在纸盒中央放入10只鼠妇，静置2分钟后开始观察，每隔1分钟记录一次明亮处和阴暗处的鼠妇数量。","多次实验后，小明把观察结果整理成下表："],"table":{"head":["环境","观察到的鼠妇分布"],"rows":[["明亮处","鼠妇少"],["阴暗处","鼠妇多"]]}},"subs":[{"q":"小明探究的问题是什么？他作出的假设是什么？","score":2,"key":["光会影响鼠妇的分布吗","光会影响鼠妇的分布"]},{"q":"这个实验的变量是什么？怎样保证实验中只有一个变量？","score":4,"key":["变量是光（有光/无光）","其余条件（湿度、温度、鼠妇数量等）都要相同"]},{"q":"为什么要用10只鼠妇做实验，而不是只用1只？","score":3,"key":["样本太少（只用1只鼠妇）结果偶然性大","多次重复取平均值，减小实验误差"]},{"q":"根据观察结果，你能得出什么结论？","score":3,"key":["光会影响鼠妇的分布","鼠妇怕光喜阴（喜欢阴暗的环境）"]}],"why":"对照实验三关键：单一变量、设置对照、重复实验；变量是光。","q":"阅读材料，回答问题："},
+{"type":"essay","lv":3,"sec":"s3","mat":{"title":"自制水族箱，饲养金鱼","text":["实践活动课上，老师让大家自制水族箱饲养金鱼。小明在玻璃缸里放了几条金鱼、几棵水草，还有清水和砂石，把水族箱放在有阳光照射但不过热的窗台上。","几天后，他发现水族箱里的水有些浑浊，金鱼游动变慢。他换了一部分水，减少了喂食量，金鱼又活泼起来了。"]},"subs":[{"q":"水族箱里哪些是生物？哪些是非生物？","score":3,"key":["生物：金鱼（动物）、水草（植物）、水中微生物","非生物：水、砂石、温度光照（环境）"]},{"q":"为什么说水族箱是一个“微型生态系统”？","score":4,"key":["金鱼（动物）＋水草（植物）＋水、砂石、温度光照（环境）＋水中微生物，构成一个统一整体"]},{"q":"小明“换一部分水、减少喂食量”的做法对吗？如果还想探究“金鱼喜欢怎样的水温”，实验的变量是什么？","score":5,"key":["对，要注意定期换水、控制喂食量","变量是水温（水质）"]}],"why":"水族箱是微型生态系统；科学探究的方法要用到生活中。","q":"阅读材料，回答问题："}
 ]}
 ]},
 {"id":"u2","name":"第2单元 我们生活的生物圈","emoji":"🌍","chapters":[
 {"id":"c2s1","name":"第2章 生物与环境","emoji":"🍃","sections":[
-{"name":"第1节 生物生存依赖一定的环境","points":[
-{"t":"什么是生态因素？","d":"环境中影响生物生活和分布的因素叫做生态因素，分为两类：①非生物因素：光、温度、水、空气、土壤等；②生物因素：影响该生物生活的其他生物。"},
+{"id":"s1","name":"第1节 生物生存依赖一定的环境","mn":"光温水气非生物，捕食竞争寄生共生合作是生物","points":[
+{"t":"什么是生态因素？","mn":"非生物：光温水气土；生物：捕竞寄共合","d":"环境中影响生物生活和分布的因素叫做生态因素，分为两类：①非生物因素：光、温度、水、空气、土壤等；②生物因素：影响该生物生活的其他生物。"},
 {"t":"非生物因素——光","d":"光影响植物的分布（背阴处长苔藓）、影响动物行为（鼠妇怕光喜阴、猫头鹰夜行）。深海中植物少，因为光照不足。"},
 {"t":"非生物因素——温度","d":"大雁南飞（秋冬温度降低）、蛇和青蛙冬眠、北极狐和沙漠狐体型差异，都受温度影响。"},
 {"t":"非生物因素——水","d":"仙人掌叶退化成刺、骆驼耐旱，是为了适应缺水的环境；干旱地区的植物根系发达。"},
 {"t":"非生物因素——空气","d":"空气成分（氧气、二氧化碳）影响生物。鱼离开水会死，因为水中有溶解的氧，鱼靠鳃呼吸。"},
-{"t":"生物因素的五种关系","d":"①捕食：狼捕羊；②竞争：同一草原上的牛和羊争夺牧草；③寄生：蛔虫寄生在人体内；④共生：豆科植物和根瘤菌（互相有利）；⑤合作：蚂蚁合作搬食物。"},
+{"t":"生物因素的五种关系","mn":"狼捕羊为捕食，牛羊争草为竞争，蛔虫寄生，根瘤菌共生，蚂蚁合作","d":"①捕食：狼捕羊；②竞争：同一草原上的牛和羊争夺牧草；③寄生：蛔虫寄生在人体内；④共生：豆科植物和根瘤菌（互相有利）；⑤合作：蚂蚁合作搬食物。"},
 {"t":"“人间四月芳菲尽，山寺桃花始盛开”","d":"这句诗说明山上和山下的气温不同，桃花开放时间不同——影响桃花开花的生态因素是温度。"}
 ]},
-{"name":"第2节 生物对环境的适应和影响","points":[
-{"t":"生物对环境的适应","d":"适应具有普遍性，如：①保护色：北极熊白色、变色龙变色（与环境颜色相似）；②拟态：竹节虫像树枝、枯叶蝶像枯叶；③警戒色：毒蛇鲜艳的花纹警告天敌。还有行为适应：候鸟迁徙、动物冬眠。"},
-{"t":"适应具有相对性","d":"适应不是绝对的、永久的。例如雷鸟冬天换白羽与雪地一致，但如果雪提前融化，白羽反而容易被天敌发现——适应是相对的。"},
+{"id":"s2","name":"第2节 生物对环境的适应和影响","mn":"保护色隐身、拟态装样、警戒色警告；适应相对不万能","points":[
+{"t":"生物对环境的适应","mn":"保护色融环境，拟态装成物，警戒色亮警告","d":"适应具有普遍性，如：①保护色：北极熊白色、变色龙变色（与环境颜色相似）；②拟态：竹节虫像树枝、枯叶蝶像枯叶；③警戒色：毒蛇鲜艳的花纹警告天敌。还有行为适应：候鸟迁徙、动物冬眠。"},
+{"t":"适应具有相对性","mn":"适应不是万能的，环境变就失效","d":"适应不是绝对的、永久的。例如雷鸟冬天换白羽与雪地一致，但如果雪提前融化，白羽反而容易被天敌发现——适应是相对的。"},
 {"t":"生物对环境的影响","d":"生物不仅能适应环境，还能影响和改变环境：蚯蚓疏松土壤、植物蒸腾作用增加空气湿度（“大树底下好乘凉”）、植物防风固沙、净化空气。"},
-{"t":"环境与生物的关系总结（三个方向）","d":"①环境影响生物（水分影响仙人掌形态）；②生物适应环境（仙人掌叶刺适应干旱）；③生物影响环境（蚯蚓松土）。判断时先看主语是谁、干了什么。"}
+{"t":"环境与生物的关系总结（三个方向）","mn":"自己变=适应，环境变=影响；看主语看动作","d":"①环境影响生物（水分影响仙人掌形态）；②生物适应环境（仙人掌叶刺适应干旱）；③生物影响环境（蚯蚓松土）。判断时先看主语是谁、干了什么。"}
 ]},
-{"name":"跨学科实践活动","points":[
+{"id":"s3","name":"跨学科实践活动","mn":"调查三步：提问、观察记录、写报告","points":[
 {"t":"校园/小区里的生物与环境调查","d":"用调查法观察记录：哪些生物适应了哪些环境（墙角苔藓爱阴湿）、哪些生物影响了环境（树荫下更凉快）。调查报告 = 调查法的实践。"}
 ]}
 ],"keypoints":[
-{"t":"生态因素的分类","d":"拿到一个例子先判断是“非生物因素”（光、温度、水、空气）还是“生物因素”（捕食、竞争、寄生、共生、合作）。例如“大树底下好乘凉”是生物影响环境，不是生态因素影响生物。"},
-{"t":"适应、影响、环境影响的辨析","d":"这是最常考的三选一：“骆驼刺根系发达”是适应；“蚯蚓疏松土壤”是影响；“干旱使植物矮小”是环境影响生物。"},
-{"t":"保护色、拟态、警戒色","d":"保护色=颜色和环境融为一体；拟态=模仿成别的东西（树枝、枯叶）；警戒色=故意鲜艳显眼警告敌人。竹节虫（拟态）、北极熊（保护色）、毒蛇（警戒色）。"}
+{"t":"生态因素的分类","mn":"先分非生物还是生物，再看具体哪一类","d":"拿到一个例子先判断是“非生物因素”（光、温度、水、空气）还是“生物因素”（捕食、竞争、寄生、共生、合作）。例如“大树底下好乘凉”是生物影响环境，不是生态因素影响生物。"},
+{"t":"适应、影响、环境影响的辨析","mn":"自己变=适应，环境变=影响","d":"这是最常考的三选一：“骆驼刺根系发达”是适应；“蚯蚓疏松土壤”是影响；“干旱使植物矮小”是环境影响生物。"},
+{"t":"保护色、拟态、警戒色","mn":"融环境保护色，装成物是拟态，亮警告警戒色","d":"保护色=颜色和环境融为一体；拟态=模仿成别的东西（树枝、枯叶）；警戒色=故意鲜艳显眼警告敌人。竹节虫（拟态）、北极熊（保护色）、毒蛇（警戒色）。"}
 ],
 "traps":[
 {"w":"“山寺桃花始盛开”说明光照影响桃花开放","r":"山上温度低，所以桃花开得晚。影响桃花开放的非生物因素是温度，不是光。"},
@@ -198,52 +296,67 @@ nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8
 "但伪装大师也有失手的时候：如果一阵大风把竹节虫吹到光秃秃的地面上，它那根“树枝”就格外显眼，很快就会成为鸟的美餐。所以——适应是相对的，没有万能的伪装。"
 ],"tip":"保护色（与环境同色）、拟态（模仿成其他物体）、警戒色（鲜艳警告）的区别是必考点。适应具有普遍性和相对性，环境变了，适应就可能失效。"},
 "quiz":[
-{"q":"“人间四月芳菲尽，山寺桃花始盛开”，影响山上桃花开放的主要生态因素是（　）","opts":["A. 光照","B. 温度","C. 水分","D. 空气"],"ans":1,"why":"山上气温比山下低，所以桃花开得晚。温度是影响桃花开放的主要非生物因素。"},
-{"q":"蚯蚓在土壤里活动，使土壤疏松，这说明（　）","opts":["A. 生物影响环境","B. 生物适应环境","C. 环境影响生物","D. 生物依赖环境"],"ans":0,"why":"蚯蚓的活动改变了土壤结构，是生物影响环境。"},
-{"q":"竹节虫的身体与竹枝极为相似，这属于（　）","opts":["A. 保护色","B. 警戒色","C. 拟态","D. 应激性"],"ans":2,"why":"竹节虫模仿竹枝的形态，是拟态。保护色是颜色与环境相似，警戒色是鲜艳警告。"},
-{"q":"下列属于生物因素对生物影响的是（　）","opts":["A. 春兰秋菊","B. 雨露滋润禾苗壮","C. 草盛豆苗稀","D. 秋风扫落叶"],"ans":2,"why":"“草盛豆苗稀”是草和豆苗争夺营养，属于生物因素（竞争）。其他三项是非生物因素。"},
-{"q":"北极狐和沙漠狐体型、耳朵差别很大，起主要作用的非生物因素是（　）","opts":["A. 温度","B. 水","C. 光","D. 空气"],"ans":0,"why":"北极狐体型大、耳朵小有利于保温；沙漠狐体型小、耳朵大有利于散热，都与温度（寒冷/炎热）有关。"},
-{"q":"雷鸟冬天换上白色羽毛，但如果没下雪，白色的雷鸟反而容易被发现。这说明（　）","opts":["A. 适应是相对的","B. 适应是绝对的","C. 雷鸟不会适应","D. 环境无法改变生物"],"ans":0,"why":"环境一旦改变（雪提前融化），原来的适应反而变成劣势，说明生物的适应是相对的。"},
-{"q":"豆科植物与根瘤菌之间的关系是（　）","opts":["A. 捕食","B. 竞争","C. 寄生","D. 共生"],"ans":3,"why":"豆科植物为根瘤菌提供营养，根瘤菌为植物提供含氮物质，双方互惠互利，是共生。"},
-{"q":"鼠妇（潮虫）喜欢生活在阴暗潮湿的地方，影响它分布的主要生态因素是（　）","opts":["A. 光和湿度","B. 温度","C. 空气","D. 土壤"],"ans":0,"why":"鼠妇怕光、需要潮湿环境，光和湿度（水分）是影响它分布的主要非生物因素。"},
-{"q":"“大树底下好乘凉”主要说明（　）","opts":["A. 环境影响生物","B. 生物适应环境","C. 生物影响环境","D. 大树会发光"],"ans":2,"why":"树的蒸腾作用增加空气湿度、树荫降低温度，是大树改变了周围环境——生物影响环境。"},
-{"q":"下列各项中，属于生物适应环境的是（　）","opts":["A. 千里之堤，溃于蚁穴","B. 仙人掌的叶退化成刺","C. 蚯蚓疏松土壤","D. 大树底下好乘凉"],"ans":1,"why":"仙人掌叶变成刺，减少水分蒸发，是对干旱环境的适应。A、C、D都是生物影响环境。"}
+{"type":"choice","lv":2,"sec":"s1","q":"“人间四月芳菲尽，山寺桃花始盛开”，影响山上桃花开放的主要生态因素是（　）","opts":["A. 光照","B. 温度","C. 水分","D. 空气"],"ans":1,"why":"山上气温比山下低，所以桃花开得晚。温度是影响桃花开放的主要非生物因素。"},
+{"type":"choice","lv":1,"sec":"s2","q":"蚯蚓在土壤里活动，使土壤疏松，这说明（　）","opts":["A. 生物影响环境","B. 生物适应环境","C. 环境影响生物","D. 生物依赖环境"],"ans":0,"why":"蚯蚓的活动改变了土壤结构，是生物影响环境。"},
+{"type":"choice","lv":1,"sec":"s2","q":"竹节虫的身体与竹枝极为相似，这属于（　）","opts":["A. 保护色","B. 警戒色","C. 拟态","D. 应激性"],"ans":2,"why":"竹节虫模仿竹枝的形态，是拟态。保护色是颜色与环境相似，警戒色是鲜艳警告。"},
+{"type":"choice","lv":2,"sec":"s1","q":"下列属于生物因素对生物影响的是（　）","opts":["A. 春兰秋菊","B. 雨露滋润禾苗壮","C. 草盛豆苗稀","D. 秋风扫落叶"],"ans":2,"why":"“草盛豆苗稀”是草和豆苗争夺营养，属于生物因素（竞争）。其他三项是非生物因素。"},
+{"type":"choice","lv":1,"sec":"s1","q":"北极狐和沙漠狐体型、耳朵差别很大，起主要作用的非生物因素是（　）","opts":["A. 温度","B. 水","C. 光","D. 空气"],"ans":0,"why":"北极狐体型大、耳朵小有利于保温；沙漠狐体型小、耳朵大有利于散热，都与温度（寒冷/炎热）有关。"},
+{"type":"choice","lv":3,"sec":"s2","q":"雷鸟冬天换上白色羽毛，但如果没下雪，白色的雷鸟反而容易被发现。这说明（　）","opts":["A. 适应是相对的","B. 适应是绝对的","C. 雷鸟不会适应","D. 环境无法改变生物"],"ans":0,"why":"环境一旦改变（雪提前融化），原来的适应反而变成劣势，说明生物的适应是相对的。"},
+{"type":"choice","lv":2,"sec":"s1","q":"豆科植物与根瘤菌之间的关系是（　）","opts":["A. 捕食","B. 竞争","C. 寄生","D. 共生"],"ans":3,"why":"豆科植物为根瘤菌提供营养，根瘤菌为植物提供含氮物质，双方互惠互利，是共生。"},
+{"type":"choice","lv":1,"sec":"s1","q":"鼠妇（潮虫）喜欢生活在阴暗潮湿的地方，影响它分布的主要生态因素是（　）","opts":["A. 光和湿度","B. 温度","C. 空气","D. 土壤"],"ans":0,"why":"鼠妇怕光、需要潮湿环境，光和湿度（水分）是影响它分布的主要非生物因素。"},
+{"type":"choice","lv":2,"sec":"s2","q":"“大树底下好乘凉”主要说明（　）","opts":["A. 环境影响生物","B. 生物适应环境","C. 生物影响环境","D. 大树会发光"],"ans":2,"why":"树的蒸腾作用增加空气湿度、树荫降低温度，是大树改变了周围环境——生物影响环境。"},
+{"type":"choice","lv":1,"sec":"s2","q":"下列各项中，属于生物适应环境的是（　）","opts":["A. 千里之堤，溃于蚁穴","B. 仙人掌的叶退化成刺","C. 蚯蚓疏松土壤","D. 大树底下好乘凉"],"ans":1,"why":"仙人掌叶变成刺，减少水分蒸发，是对干旱环境的适应。A、C、D都是生物影响环境。"},
+{"type":"choice","lv":2,"sec":"s1","q":"秋天到了，大雁排着队向南方飞去；草丛里的蛇和青蛙也开始准备冬眠。影响它们这种行为的主要非生物因素是（　）","opts":["A. 温度","B. 光照","C. 水分","D. 空气"],"ans":0,"why":"秋冬温度降低，大雁南飞、蛇和青蛙冬眠，都是受温度影响的例子。"},
+{"type":"choice","lv":3,"sec":"s3","q":"生物兴趣小组在校园调查时记录了几条现象：①墙角的苔藓爱长在阴湿处；②大树树荫下比其他地方凉快；③干旱处的小草长得矮小。其中①和③分别说明（　）","opts":["A. ①环境影响生物，③生物适应环境","B. ①生物适应环境，③环境影响生物","C. ①生物影响环境，③生物适应环境","D. ①生物适应环境，③生物影响环境"],"ans":1,"why":"苔藓爱长在阴湿墙角是生物适应环境；“干旱使植物矮小”是环境影响生物。"},
+{"type":"tf","lv":1,"sec":"s1","q":"“人间四月芳菲尽，山寺桃花始盛开”说明光照影响桃花开放。","ans":false,"why":"山上温度低，所以桃花开得晚。影响桃花开放的非生物因素是温度，不是光。"},
+{"type":"tf","lv":2,"sec":"s2","q":"蚯蚓在土壤里活动使土壤疏松，说明蚯蚓“适应”了土壤环境。","ans":false,"why":"蚯蚓疏松土壤是改变了土壤，属于生物影响环境；适应是生物自身为了生存作出的改变。"},
+{"type":"tf","lv":1,"sec":"s2","q":"竹节虫的身体与竹枝极为相似，这属于保护色。","ans":false,"why":"竹节虫模仿的是树枝的形态，属于拟态。保护色是身体颜色与环境颜色相似（如北极熊、变色龙）。"},
+{"type":"tf","lv":2,"sec":"s1","q":"根瘤菌和豆科植物之间是寄生关系。","ans":false,"why":"根瘤菌为豆科植物提供含氮物质，豆科植物为根瘤菌提供营养，双方都有利，是共生关系。寄生是一方得利一方受害。"},
+{"type":"tf","lv":1,"sec":"s2","q":"仙人掌的叶退化成刺，能减少水分蒸发，是对干旱环境的适应。","ans":true,"why":"叶退化成刺能减少水分蒸发，是对干旱环境的适应，适应的目的是更好地生存和繁殖。"},
+{"type":"fill","lv":1,"sec":"s1","q":"环境中影响生物生活和分布的因素叫做____，分为非生物因素和生物因素两类。","a":[["生态因素"]],"why":"生态因素是影响生物生活和分布的环境因素的总称，分为非生物因素和生物因素。"},
+{"type":"fill","lv":1,"sec":"s1","q":"大雁秋冬季节南飞，主要受____因素的影响。","a":[["温度"]],"why":"秋冬温度降低，大雁南飞——影响它的非生物因素是温度。"},
+{"type":"fill","lv":1,"sec":"s2","q":"北极熊的白色体毛与雪地环境颜色相似，这种适应方式叫做____。","a":[["保护色"]],"why":"保护色：身体颜色与环境颜色相似，不易被天敌发现。"},
+{"type":"fill","lv":2,"sec":"s2","q":"蚯蚓在土壤里活动能使土壤疏松，这说明生物能____环境。","a":[["影响","影响和改变"]],"why":"蚯蚓的活动改变了土壤结构，是生物影响环境。"},
+{"type":"order","lv":2,"sec":"s3","q":"请按正确顺序排列“校园/小区生物与环境调查”的一般步骤：","items":["提出问题（明确调查目的）","制订调查计划","实施调查、观察记录","整理分析调查结果","得出结论、写出调查报告"],"why":"调查法就是科学探究的实践：提出问题→制订计划→实施调查→整理分析→得出结论。"},
+{"type":"order","lv":3,"sec":"s2","q":"判断“环境影响生物、生物适应环境、生物影响环境”时，请按正确的思考步骤排列：","items":["先看句子的主语是谁","再看它做了什么（改变环境还是改变自己）","最后判断是环境影响生物、生物适应环境还是生物影响环境"],"why":"判断时先看主语是谁、干了什么——主语让环境变了是“影响环境”，主语自己变了是“适应环境”。"},
+{"type":"essay","lv":3,"sec":"s2","mat":{"title":"树林里的“伪装大师”","text":["秋游时，小明在树林里做观察记录：一只枯叶蝶停在落叶上，翅膀的纹路和颜色与枯叶几乎一样，不仔细看根本发现不了。","草丛里有一条小蛇，浑身花纹鲜艳，非常显眼；电视节目里，一只北极熊趴在雪地上捕食，白色的毛和雪地融为一体。"]},"subs":[{"q":"枯叶蝶停在枯叶上很难被发现，这种现象叫什么？","score":2,"key":["拟态","模仿成枯叶等别的物体"]},{"q":"花纹鲜艳的小蛇为什么反而要“显眼”？","score":3,"key":["警戒色","用鲜艳的花纹警告天敌"]},{"q":"北极熊的白色体毛属于哪种适应方式？","score":2,"key":["保护色","身体颜色与环境颜色相似"]},{"q":"“有了伪装就万无一失”对吗？请用雷鸟的例子说明。","score":5,"key":["不对","适应具有相对性","雷鸟冬天换白羽与雪地一致，如果雪提前融化，白羽反而容易被天敌发现"]}],"why":"保护色=颜色和环境融为一体；拟态=模仿成别的东西；警戒色=鲜艳显眼警告敌人。适应具有相对性。","q":"阅读材料，回答问题："},
+{"type":"essay","lv":3,"sec":"s1","mat":{"title":"观察记录里的生态因素","text":["小明整理了一份课外观察记录表，请你帮他分析："],"table":{"head":["观察到的现象","主要影响因素"],"rows":[["大雁秋冬南飞，蛇和青蛙冬眠","温度"],["仙人掌的叶退化成刺，骆驼耐旱","水"],["鼠妇喜欢阴暗潮湿的地方","光和水分"],["背阴处和深海中植物少","光"]]}},"subs":[{"q":"表中第一行（大雁南飞、蛇和青蛙冬眠）主要受什么非生物因素影响？","score":2,"key":["温度","秋冬温度降低"]},{"q":"仙人掌的叶退化成刺，对它有什么意义？","score":4,"key":["减少水分蒸发","是对干旱（缺水）环境的适应"]},{"q":"这些现象共同说明生物与环境有什么关系？","score":4,"key":["环境影响生物","生物适应环境"]}],"why":"非生物因素（光、温度、水、空气等）影响生物；生物也能适应环境。","q":"阅读材料，回答问题："}
 ]},
 {"id":"c3s1","name":"第3章 生态系统和生物圈","emoji":"🌳","sections":[
-{"name":"第1节 多种多样的生态系统","points":[
+{"id":"s1","name":"第1节 多种多样的生态系统","mn":"生态系统＝生物＋环境；生产者、消费者、分解者＋阳光水空气","points":[
 {"t":"什么是生态系统？","d":"在一定区域内，生物与环境所形成的统一整体。一片森林、一个池塘、一块农田、一个校园，都是生态系统。"},
 {"t":"生态系统的组成（两大部分）","d":"①非生物部分：阳光、温度、水、空气、土壤等；②生物部分：生产者、消费者、分解者。"},
-{"t":"生产者","d":"主要指绿色植物。能通过光合作用把无机物制造成有机物，是生态系统中最基本、最关键的生物成分。"},
+{"t":"生产者","mn":"植物造有机物，最基本最关键","d":"主要指绿色植物。能通过光合作用把无机物制造成有机物，是生态系统中最基本、最关键的生物成分。"},
 {"t":"消费者","d":"各种动物。不能自己制造有机物，直接或间接以植物为食（草食动物、肉食动物）。"},
 {"t":"分解者","d":"主要是细菌、真菌等微生物。把动植物遗体、粪便中的有机物分解成无机物，供植物重新利用，促进物质循环。"},
 {"t":"判断是不是生态系统","d":"完整的生态系统=生物部分+非生物部分。“池塘里的所有鱼”只有部分生物，不是生态系统；“一片森林”是生态系统。"},
 {"t":"多种多样的生态系统","d":"森林生态系统、草原生态系统、农田生态系统、湿地生态系统、海洋生态系统、城市生态系统等。"},
 {"t":"生物圈","d":"地球上所有生物与其环境的总和，范围包括大气圈的底部、水圈的大部和岩石圈的表面。生物圈是最大的生态系统，是所有生物共同的家园。"}
 ]},
-{"name":"第2节 生态系统中不同生物之间的食物关系","points":[
+{"id":"s2","name":"第2节 生态系统中不同生物之间的食物关系","mn":"食物链三铁律：起点生产者、箭头指捕食者、不写分解者","points":[
 {"t":"食物链","d":"生态系统中，不同生物之间由于吃与被吃的食物关系形成的链状结构。例如：草→兔→鹰。"},
-{"t":"书写食物链的三条铁律","d":"①起点必须是生产者（绿色植物）；②箭头指向捕食者，表示物质和能量流动的方向；③只写生产者和消费者，不写分解者和非生物成分。"},
+{"t":"书写食物链的三条铁律","mn":"起点生产、箭头指吃者、不写分解","d":"①起点必须是生产者（绿色植物）；②箭头指向捕食者，表示物质和能量流动的方向；③只写生产者和消费者，不写分解者和非生物成分。"},
 {"t":"食物网","d":"生态系统中多条食物链相互交错，形成食物网。食物网越复杂，生态系统越稳定。"},
-{"t":"能量流动","d":"能量沿食物链单向流动、逐级递减。生物通过呼吸作用消耗一部分能量，能量不能循环利用。"},
+{"t":"能量流动","mn":"能量单向递减，不能循环","d":"能量沿食物链单向流动、逐级递减。生物通过呼吸作用消耗一部分能量，能量不能循环利用。"},
 {"t":"物质循环","d":"生态系统中的物质（如碳、水等）可以被循环利用。"},
-{"t":"生物富集","d":"有毒物质（如DDT、重金属）沿食物链不断积累，营养级越高，体内有毒物质浓度越大。"},
+{"t":"生物富集","mn":"毒物沿链积累，越级越高越多","d":"有毒物质（如DDT、重金属）沿食物链不断积累，营养级越高，体内有毒物质浓度越大。"},
 {"t":"角色判断","d":"在“草→兔→鹰”中：草是生产者，兔是初级消费者（草食动物），鹰是次级消费者。"}
 ]},
-{"name":"第3节 维护生态系统的稳定","points":[
-{"t":"生态系统的稳定性","d":"生态系统具有一定的自我调节能力。生物种类越多、结构越复杂，自我调节能力越强（森林＞农田）。"},
+{"id":"s3","name":"第3节 维护生态系统的稳定","mn":"自我调节有限度，外侵污染会失衡","points":[
+{"t":"生态系统的稳定性","mn":"种类越多越稳定，森林＞农田","d":"生态系统具有一定的自我调节能力。生物种类越多、结构越复杂，自我调节能力越强（森林＞农田）。"},
 {"t":"自我调节能力是有限的","d":"破坏超过一定限度，生态系统就会失衡甚至崩溃。"},
 {"t":"破坏生态平衡的行为","d":"①外来物种入侵（澳大利亚野兔、水葫芦）；②过度放牧、乱砍滥伐；③环境污染；④乱捕滥猎。"},
 {"t":"维护生态稳定的措施","d":"建立自然保护区、退耕还林还草、植树造林、生物防治、控制污染。"},
 {"t":"徐州身边的事","d":"贾汪区潘安湖曾是采煤塌陷区，经过生态修复成为国家级湿地公园，是“绿水青山就是金山银山”的生动实践。"}
 ]},
-{"name":"跨学科实践活动","points":[
+{"id":"s4","name":"跨学科实践活动","mn":"生态瓶：草＋鱼虾＋泥沙＋水光空气，数量合适光照不过热","points":[
 {"t":"设计并制作生态瓶","d":"生态瓶是一个密封的微型生态系统，瓶中要有：生产者（水草）、消费者（小鱼小虾）、分解者（泥沙中的微生物）和非生物部分（水、阳光、空气）。动植物数量要合适，放在有光照但不过热的地方。"}
 ]}
 ],
 "keypoints":[
 {"t":"生态系统组成辨析","d":"“下列属于生态系统的是”必考。只含生物（所有鱼、所有植物）的不是生态系统；既有生物又有环境的才是。非生物部分也是生态系统的组成部分。"},
-{"t":"食物链书写","d":"三条铁律常组合考查。典型错误：阳光→草→兔（起点错）；草→兔→细菌（分解者不能进食物链）；草←兔（箭头反）。"},
-{"t":"能量递减 vs 生物富集","d":"沿食物链：能量越来越少（逐级递减）；有毒物质越来越多（富集递增）。两个方向相反，别记混。"},
+{"t":"食物链书写","mn":"阳光不进链、分解者不写、箭头别写反","d":"三条铁律常组合考查。典型错误：阳光→草→兔（起点错）；草→兔→细菌（分解者不能进食物链）；草←兔（箭头反）。"},
+{"t":"能量递减 vs 生物富集","mn":"能量越流越少，毒物越积越多","d":"沿食物链：能量越来越少（逐级递减）；有毒物质越来越多（富集递增）。两个方向相反，别记混。"},
 {"t":"自我调节能力","d":"有限度！外来物种入侵破坏生态的机理：新环境缺少天敌→大量繁殖→破坏原有食物链和生态平衡。"}
 ],
 "traps":[
@@ -264,58 +377,68 @@ nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8
 "破坏生态很容易，修复它却需要很多年的努力。维护生态系统的稳定，是每个人的事。"
 ],"tip":"外来物种入侵是“破坏生态平衡”的经典考例；自我调节能力有限；食物链书写三铁律；能量递减、有毒物质富集递增。"},
 "quiz":[
-{"q":"下列属于生态系统的是（　）","opts":["A. 池塘中所有的鱼","B. 一片森林","C. 森林里所有的植物","D. 草原上的兔子"],"ans":1,"why":"生态系统=生物+环境形成的统一整体。A、C、D都只有生物的一部分，缺少环境和其他生物。"},
-{"q":"生态系统中，生产者主要指（　）","opts":["A. 绿色植物","B. 动物","C. 细菌真菌","D. 阳光"],"ans":0,"why":"绿色植物能进行光合作用制造有机物，是生态系统中最基本、最关键的生物成分。"},
-{"q":"分解者在生态系统中的作用是（　）","opts":["A. 制造有机物","B. 把有机物分解成无机物","C. 捕食动物","D. 提供阳光"],"ans":1,"why":"分解者把动植物遗体中的有机物分解成无机物，供植物重新利用，促进物质循环。"},
-{"q":"下列食物链书写正确的是（　）","opts":["A. 阳光→草→兔","B. 草→兔→鹰","C. 兔→草→鹰","D. 草←兔←鹰"],"ans":1,"why":"起点是生产者（草），箭头指向捕食者。A起点错，C顺序反，D箭头方向反。"},
-{"q":"食物链中箭头表示（　）","opts":["A. 捕食关系和能量流动方向","B. 只是好看","C. 物质循环方向","D. 谁被谁吃相反方向"],"ans":0,"why":"箭头指向捕食者，表示能量从被捕食者流向捕食者。"},
-{"q":"能量沿食物链流动的特点是（　）","opts":["A. 循环利用","B. 单向流动、逐级递减","C. 越流越多","D. 保持不变"],"ans":1,"why":"能量单向流动，每一级生物呼吸都要消耗能量，所以逐级递减，不能循环。"},
-{"q":"草→鼠→蛇→鹰中，体内有毒物质积累最多的是（　）","opts":["A. 草","B. 鼠","C. 蛇","D. 鹰"],"ans":3,"why":"有毒物质沿食物链富集，营养级越高积累越多。鹰处于最高营养级，体内有毒物质最多。"},
-{"q":"地球上最大的生态系统是（　）","opts":["A. 海洋生态系统","B. 森林生态系统","C. 生物圈","D. 草原生态系统"],"ans":2,"why":"生物圈是地球上所有生物与其环境的总和，是最大的生态系统。"},
-{"q":"生态系统的自我调节能力（　）","opts":["A. 是无限的","B. 有一定限度","C. 不存在","D. 只有森林才有"],"ans":1,"why":"生态系统具有一定的自我调节能力，但能力有限，破坏超限就会失衡。"},
-{"q":"水葫芦疯长覆盖水面导致鱼类大量死亡，主要原因是（　）","opts":["A. 水葫芦有毒","B. 外来物种入侵破坏生态平衡","C. 鱼类不爱吃水葫芦","D. 水温升高"],"ans":1,"why":"水葫芦是外来物种，新环境缺少天敌大量繁殖，破坏原有生态平衡。"},
-{"q":"密封良好的生态瓶中，扮演生产者角色的是（　）","opts":["A. 水草","B. 小鱼","C. 小虾","D. 泥沙"],"ans":0,"why":"水草能进行光合作用制造有机物，是生态瓶中的生产者。"},
-{"q":"营腐生生活的细菌在生态系统中属于（　）","opts":["A. 生产者","B. 消费者","C. 分解者","D. 非生物成分"],"ans":2,"why":"腐生细菌分解动植物遗体中的有机物，属于分解者。"},
-{"q":"草→兔→狼这条食物链中，兔属于（　）","opts":["A. 生产者","B. 初级消费者","C. 次级消费者","D. 分解者"],"ans":1,"why":"兔吃草，是直接以植物为食的草食动物，属于初级消费者。"},
-{"q":"生态系统中能循环利用的是（　）","opts":["A. 能量","B. 物质","C. 光","D. 热量"],"ans":1,"why":"物质可以被循环利用；能量单向流动、逐级递减，不能循环。"},
-{"q":"潘安湖从采煤塌陷区变为湿地公园，这说明（　）","opts":["A. 生态系统自我调节无限","B. 人类活动只能破坏生态","C. 被破坏的生态系统可以人工修复","D. 塌陷区不能生长植物"],"ans":2,"why":"潘安湖是生态修复的成功范例，说明生态系统被破坏后可以通过人工努力恢复。"}
+{"type":"choice","lv":1,"sec":"s1","q":"下列属于生态系统的是（　）","opts":["A. 池塘中所有的鱼","B. 一片森林","C. 森林里所有的植物","D. 草原上的兔子"],"ans":1,"why":"生态系统=生物+环境形成的统一整体。A、C、D都只有生物的一部分，缺少环境和其他生物。"},
+{"type":"choice","lv":1,"sec":"s1","q":"生态系统中，生产者主要指（　）","opts":["A. 绿色植物","B. 动物","C. 细菌真菌","D. 阳光"],"ans":0,"why":"绿色植物能进行光合作用制造有机物，是生态系统中最基本、最关键的生物成分。"},
+{"type":"choice","lv":2,"sec":"s2","q":"下列食物链书写正确的是（　）","opts":["A. 阳光→草→兔","B. 草→兔→鹰","C. 兔→草→鹰","D. 草←兔←鹰"],"ans":1,"why":"起点是生产者（草），箭头指向捕食者。A起点错，C顺序反，D箭头方向反。"},
+{"type":"choice","lv":2,"sec":"s2","q":"能量沿食物链流动的特点是（　）","opts":["A. 循环利用","B. 单向流动、逐级递减","C. 越流越多","D. 保持不变"],"ans":1,"why":"能量单向流动，每一级生物呼吸都要消耗能量，所以逐级递减，不能循环。"},
+{"type":"choice","lv":3,"sec":"s2","q":"草→鼠→蛇→鹰中，体内有毒物质积累最多的是（　）","opts":["A. 草","B. 鼠","C. 蛇","D. 鹰"],"ans":3,"why":"有毒物质沿食物链富集，营养级越高积累越多。鹰处于最高营养级，体内有毒物质最多。"},
+{"type":"choice","lv":1,"sec":"s1","q":"地球上最大的生态系统是（　）","opts":["A. 海洋生态系统","B. 森林生态系统","C. 生物圈","D. 草原生态系统"],"ans":2,"why":"生物圈是地球上所有生物与其环境的总和，是最大的生态系统。"},
+{"type":"choice","lv":1,"sec":"s3","q":"生态系统的自我调节能力（　）","opts":["A. 是无限的","B. 有一定限度","C. 不存在","D. 只有森林才有"],"ans":1,"why":"生态系统具有一定的自我调节能力，但能力有限，破坏超限就会失衡。"},
+{"type":"choice","lv":3,"sec":"s3","q":"水葫芦疯长覆盖水面导致鱼类大量死亡，主要原因是（　）","opts":["A. 水葫芦有毒","B. 外来物种入侵破坏生态平衡","C. 鱼类不爱吃水葫芦","D. 水温升高"],"ans":1,"why":"水葫芦是外来物种，新环境缺少天敌大量繁殖，破坏原有生态平衡。"},
+{"type":"choice","lv":2,"sec":"s4","q":"密封良好的生态瓶中，扮演生产者角色的是（　）","opts":["A. 水草","B. 小鱼","C. 小虾","D. 泥沙"],"ans":0,"why":"水草能进行光合作用制造有机物，是生态瓶中的生产者。"},
+{"type":"choice","lv":2,"sec":"s1","q":"营腐生生活的细菌在生态系统中属于（　）","opts":["A. 生产者","B. 消费者","C. 分解者","D. 非生物成分"],"ans":2,"why":"腐生细菌分解动植物遗体中的有机物，属于分解者。"},
+{"type":"choice","lv":2,"sec":"s2","q":"生态系统中能循环利用的是（　）","opts":["A. 能量","B. 物质","C. 光","D. 热量"],"ans":1,"why":"物质可以被循环利用；能量单向流动、逐级递减，不能循环。"},
+{"type":"choice","lv":3,"sec":"s3","q":"潘安湖从采煤塌陷区变为湿地公园，这说明（　）","opts":["A. 生态系统自我调节无限","B. 人类活动只能破坏生态","C. 被破坏的生态系统可以人工修复","D. 塌陷区不能生长植物"],"ans":2,"why":"潘安湖是生态修复的成功范例，说明生态系统被破坏后可以通过人工努力恢复。"},
+{"type":"tf","lv":2,"sec":"s2","q":"阳光→草→兔→鹰是一条正确的食物链。","ans":false,"why":"食物链起点必须是生产者，阳光是非生物因素，不能写进食物链。正确写法：草→兔→鹰。"},
+{"type":"tf","lv":1,"sec":"s2","q":"食物链“草→兔”中，箭头表示草吃兔。","ans":false,"why":"箭头指向捕食者，草→兔表示“兔吃草”，也表示能量从草流向兔。"},
+{"type":"tf","lv":2,"sec":"s2","q":"有毒物质沿食物链越来越少。","ans":false,"why":"有毒物质沿食物链不断富集，营养级越高的生物体内积累得越多。鹰体内DDT浓度远高于草。"},
+{"type":"tf","lv":1,"sec":"s3","q":"生态系统的自我调节能力是无限大的。","ans":false,"why":"自我调节能力是有限的。外来物种入侵、污染超限都会导致生态失衡。"},
+{"type":"tf","lv":2,"sec":"s1","q":"细菌和真菌都是分解者。","ans":false,"why":"营腐生生活的细菌真菌是分解者；寄生的细菌（如致病菌）属于消费者。要看生活方式。"},
+{"type":"fill","lv":1,"sec":"s1","q":"完整的生态系统由____和____两部分组成。","a":[["生物部分"],["非生物部分"]],"why":"生态系统的组成：生物部分（生产者、消费者、分解者）＋非生物部分（阳光、温度、水、空气、土壤等）。"},
+{"type":"fill","lv":1,"sec":"s2","q":"食物链的起点必须是____。","a":[["生产者"]],"why":"书写食物链的三条铁律之一：起点必须是生产者（绿色植物）。"},
+{"type":"fill","lv":2,"sec":"s2","q":"在“草→兔→鹰”这条食物链中，兔属于____消费者。","a":[["初级"]],"why":"兔吃草，是直接以植物为食的草食动物，属于初级消费者。"},
+{"type":"fill","lv":2,"sec":"s1","q":"分解者能把动植物遗体中的有机物分解成____，供植物重新利用。","a":[["无机物"]],"why":"分解者把有机物分解成无机物，供植物重新利用，促进物质循环。"},
+{"type":"order","lv":2,"sec":"s2","q":"请按食物链“草→鼠→蛇→鹰”的顺序，从低到高排列这四种生物：","items":["草","鼠","蛇","鹰"],"why":"起点是生产者，箭头指向捕食者——草被鼠吃、鼠被蛇吃、蛇被鹰吃。"},
+{"type":"order","lv":1,"sec":"s2","q":"在“草→兔→鹰”这条食物链中，请按营养级从低到高排列：","items":["生产者（草）","初级消费者（兔）","次级消费者（鹰）"],"why":"草是生产者，兔是初级消费者（草食动物），鹰是次级消费者。"},
+{"type":"essay","lv":3,"sec":"s4","mat":{"title":"两个生态瓶的实验","text":["小明做了两个生态瓶：甲瓶里放入水草、2条小鱼、泥沙和清水，瓶口密封；乙瓶里只放入2条小鱼和清水，不加水草，瓶口也密封。两个瓶都放在有阳光照射但不过热的窗台上。","几天后，乙瓶中的小鱼先后死去，而甲瓶中的小鱼生活得很好。"]},"subs":[{"q":"甲瓶中，水草、小鱼、泥沙中的微生物分别扮演什么角色？","score":4,"key":["水草是生产者","小鱼是消费者","泥沙中的微生物是分解者"]},{"q":"乙瓶中的小鱼为什么会死去？","score":4,"key":["缺少生产者（水草）","生产者是生态系统中最基本、最关键的生物成分，能通过光合作用制造有机物"]},{"q":"制作生态瓶时还应注意什么？","score":4,"key":["动植物数量要合适","放在有光照但不过热的地方","瓶中要有非生物部分（水、阳光、空气）"]}],"why":"生态瓶=生产者＋消费者＋分解者＋非生物部分；动植物数量合适、放在有光照但不过热的地方。","q":"阅读材料，回答问题："},
+{"type":"essay","lv":3,"sec":"s2","mat":{"title":"草原上的农药调查","text":["为了防治虫害，某草原喷洒了一种化学农药。一段时间后，科学家对草原上的几种生物进行检测，发现它们体内都含有这种农药，只是含量不同："],"table":{"head":["生物","体内农药相对含量"],"rows":[["草","极少"],["鼠","少"],["蛇","较多"],["鹰","最多"]]}},"subs":[{"q":"请写出这四种生物组成的食物链。","score":2,"key":["草→鼠→蛇→鹰"]},{"q":"为什么鹰体内的农药含量最多？","score":4,"key":["有毒物质沿食物链不断积累（富集）","营养级越高，体内有毒物质浓度越大"]},{"q":"如果人类大量捕杀鹰，草原可能发生什么变化？这说明了什么？","score":4,"key":["蛇和鼠失去天敌大量繁殖，破坏草原生态平衡","生态系统的自我调节能力是有限的"]}],"why":"有毒物质沿食物链富集，营养级越高积累越多；自我调节能力有限，破坏超限就会失衡。","q":"阅读材料，回答问题："}
 ]}
 ]},
 {"id":"u3","name":"第3单元 生物体的结构层次","emoji":"🧫","chapters":[
 {"id":"c4s1","name":"第4章 生物体有相同的基本结构","emoji":"🔍","sections":[
-{"name":"第1节 细胞是生物体结构和功能的基本单位","points":[
+{"id":"s1","name":"第1节 细胞是生物体结构和功能的基本单位","mn":"显微镜五步：取镜、对光、放片、调焦（先粗后细）、收镜","points":[
 {"t":"显微镜的结构","d":"目镜、物镜（放大作用）；转换器（更换物镜）；反光镜和遮光器（调节光线）；粗准焦螺旋、细准焦螺旋（调节焦距）。"},
-{"t":"放大倍数","d":"显微镜放大倍数=目镜放大倍数×物镜放大倍数（相乘，不是相加）。目镜10×、物镜40×，放大400倍。"},
-{"t":"显微镜的使用步骤","d":"①取镜安放；②对光（低倍物镜对准通光孔→转动反光镜→看到明亮视野）；③放置装片；④调焦观察（先粗后细）；⑤收镜。"},
-{"t":"成像特点","d":"显微镜成的是倒像——上下颠倒、左右相反。物像偏哪里，装片就往哪里移（物像在左上方，要移到中央，装片向左上方移动）。"},
-{"t":"低倍镜换高倍镜","d":"细胞变大、数目变少、视野变暗（光线变弱）。"},
-{"t":"制作洋葱鳞片叶内表皮细胞临时装片","d":"擦→滴（清水）→撕（内表皮）→展（展平）→盖（盖玻片）→染（碘液）→吸。滴清水是为了保持细胞的正常形态。"},
-{"t":"制作人口腔上皮细胞临时装片","d":"滴的是生理盐水（0.9%），作用是维持细胞正常形态；取材前要用凉开水漱口。步骤：擦→滴→刮→涂→盖→染→吸。"},
+{"t":"放大倍数","mn":"目镜×物镜，相乘不相加","d":"显微镜放大倍数=目镜放大倍数×物镜放大倍数（相乘，不是相加）。目镜10×、物镜40×，放大400倍。"},
+{"t":"显微镜的使用步骤","mn":"取镜→对光→放片→调焦（先粗后细）→收镜","d":"①取镜安放；②对光（低倍物镜对准通光孔→转动反光镜→看到明亮视野）；③放置装片；④调焦观察（先粗后细）；⑤收镜。"},
+{"t":"成像特点","mn":"倒像上下颠倒左右反，物像偏哪装片往哪移","d":"显微镜成的是倒像——上下颠倒、左右相反。物像偏哪里，装片就往哪里移（物像在左上方，要移到中央，装片向左上方移动）。"},
+{"t":"低倍镜换高倍镜","mn":"高倍：细胞大、数目少、视野暗","d":"细胞变大、数目变少、视野变暗（光线变弱）。"},
+{"t":"制作洋葱鳞片叶内表皮细胞临时装片","mn":"擦滴撕展盖染吸，洋葱滴清水","d":"擦→滴（清水）→撕（内表皮）→展（展平）→盖（盖玻片）→染（碘液）→吸。滴清水是为了保持细胞的正常形态。"},
+{"t":"制作人口腔上皮细胞临时装片","mn":"口腔上皮滴盐水，维持形态不胀破","d":"滴的是生理盐水（0.9%），作用是维持细胞正常形态；取材前要用凉开水漱口。步骤：擦→滴→刮→涂→盖→染→吸。"},
 {"t":"盖盖玻片的方法","d":"用镊子夹住盖玻片，让一侧先接触水滴，再缓缓放下。目的是避免产生气泡。"},
 {"t":"染色","d":"用碘液染色，细胞核被染得最深，便于观察。"},
-{"t":"植物细胞的结构","d":"细胞壁、细胞膜、细胞质、细胞核、液泡、叶绿体、线粒体。"},
-{"t":"动物细胞的结构","d":"细胞膜、细胞质、细胞核、线粒体。"},
-{"t":"动植物细胞的异同","d":"共有：细胞膜、细胞质、细胞核、线粒体。植物细胞特有：细胞壁、液泡、叶绿体。"},
+{"t":"植物细胞的结构","mn":"植物七结构：壁膜质核泡叶线","d":"细胞壁、细胞膜、细胞质、细胞核、液泡、叶绿体、线粒体。"},
+{"t":"动物细胞的结构","mn":"动物四结构：膜质核线","d":"细胞膜、细胞质、细胞核、线粒体。"},
+{"t":"动植物细胞的异同","mn":"共有膜质核线，植物独有壁泡叶","d":"共有：细胞膜、细胞质、细胞核、线粒体。植物细胞特有：细胞壁、液泡、叶绿体。"},
 {"t":"细胞各结构的功能","d":"细胞壁——支持保护；细胞膜——控制物质进出；细胞质——生命活动的主要场所；细胞核——含遗传物质，是生命活动的控制中心；线粒体——呼吸作用场所，为生命活动提供能量（“动力车间”）；叶绿体——光合作用场所；液泡——内有细胞液，含糖分、色素等物质。"},
 {"t":"重要细节","d":"洋葱鳞片叶内表皮细胞没有叶绿体！叶绿体只存在于植物的绿色部分细胞中。"},
 {"t":"细胞学说","d":"德国科学家施莱登和施旺提出：一切动植物都是由细胞构成的，细胞是生物体结构和功能的基本单位。"}
 ]},
-{"name":"跨学科实践活动","points":[
+{"id":"s2","name":"跨学科实践活动","mn":"模型分色标结构：壁、膜、质、核、泡、叶、线","points":[
 {"t":"制作细胞的结构模型","d":"用黏土、橡皮泥等材料制作植物细胞或动物细胞模型：用不同颜色代表不同结构，标出细胞壁、细胞膜、细胞核、液泡等名称。做模型能帮助记住各结构的位置和大小关系。"}
 ]},
-{"name":"第2节 单细胞生物","points":[
+{"id":"s3","name":"第2节 单细胞生物","mn":"草履虫：纤毛游、表膜呼、口沟食、胞肛排、伸缩泡排水","points":[
 {"t":"什么是单细胞生物","d":"身体只由一个细胞构成的生物，能独立完成营养、呼吸、运动、排泄、生殖等各项生命活动。"},
 {"t":"常见的单细胞生物","d":"草履虫、变形虫、衣藻、眼虫、酵母菌、细菌等。"},
-{"t":"草履虫的结构与功能","d":"纤毛——运动；表膜——呼吸（气体交换）；口沟——取食；食物泡——消化食物；胞肛——排出食物残渣；伸缩泡和收集管——收集并排出多余水分和代谢废物；细胞核——控制生命活动。"},
+{"t":"草履虫的结构与功能","mn":"纤毛游、表膜呼、口沟食、胞肛排、伸缩泡排水","d":"纤毛——运动；表膜——呼吸（气体交换）；口沟——取食；食物泡——消化食物；胞肛——排出食物残渣；伸缩泡和收集管——收集并排出多余水分和代谢废物；细胞核——控制生命活动。"},
 {"t":"草履虫的应激性","d":"趋向有利刺激（如肉汁），避开有害刺激（如盐水）。这是生物对外界刺激作出反应的表现。"},
-{"t":"单细胞生物与人类的关系","d":"有利：酵母菌可酿酒、发面，草履虫等能净化污水；有害：疟原虫使人患疟疾，某些藻类大量繁殖引起赤潮。"}
+{"t":"单细胞生物与人类的关系","mn":"酵母酿酒发面、草履虫净水；疟原虫致病、藻类生赤潮","d":"有利：酵母菌可酿酒、发面，草履虫等能净化污水；有害：疟原虫使人患疟疾，某些藻类大量繁殖引起赤潮。"}
 ]}
 ],
 "keypoints":[
 {"t":"显微镜成像与移动","d":"“物像偏哪，装片往哪移”是高频考点。因为成像是倒像：物像在左上方，说明实际标本在右下方，所以装片要向左上方移动。"},
-{"t":"两种装片的液体","d":"洋葱表皮滴清水（植物细胞有细胞壁，吸水不胀破）；口腔上皮滴生理盐水（维持细胞正常形态）。口诀：植物清水，动物盐水。"},
+{"t":"两种装片的液体","mn":"植物清水，动物盐水","d":"洋葱表皮滴清水（植物细胞有细胞壁，吸水不胀破）；口腔上皮滴生理盐水（维持细胞正常形态）。口诀：植物清水，动物盐水。"},
 {"t":"动植物细胞异同","d":"共有四种结构（膜、质、核、线粒体）；植物特有三种（壁、液泡、叶绿体）。注意“洋葱表皮无叶绿体”是专门挖的坑。"},
-{"t":"草履虫结构与功能对应","d":"几乎每考必有一题。记住：胞肛排食物残渣、伸缩泡排水、表膜呼吸、纤毛运动。"}
+{"t":"草履虫结构与功能对应","mn":"胞肛排渣、伸缩泡排水、表膜呼吸、纤毛运动","d":"几乎每考必有一题。记住：胞肛排食物残渣、伸缩泡排水、表膜呼吸、纤毛运动。"}
 ],
 "traps":[
 {"w":"放大倍数=目镜+物镜","r":"放大倍数=目镜×物镜。10×目镜配40×物镜是400倍，不是50倍。"},
@@ -335,47 +458,57 @@ nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8
 "从胡克看到第一个“细胞”开始，人类才慢慢知道：原来所有生物的身体，都是由这些小小的细胞构成的。"
 ],"tip":"细胞是生物体结构和功能的基本单位（细胞学说）；显微镜的使用与成像；草履虫是单细胞生物的典型代表。"},
 "quiz":[
-{"q":"显微镜的目镜是10×、物镜是40×，放大倍数是（　）","opts":["A. 50倍","B. 400倍","C. 40倍","D. 14倍"],"ans":1,"why":"放大倍数=目镜×物镜=10×40=400倍。注意是相乘不是相加。"},
-{"q":"物像位于视野左上方，要把它移到中央，装片应向（　）","opts":["A. 左上方移动","B. 右下方移动","C. 右上方移动","D. 左下方移动"],"ans":0,"why":"显微镜成倒像，物像偏哪装片就往哪移。物像在左上方，装片向左上方移动。"},
-{"q":"低倍镜换成高倍镜后（　）","opts":["A. 细胞变大、数目变少、视野变暗","B. 细胞变小、数目变多","C. 细胞变大、视野变亮","D. 没有变化"],"ans":0,"why":"高倍镜下放大倍数大，看到的细胞变大、数目变少，进光量少所以视野变暗。"},
-{"q":"制作洋葱鳞片叶内表皮细胞临时装片时，载玻片中央滴的是（　）","opts":["A. 生理盐水","B. 清水","C. 酒精","D. 碘液"],"ans":1,"why":"植物细胞有细胞壁保护，滴清水保持细胞正常形态。染色时才用碘液。"},
-{"q":"制作人口腔上皮细胞装片时滴生理盐水的目的是（　）","opts":["A. 消毒","B. 染色","C. 维持细胞正常形态","D. 让细胞分裂"],"ans":2,"why":"生理盐水浓度与人体细胞液浓度相近，能维持细胞正常形态，防止细胞吸水胀破。"},
-{"q":"盖盖玻片时先让一侧接触水滴再缓缓放下的目的是（　）","opts":["A. 染色更均匀","B. 避免产生气泡","C. 使细胞变大","D. 保护目镜"],"ans":1,"why":"这样盖可以赶走空气，避免装片里出现影响观察的气泡。"},
-{"q":"染色时使用的液体是（　）","opts":["A. 生理盐水","B. 清水","C. 碘液","D. 酒精"],"ans":2,"why":"用碘液染色，细胞核被染得最深，便于观察细胞结构。"},
-{"q":"植物细胞特有而动物细胞没有的结构是（　）","opts":["A. 细胞膜、细胞质、细胞核","B. 细胞壁、液泡、叶绿体","C. 线粒体、细胞核","D. 细胞膜、线粒体"],"ans":1,"why":"植物细胞特有细胞壁、液泡、叶绿体；细胞膜、细胞质、细胞核、线粒体是动植物共有的。"},
-{"q":"细胞生命活动的控制中心是（　）","opts":["A. 细胞膜","B. 细胞质","C. 细胞核","D. 细胞壁"],"ans":2,"why":"细胞核内含有遗传物质，控制生物的遗传和发育，是生命活动的控制中心。"},
-{"q":"被称为“动力车间”的细胞结构是（　）","opts":["A. 叶绿体","B. 线粒体","C. 液泡","D. 细胞核"],"ans":1,"why":"线粒体是呼吸作用场所，为生命活动提供能量，被称为“动力车间”。"},
-{"q":"洋葱鳞片叶内表皮细胞中一般不含（　）","opts":["A. 细胞壁","B. 细胞膜","C. 叶绿体","D. 液泡"],"ans":2,"why":"叶绿体只存在于绿色部分的细胞中，洋葱内表皮细胞没有叶绿体。"},
-{"q":"草履虫依靠什么结构运动？（　）","opts":["A. 表膜","B. 纤毛","C. 口沟","D. 食物泡"],"ans":1,"why":"草履虫靠纤毛的摆动在水中旋转前进。"},
-{"q":"草履虫排出食物残渣的结构是（　）","opts":["A. 胞肛","B. 伸缩泡","C. 表膜","D. 口沟"],"ans":0,"why":"食物残渣从胞肛排出；伸缩泡排出的是多余水分和代谢废物。"},
-{"q":"草履虫进行呼吸（气体交换）的结构是（　）","opts":["A. 口沟","B. 表膜","C. 胞肛","D. 食物泡"],"ans":1,"why":"草履虫靠表膜与外界进行气体交换（呼吸）。"},
-{"q":"提出“一切动植物都是由细胞构成的”的科学家是（　）","opts":["A. 巴斯德","B. 林奈","C. 施莱登和施旺","D. 列文虎克"],"ans":2,"why":"德国科学家施莱登和施旺共同创立了细胞学说。"}
+{"type":"choice","lv":1,"sec":"s1","q":"显微镜的目镜是10×、物镜是40×，放大倍数是（　）","opts":["A. 50倍","B. 400倍","C. 40倍","D. 14倍"],"ans":1,"why":"放大倍数=目镜×物镜=10×40=400倍。注意是相乘不是相加。"},
+{"type":"choice","lv":3,"sec":"s1","q":"物像位于视野左上方，要把它移到中央，装片应向（　）","opts":["A. 左上方移动","B. 右下方移动","C. 右上方移动","D. 左下方移动"],"ans":0,"why":"显微镜成倒像，物像偏哪装片就往哪移。物像在左上方，装片向左上方移动。"},
+{"type":"choice","lv":1,"sec":"s1","q":"低倍镜换成高倍镜后（　）","opts":["A. 细胞变大、数目变少、视野变暗","B. 细胞变小、数目变多","C. 细胞变大、视野变亮","D. 没有变化"],"ans":0,"why":"高倍镜下放大倍数大，看到的细胞变大、数目变少，进光量少所以视野变暗。"},
+{"type":"choice","lv":1,"sec":"s1","q":"制作洋葱鳞片叶内表皮细胞临时装片时，载玻片中央滴的是（　）","opts":["A. 生理盐水","B. 清水","C. 酒精","D. 碘液"],"ans":1,"why":"植物细胞有细胞壁保护，滴清水保持细胞正常形态。染色时才用碘液。"},
+{"type":"choice","lv":1,"sec":"s1","q":"制作人口腔上皮细胞装片时滴生理盐水的目的是（　）","opts":["A. 消毒","B. 染色","C. 维持细胞正常形态","D. 让细胞分裂"],"ans":2,"why":"生理盐水浓度与人体细胞液浓度相近，能维持细胞正常形态，防止细胞吸水胀破。"},
+{"type":"choice","lv":2,"sec":"s1","q":"植物细胞特有而动物细胞没有的结构是（　）","opts":["A. 细胞膜、细胞质、细胞核","B. 细胞壁、液泡、叶绿体","C. 线粒体、细胞核","D. 细胞膜、线粒体"],"ans":1,"why":"植物细胞特有细胞壁、液泡、叶绿体；细胞膜、细胞质、细胞核、线粒体是动植物共有的。"},
+{"type":"choice","lv":1,"sec":"s1","q":"细胞生命活动的控制中心是（　）","opts":["A. 细胞膜","B. 细胞质","C. 细胞核","D. 细胞壁"],"ans":2,"why":"细胞核内含有遗传物质，控制生物的遗传和发育，是生命活动的控制中心。"},
+{"type":"choice","lv":2,"sec":"s1","q":"洋葱鳞片叶内表皮细胞中一般不含（　）","opts":["A. 细胞壁","B. 细胞膜","C. 叶绿体","D. 液泡"],"ans":2,"why":"叶绿体只存在于绿色部分的细胞中，洋葱内表皮细胞没有叶绿体。"},
+{"type":"choice","lv":1,"sec":"s3","q":"草履虫依靠什么结构运动？（　）","opts":["A. 表膜","B. 纤毛","C. 口沟","D. 食物泡"],"ans":1,"why":"草履虫靠纤毛的摆动在水中旋转前进。"},
+{"type":"choice","lv":2,"sec":"s3","q":"草履虫进行呼吸（气体交换）的结构是（　）","opts":["A. 口沟","B. 表膜","C. 胞肛","D. 食物泡"],"ans":1,"why":"草履虫靠表膜与外界进行气体交换（呼吸）。"},
+{"type":"choice","lv":2,"sec":"s1","q":"提出“一切动植物都是由细胞构成的”的科学家是（　）","opts":["A. 巴斯德","B. 林奈","C. 施莱登和施旺","D. 列文虎克"],"ans":2,"why":"德国科学家施莱登和施旺共同创立了细胞学说。"},
+{"type":"choice","lv":3,"sec":"s1","q":"小明用显微镜观察自己制作的洋葱表皮临时装片，视野里出现了许多边缘粗黑的圆圈，几乎看不清细胞。这些圆圈最有可能是（　）","opts":["A. 细胞","B. 气泡","C. 细胞核","D. 液泡"],"ans":1,"why":"盖盖玻片方法不当会在装片中产生气泡。正确做法：让盖玻片一侧先接触水滴，再缓缓放下。"},
+{"type":"tf","lv":1,"sec":"s1","q":"显微镜的放大倍数=目镜放大倍数+物镜放大倍数。","ans":false,"why":"放大倍数=目镜×物镜。10×目镜配40×物镜是400倍，不是50倍。"},
+{"type":"tf","lv":2,"sec":"s1","q":"物像位于视野左上方，装片应向右下方移动，物像才会移到视野中央。","ans":false,"why":"显微镜成倒像，物像偏哪装片就往哪移。物像偏左上方，装片向左上方移。"},
+{"type":"tf","lv":2,"sec":"s1","q":"植物细胞都有叶绿体。","ans":false,"why":"叶绿体只存在于绿色部分的细胞中。洋葱鳞片叶内表皮细胞没有叶绿体，但它仍是植物细胞（有细胞壁和液泡）。"},
+{"type":"tf","lv":1,"sec":"s3","q":"草履虫的食物残渣从伸缩泡排出。","ans":false,"why":"食物残渣从胞肛排出；伸缩泡和收集管排出的是多余的水分和代谢废物。"},
+{"type":"tf","lv":1,"sec":"s1","q":"制作人口腔上皮细胞临时装片时滴生理盐水，是为了维持细胞的正常形态。","ans":true,"why":"生理盐水浓度与人体细胞液浓度相近，能维持细胞正常形态，防止细胞吸水胀破。"},
+{"type":"fill","lv":1,"sec":"s1","q":"显微镜的放大倍数=目镜放大倍数×____放大倍数。","a":[["物镜"]],"why":"放大倍数=目镜×物镜，是相乘不是相加。"},
+{"type":"fill","lv":1,"sec":"s1","q":"被称为“动力车间”、进行呼吸作用的细胞结构是____。","a":[["线粒体"]],"why":"线粒体是呼吸作用场所，为生命活动提供能量，被称为“动力车间”。"},
+{"type":"fill","lv":2,"sec":"s2","q":"制作植物细胞模型时，要用不同颜色的橡皮泥代表不同结构，并标出细胞壁、细胞膜、____、液泡等名称。","a":[["细胞核"]],"why":"做模型要标出细胞壁、细胞膜、细胞核、液泡等结构名称，帮助记住各结构的位置和大小关系。"},
+{"type":"fill","lv":2,"sec":"s3","q":"草履虫的食物残渣从____排出体外。","a":[["胞肛"]],"why":"食物残渣从胞肛排出；伸缩泡和收集管排出的是多余的水分和代谢废物。"},
+{"type":"order","lv":2,"sec":"s1","q":"请按正确顺序排列显微镜的使用步骤：","items":["取镜安放","对光","放置装片","调焦观察（先粗后细）","收镜"],"why":"显微镜使用步骤：取镜安放→对光→放置装片→调焦观察（先粗后细）→收镜。"},
+{"type":"order","lv":3,"sec":"s1","q":"请按正确顺序排列制作洋葱鳞片叶内表皮细胞临时装片的步骤：","items":["擦","滴（清水）","撕（内表皮）","展（展平）","盖（盖玻片）","染（碘液）","吸"],"why":"制作步骤：擦→滴→撕→展→盖→染→吸。滴清水是为了保持细胞的正常形态。"},
+{"type":"essay","lv":3,"sec":"s1","mat":{"title":"小明的装片“失败”了","text":["实验课上，小明制作洋葱鳞片叶内表皮细胞临时装片。他滴了清水、撕取了内表皮、展平后，直接用镊子把盖玻片平放在水滴上，没有染色就放到显微镜下观察。","结果他看到视野里有许多边缘粗黑的大圆圈，几乎看不清细胞。"]},"subs":[{"q":"视野里边缘粗黑的大圆圈是什么？可能是哪一步操作不当造成的？","score":4,"key":["是气泡","盖盖玻片的方法不对（直接平放，空气没有赶走）"]},{"q":"正确的盖盖玻片方法是什么？这样做的目的是什么？","score":4,"key":["用镊子夹住盖玻片，让一侧先接触水滴，再缓缓放下","避免产生气泡"]},{"q":"小明还漏了哪一步？这一步用什么液体？有什么作用？","score":4,"key":["漏了染色","用碘液染色，细胞核被染得最深，便于观察"]}],"why":"盖盖玻片避免气泡；碘液染色使细胞核染得最深，便于观察。","q":"阅读材料，回答问题："},
+{"type":"essay","lv":3,"sec":"s3","mat":{"title":"草履虫喜欢什么？","text":["生物小组用滴管从培养液中吸取一滴含草履虫的水，滴在载玻片上，在液滴的一端放几粒食盐（盐水刺激），观察草履虫的运动。","他们发现草履虫纷纷游向远离食盐的一端；接着他们又在另一端滴了一滴肉汁，草履虫又都聚了过来。"]},"subs":[{"q":"实验中草履虫逃避盐水、趋向肉汁，说明草履虫具有什么特性？","score":3,"key":["应激性","趋向有利刺激（如肉汁），避开有害刺激（如盐水）"]},{"q":"草履虫只有一个细胞，却能独立完成各项生命活动。请说出它运动、呼吸（气体交换）、排出食物残渣分别依靠什么结构。","score":5,"key":["运动：纤毛","呼吸（气体交换）：表膜","排出食物残渣：胞肛"]},{"q":"请各举一例，说明单细胞生物对人类有利和有害的方面。","score":4,"key":["有利：酵母菌可酿酒、发面；草履虫等能净化污水","有害：疟原虫使人患疟疾；某些藻类大量繁殖引起赤潮"]}],"why":"应激性是生物的特征；纤毛运动、表膜呼吸、胞肛排食物残渣；单细胞生物有利也有害。","q":"阅读材料，回答问题："}
 ]},
 {"id":"c5s1","name":"第5章 生物体有相似的结构层次","emoji":"🧩","sections":[
-{"name":"第1节 细胞的分裂与分化","points":[
+{"id":"s1","name":"第1节 细胞的分裂与分化","mn":"分裂增数，分化成组织；染色体复制再均分，遗传物质不变","points":[
 {"t":"生物体生长的两个原因","d":"细胞生长（体积增大）＋细胞分裂（数目增多）。"},
-{"t":"细胞分裂的过程","d":"细胞核先一分为二→细胞质分成两份→植物细胞在中央形成新的细胞膜和细胞壁，动物细胞细胞膜向内凹陷缢裂，形成两个新细胞。"},
-{"t":"染色体的变化","d":"分裂时染色体先复制加倍，再平均分配到两个新细胞中。分裂后每个新细胞的染色体数目与原细胞相同。"},
+{"t":"细胞分裂的过程","mn":"核先分、质再分，一分为二","d":"细胞核先一分为二→细胞质分成两份→植物细胞在中央形成新的细胞膜和细胞壁，动物细胞细胞膜向内凹陷缢裂，形成两个新细胞。"},
+{"t":"染色体的变化","mn":"先复制加倍，再平均分配，数目不变","d":"分裂时染色体先复制加倍，再平均分配到两个新细胞中。分裂后每个新细胞的染色体数目与原细胞相同。"},
 {"t":"细胞分裂的结果","d":"细胞数目增多。"},
-{"t":"细胞分化","d":"细胞在生长过程中，形态、结构和功能上发生变化，形成不同的细胞群，叫做细胞分化。"},
+{"t":"细胞分化","mn":"形态、结构、功能变，形成不同细胞群","d":"细胞在生长过程中，形态、结构和功能上发生变化，形成不同的细胞群，叫做细胞分化。"},
 {"t":"分化的结果","d":"形成不同的组织。分化后细胞内的遗传物质没有改变。"},
-{"t":"分裂与分化的区别","d":"分裂——数目增多（由一个变多个）；分化——种类增多（由一样变多样）。"}
+{"t":"分裂与分化的区别","mn":"分裂变多，分化变不同","d":"分裂——数目增多（由一个变多个）；分化——种类增多（由一样变多样）。"}
 ]},
-{"name":"第2节 多细胞生物的结构层次","points":[
+{"id":"s2","name":"第2节 多细胞生物的结构层次","mn":"植物：细胞→组织→器官→植物体；动物多“系统”一级","points":[
 {"t":"组织","d":"形态相似、结构和功能相同的细胞联合在一起形成的细胞群。"},
-{"t":"植物的主要组织","d":"分生组织（根尖、茎尖、芽——不断分裂产生新细胞）；保护组织（表皮——保护）；营养组织（储存营养、进行光合作用）；输导组织（导管运输水分和无机盐，筛管运输有机物）；机械组织（支持作用）。"},
-{"t":"动物的主要组织","d":"上皮组织（保护、分泌）；肌肉组织（收缩舒张）；神经组织（产生并传导兴奋）；结缔组织（支持、连接、保护、营养——血液、骨都属于结缔组织）。"},
+{"t":"植物的主要组织","mn":"分生、保护、营养、输导、机械","d":"分生组织（根尖、茎尖、芽——不断分裂产生新细胞）；保护组织（表皮——保护）；营养组织（储存营养、进行光合作用）；输导组织（导管运输水分和无机盐，筛管运输有机物）；机械组织（支持作用）。"},
+{"t":"动物的主要组织","mn":"上皮、肌肉、神经、结缔","d":"上皮组织（保护、分泌）；肌肉组织（收缩舒张）；神经组织（产生并传导兴奋）；结缔组织（支持、连接、保护、营养——血液、骨都属于结缔组织）。"},
 {"t":"器官","d":"不同的组织按照一定的次序联合起来，形成具有一定功能的结构。如植物的根、茎、叶、花、果实、种子；动物的心脏、胃、皮肤。"},
 {"t":"系统","d":"能够共同完成一种或几种生理功能的多个器官，按照一定次序组合在一起构成系统。人体有消化、呼吸、循环、泌尿、神经、运动、生殖、内分泌等系统。"},
-{"t":"植物体的结构层次","d":"细胞→组织→器官→植物体（植物没有系统层次）。"},
-{"t":"动物（人体）的结构层次","d":"细胞→组织→器官→系统→人体。"}
+{"t":"植物体的结构层次","mn":"细→组→器→植物体，无系统","d":"细胞→组织→器官→植物体（植物没有系统层次）。"},
+{"t":"动物（人体）的结构层次","mn":"细→组→器→系统→人体","d":"细胞→组织→器官→系统→人体。"}
 ]}
 ],
 "keypoints":[
-{"t":"分裂与分化的区分","d":"一句话：分裂让细胞“变多”，分化让细胞“变不同”。分裂时染色体先复制再均分，所以数目不变；分化不改变遗传物质。"},
+{"t":"分裂与分化的区分","mn":"分裂让细胞变多，分化让细胞变不同","d":"一句话：分裂让细胞“变多”，分化让细胞“变不同”。分裂时染色体先复制再均分，所以数目不变；分化不改变遗传物质。"},
 {"t":"动植物结构层次对比","d":"植物：细胞→组织→器官→植物体（无系统）；动物：细胞→组织→器官→系统→动物体（多“系统”一级）。常考“植物体没有哪一级”。"},
 {"t":"实例判断","d":"皮肤=器官（由上皮组织＋结缔组织等多种组织构成）；血液=结缔组织；心脏=器官；橘子皮=保护组织、果肉=营养组织、整个橘子=果实（器官）。"},
-{"t":"输导组织","d":"导管运输水分和无机盐（自下而上），筛管运输有机物。口诀：水走导管，料走筛管。"}
+{"t":"输导组织","mn":"水走导管，料走筛管","d":"导管运输水分和无机盐（自下而上），筛管运输有机物。口诀：水走导管，料走筛管。"}
 ],
 "traps":[
 {"w":"细胞分裂时细胞质先分裂","r":"细胞分裂时细胞核先一分为二，然后细胞质再分成两份。"},
@@ -394,42 +527,54 @@ nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8
 "所以细胞分化只是“分工不同”，并没有改变图纸。这也是为什么科学家能用一粒细胞的遗传物质培育出完整的植物、甚至克隆出小羊。"
 ],"tip":"细胞分裂（数目增多）与细胞分化（形成组织）的区别；分化不改变遗传物质；动植物结构层次对比是必考点。"},
 "quiz":[
-{"q":"细胞分裂时，最先发生变化的是（　）","opts":["A. 细胞膜","B. 细胞核","C. 细胞质","D. 细胞壁"],"ans":1,"why":"细胞分裂时，细胞核先一分为二，然后细胞质分成两份。"},
-{"q":"细胞分裂后，新细胞的染色体数目与原细胞相比（　）","opts":["A. 减少一半","B. 增加一倍","C. 相同","D. 不确定"],"ans":2,"why":"分裂前染色体复制加倍，再平均分配到两个新细胞中，所以数目与原细胞相同。"},
-{"q":"细胞分化的结果是（　）","opts":["A. 细胞数目增多","B. 形成不同的组织","C. 细胞体积增大","D. 染色体加倍"],"ans":1,"why":"分化使细胞的形态、结构和功能发生变化，形成不同的组织。"},
-{"q":"细胞分化后，细胞内的遗传物质（　）","opts":["A. 改变","B. 消失","C. 不变","D. 减半"],"ans":2,"why":"分化只是“分工不同”，遗传物质没有改变。"},
-{"q":"具有分裂能力的植物组织是（　）","opts":["A. 分生组织","B. 保护组织","C. 营养组织","D. 机械组织"],"ans":0,"why":"分生组织分布在根尖、茎尖等部位，能不断分裂产生新细胞。"},
-{"q":"导管运输的物质是（　）","opts":["A. 有机物","B. 水分和无机盐","C. 氧气","D. 二氧化碳"],"ans":1,"why":"导管运输水分和无机盐（自下而上）；筛管运输有机物。"},
-{"q":"人体四种基本组织中，能产生并传导兴奋的是（　）","opts":["A. 上皮组织","B. 肌肉组织","C. 神经组织","D. 结缔组织"],"ans":2,"why":"神经组织由神经细胞构成，能感受刺激、产生并传导兴奋。"},
-{"q":"血液属于（　）","opts":["A. 上皮组织","B. 肌肉组织","C. 神经组织","D. 结缔组织"],"ans":3,"why":"血液由血浆和血细胞构成，属于结缔组织，是能流动的组织。"},
-{"q":"皮肤属于（　）","opts":["A. 细胞","B. 组织","C. 器官","D. 系统"],"ans":2,"why":"皮肤由上皮组织、结缔组织等多种组织构成，是人体最大的器官。"},
-{"q":"植物体的结构层次由微观到宏观是（　）","opts":["A. 细胞→组织→器官→植物体","B. 细胞→组织→系统→植物体","C. 组织→细胞→器官→植物体","D. 细胞→器官→组织→植物体"],"ans":0,"why":"植物体没有系统，层次是：细胞→组织→器官→植物体。"},
-{"q":"人体结构层次中，植物体没有的一级是（　）","opts":["A. 细胞","B. 组织","C. 器官","D. 系统"],"ans":3,"why":"人体结构层次：细胞→组织→器官→系统→人体；植物没有系统。"},
-{"q":"心脏属于（　）","opts":["A. 细胞","B. 组织","C. 器官","D. 系统"],"ans":2,"why":"心脏由多种组织构成、具有泵血功能，是器官。心肌才是肌肉组织。"},
-{"q":"一个成熟橘子中，橘皮属于（　）","opts":["A. 保护组织","B. 营养组织","C. 输导组织","D. 分生组织"],"ans":0,"why":"橘皮起保护作用，属于保护组织；整个橘子是果实，属于器官。"}
+{"type":"choice","lv":1,"sec":"s1","q":"细胞分裂时，最先发生变化的是（　）","opts":["A. 细胞膜","B. 细胞核","C. 细胞质","D. 细胞壁"],"ans":1,"why":"细胞分裂时，细胞核先一分为二，然后细胞质分成两份。"},
+{"type":"choice","lv":2,"sec":"s1","q":"细胞分裂后，新细胞的染色体数目与原细胞相比（　）","opts":["A. 减少一半","B. 增加一倍","C. 相同","D. 不确定"],"ans":2,"why":"分裂前染色体复制加倍，再平均分配到两个新细胞中，所以数目与原细胞相同。"},
+{"type":"choice","lv":1,"sec":"s1","q":"细胞分化的结果是（　）","opts":["A. 细胞数目增多","B. 形成不同的组织","C. 细胞体积增大","D. 染色体加倍"],"ans":1,"why":"分化使细胞的形态、结构和功能发生变化，形成不同的组织。"},
+{"type":"choice","lv":3,"sec":"s1","q":"细胞分化后，细胞内的遗传物质（　）","opts":["A. 改变","B. 消失","C. 不变","D. 减半"],"ans":2,"why":"分化只是“分工不同”，遗传物质没有改变。"},
+{"type":"choice","lv":1,"sec":"s2","q":"具有分裂能力的植物组织是（　）","opts":["A. 分生组织","B. 保护组织","C. 营养组织","D. 机械组织"],"ans":0,"why":"分生组织分布在根尖、茎尖等部位，能不断分裂产生新细胞。"},
+{"type":"choice","lv":1,"sec":"s2","q":"人体四种基本组织中，能产生并传导兴奋的是（　）","opts":["A. 上皮组织","B. 肌肉组织","C. 神经组织","D. 结缔组织"],"ans":2,"why":"神经组织由神经细胞构成，能感受刺激、产生并传导兴奋。"},
+{"type":"choice","lv":2,"sec":"s2","q":"血液属于（　）","opts":["A. 上皮组织","B. 肌肉组织","C. 神经组织","D. 结缔组织"],"ans":3,"why":"血液由血浆和血细胞构成，属于结缔组织，是能流动的组织。"},
+{"type":"choice","lv":2,"sec":"s2","q":"皮肤属于（　）","opts":["A. 细胞","B. 组织","C. 器官","D. 系统"],"ans":2,"why":"皮肤由上皮组织、结缔组织等多种组织构成，是人体最大的器官。"},
+{"type":"choice","lv":1,"sec":"s2","q":"植物体的结构层次由微观到宏观是（　）","opts":["A. 细胞→组织→器官→植物体","B. 细胞→组织→系统→植物体","C. 组织→细胞→器官→植物体","D. 细胞→器官→组织→植物体"],"ans":0,"why":"植物体没有系统，层次是：细胞→组织→器官→植物体。"},
+{"type":"choice","lv":1,"sec":"s2","q":"人体结构层次中，植物体没有的一级是（　）","opts":["A. 细胞","B. 组织","C. 器官","D. 系统"],"ans":3,"why":"人体结构层次：细胞→组织→器官→系统→人体；植物没有系统。"},
+{"type":"choice","lv":2,"sec":"s2","q":"心脏属于（　）","opts":["A. 细胞","B. 组织","C. 器官","D. 系统"],"ans":2,"why":"心脏由多种组织构成、具有泵血功能，是器官。心肌才是肌肉组织。"},
+{"type":"choice","lv":3,"sec":"s2","q":"小明剥橘子时看到：橘皮、橘瓣上的白色橘络、酸甜的果肉。下列说法正确的是（　）","opts":["A. 橘皮是保护组织，橘络是输导组织，果肉是营养组织","B. 它们都属于营养组织","C. 整个橘子是一个器官","D. A和C都对"],"ans":3,"why":"橘皮是保护组织、橘络是输导组织、果肉是营养组织；整个橘子是果实，属于器官。"},
+{"type":"tf","lv":1,"sec":"s1","q":"细胞分裂时，细胞质先分裂，然后细胞核再一分为二。","ans":false,"why":"细胞分裂时细胞核先一分为二，然后细胞质再分成两份。"},
+{"type":"tf","lv":2,"sec":"s1","q":"细胞分裂后，新细胞的染色体数目比原细胞减少一半。","ans":false,"why":"分裂前染色体先复制加倍，再平均分配，所以新细胞的染色体数目与原细胞相同。"},
+{"type":"tf","lv":2,"sec":"s1","q":"细胞分化后，细胞内的遗传物质改变了。","ans":false,"why":"分化只是形态、结构和功能改变，遗传物质没有改变。"},
+{"type":"tf","lv":2,"sec":"s2","q":"植物也有系统这个结构层次。","ans":false,"why":"植物体没有系统，最高层次是植物体。动物（人）才有系统。"},
+{"type":"tf","lv":1,"sec":"s2","q":"血液虽然能流动，但它属于结缔组织。","ans":true,"why":"血液由血浆和血细胞构成，属于结缔组织，是能流动的组织。"},
+{"type":"fill","lv":2,"sec":"s1","q":"细胞分裂使细胞数目____；细胞分化使细胞形成不同的____。","a":[["增多","变多"],["组织"]],"why":"分裂——数目增多（由一个变多个）；分化——形成不同的组织（由一样变多样）。"},
+{"type":"fill","lv":1,"sec":"s2","q":"导管运输____和____，筛管运输____。","a":[["水分"],["无机盐"],["有机物"]],"why":"导管运输水分和无机盐（自下而上），筛管运输有机物。"},
+{"type":"fill","lv":1,"sec":"s2","q":"植物体的结构层次：细胞→____→____→植物体。","a":[["组织"],["器官"]],"why":"植物体的结构层次：细胞→组织→器官→植物体，没有系统。"},
+{"type":"fill","lv":2,"sec":"s2","q":"根尖、茎尖、芽处能不断分裂产生新细胞的组织是____。","a":[["分生组织"]],"why":"分生组织分布在根尖、茎尖、芽，能不断分裂产生新细胞。"},
+{"type":"order","lv":2,"sec":"s1","q":"请按正确顺序排列细胞分裂的过程：","items":["细胞核先一分为二","细胞质分成两份","在细胞中央形成新的细胞膜（植物细胞还形成新的细胞壁）","形成两个新细胞"],"why":"细胞分裂时细胞核先一分为二，然后细胞质分成两份，最后形成两个新细胞。"},
+{"type":"order","lv":1,"sec":"s2","q":"请按从微观到宏观（从低到高）的顺序排列植物体的结构层次：","items":["细胞","组织","器官","植物体"],"why":"植物体没有系统：细胞→组织→器官→植物体。"},
+{"type":"essay","lv":3,"sec":"s1","mat":{"title":"蝌蚪的“变形记”","text":["春天，池塘里的小蝌蚪拖着长尾巴游来游去。过了一段时间，它慢慢长出了后腿、前腿，尾巴逐渐消失，变成了一只小青蛙。","小明查资料知道：青蛙的一生从一颗受精卵开始，一个细胞分裂成两个、四个……细胞越来越多；接着有的细胞变成皮肤，有的变成肌肉，有的变成神经。"]},"subs":[{"q":"青蛙的细胞由少变多，依靠的是哪种生命活动？","score":2,"key":["细胞分裂","细胞分裂使细胞数目增多"]},{"q":"细胞变成皮肤、肌肉、神经等不同的细胞，这叫什么？结果是什么？","score":4,"key":["细胞分化","细胞的形态、结构和功能发生变化，形成不同的细胞群（组织）"]},{"q":"蝌蚪变青蛙的过程中，细胞里的遗传物质有变化吗？为什么？","score":4,"key":["没有改变","每个细胞里的遗传物质都和最初那颗受精卵一模一样","分化只是“分工不同”，并没有改变图纸（遗传物质）"]}],"why":"分裂让细胞变多，分化让细胞变不同；分化不改变遗传物质。","q":"阅读材料，回答问题："},
+{"type":"essay","lv":3,"sec":"s2","mat":{"title":"一只橘子的“解剖课”","text":["妈妈给小明一个橘子。他剥下橘皮，撕掉橘瓣上白色的“橘络”，尝了尝酸甜的果肉。","生物课上他学过：不同的组织按照一定的次序联合起来，形成具有一定功能的结构，这就是器官。"]},"subs":[{"q":"橘皮、果肉（橘瓣）、橘络分别属于什么组织？","score":4,"key":["橘皮是保护组织","果肉（橘瓣）是营养组织","橘络是输导组织"]},{"q":"整个橘子属于哪个结构层次？为什么？","score":4,"key":["整个橘子是果实，属于器官","由保护组织、营养组织、输导组织等多种组织按照一定次序联合而成，具有一定的功能"]},{"q":"请写出植物体的结构层次，并说说它与人体结构层次有什么不同。","score":4,"key":["细胞→组织→器官→植物体","人体结构层次：细胞→组织→器官→系统→人体，多了“系统”一级"]}],"why":"器官=多种组织按一定次序联合；植物体没有系统层次。","q":"阅读材料，回答问题："}
 ]}
 ]},
 {"id":"u4","name":"第4单元 生物的多样性","emoji":"🦋","chapters":[
 {"id":"c6s1","name":"第6章 生物的命名与分类","emoji":"🏷️","sections":[
-{"name":"第1节 生物的命名","points":[
+{"id":"s1","name":"第1节 生物的命名","mn":"双名法：属名大写在前，种加词小写在后，拉丁斜体","points":[
 {"t":"为什么需要统一的命名","d":"俗名容易造成混乱：同名异物（“杜鹃”既是花又是鸟）、同物异名（马铃薯又叫土豆、洋芋、地蛋）。"},
-{"t":"双名法","d":"由瑞典博物学家林奈提出。每种生物的学名由两部分组成：属名＋种加词。"},
-{"t":"双名法的书写规则","d":"用拉丁文书写，斜体；属名在前，第一个字母大写；种加词在后，全部小写。例如智人的学名Homo sapiens，大熊猫的学名Ailuropoda melanoleuca。"},
+{"t":"双名法","mn":"属名＋种加词，拉丁斜体","d":"由瑞典博物学家林奈提出。每种生物的学名由两部分组成：属名＋种加词。"},
+{"t":"双名法的书写规则","mn":"属名大写前，种加词小写后","d":"用拉丁文书写，斜体；属名在前，第一个字母大写；种加词在后，全部小写。例如智人的学名Homo sapiens，大熊猫的学名Ailuropoda melanoleuca。"},
 {"t":"学名的优点","d":"全世界统一，不会因语言、地区不同产生混乱，方便各国科学家交流。"}
 ]},
-{"name":"第2节 生物的分类","points":[
+{"id":"s2","name":"第2节 生物的分类","mn":"界门纲目科属种，从大到小七级；等级越小亲缘越近","points":[
 {"t":"分类的依据","d":"生物在形态结构和生理功能等方面的特征（主要依据形态结构）。"},
-{"t":"分类等级","d":"由大到小依次是：界、门、纲、目、科、属、种（口诀：界门纲目科属种）。"},
+{"t":"分类等级","mn":"界门纲目科属种","d":"由大到小依次是：界、门、纲、目、科、属、种（口诀：界门纲目科属种）。"},
 {"t":"最基本的分类单位","d":"种。同种生物的亲缘关系最近。"},
-{"t":"等级与特征的关系","d":"分类等级越小，包含的生物种类越少，共同特征越多，亲缘关系越近；等级越大，共同特征越少，亲缘关系越远。"},
-{"t":"“种”的判断","d":"同种生物之间可以自然交配，并且产生有繁殖能力的后代。马和驴交配生骡，骡不能繁殖后代，所以马和驴不是同种生物。"},
+{"t":"等级与特征的关系","mn":"等级小、种类少、特征多、关系近","d":"分类等级越小，包含的生物种类越少，共同特征越多，亲缘关系越近；等级越大，共同特征越少，亲缘关系越远。"},
+{"t":"“种”的判断","mn":"同种：自然交配生可育后代","d":"同种生物之间可以自然交配，并且产生有繁殖能力的后代。马和驴交配生骡，骡不能繁殖后代，所以马和驴不是同种生物。"},
 {"t":"分类的意义","d":"弄清生物之间的亲缘关系，更好地认识、保护和利用生物。"}
 ]}
 ],
 "keypoints":[
 {"t":"双名法格式","d":"属名＋种加词，拉丁文斜体，属名大写在前、种加词小写在后。常考“学名的组成”或“双名法是谁提出的”。"},
-{"t":"七级分类等级","d":"界门纲目科属种，顺序不能错。做题先判断等级大小，再判断共同特征多少。"},
-{"t":"等级与共同特征成反比","d":"等级越小→共同特征越多→亲缘关系越近。例如：同种＞同属＞同科＞同目……"},
+{"t":"七级分类等级","mn":"界门纲目科属种，顺序不能错","d":"界门纲目科属种，顺序不能错。做题先判断等级大小，再判断共同特征多少。"},
+{"t":"等级与共同特征成反比","mn":"等级越小，特征越多，关系越近","d":"等级越小→共同特征越多→亲缘关系越近。例如：同种＞同属＞同科＞同目……"},
 {"t":"种的定义","d":"能否自然交配产生有繁殖能力的后代。马驴生骡、骡不能繁殖，是经典考题。"}
 ],
 "traps":[
@@ -447,65 +592,124 @@ nav.bottom .badge{background:#e74c3c;color:#fff;font-size:.62rem;border-radius:8
 "一个名字的误会，传了近百年。可见给生物起一个统一的名字，有多重要。"
 ],"tip":"双名法=属名＋种加词（拉丁文斜体）；分类等级界门纲目科属种；等级越小亲缘越近；马驴生骡说明不是同种。"},
 "quiz":[
-{"q":"提出双名法的科学家是（　）","opts":["A. 达尔文","B. 林奈","C. 巴斯德","D. 袁隆平"],"ans":1,"why":"瑞典博物学家林奈提出了双名法，给每种生物一个全球统一的学名。"},
-{"q":"生物的学名由哪两部分组成？（　）","opts":["A. 科名+属名","B. 属名+种加词","C. 门名+纲名","D. 目名+科名"],"ans":1,"why":"学名=属名＋种加词。属名在前，种加词在后。"},
-{"q":"学名的正确书写方式是（　）","opts":["A. 用英文斜体书写","B. 属名小写在前","C. 用拉丁文斜体，属名大写在前，种加词小写在后","D. 用中文书写"],"ans":2,"why":"学名用拉丁文斜体书写，属名第一个字母大写在前，种加词全部小写在后。"},
-{"q":"生物分类等级由大到小排列正确的是（　）","opts":["A. 界门纲目科属种","B. 界纲门目科属种","C. 界门目纲科属种","D. 种属科目纲门界"],"ans":0,"why":"七级分类由大到小：界、门、纲、目、科、属、种。"},
-{"q":"最基本的分类单位是（　）","opts":["A. 属","B. 科","C. 种","D. 目"],"ans":2,"why":"种是最基本的分类单位，同种生物的亲缘关系最近。"},
-{"q":"分类等级越小，生物之间（　）","opts":["A. 共同特征越少","B. 亲缘关系越近","C. 包含种类越多","D. 亲缘关系越远"],"ans":1,"why":"等级越小，共同特征越多，亲缘关系越近。"},
-{"q":"马和驴交配生骡，骡不能繁殖后代，这说明马和驴（　）","opts":["A. 是同种生物","B. 不是同种生物","C. 是同一属","D. 亲缘关系最近"],"ans":1,"why":"同种生物要能自然交配并产生有繁殖能力的后代。骡不能繁殖，所以马和驴不是同种。"},
-{"q":"生物分类的主要依据是（　）","opts":["A. 颜色和大小","B. 形态结构和生理功能","C. 生活地点","D. 数量多少"],"ans":1,"why":"分类主要依据形态结构和生理功能等特征。"},
-{"q":"“杜鹃”既是花又是鸟，这种现象叫（　）","opts":["A. 同物异名","B. 同名异物","C. 双名法","D. 生物分类"],"ans":1,"why":"不同的生物用了相同的名字，叫同名异物，这正是俗名的弊端。"},
-{"q":"判断是否同种生物的关键是（　）","opts":["A. 长相是否相似","B. 能否自然交配并产生有繁殖能力的后代","C. 是否吃相同的食物","D. 是否住在同一地区"],"ans":1,"why":"“种”的核心标准：自然交配产生有繁殖能力的后代。"},
-{"q":"虎和猫在分类上都属于（　）","opts":["A. 同种","B. 猫科","C. 同属","D. 豹属"],"ans":1,"why":"虎（豹属）和猫（猫属）都属于猫科，是同一科不同属的生物。"},
-{"q":"对生物进行分类的主要意义是（　）","opts":["A. 给生物起好听的名字","B. 弄清亲缘关系，更好地认识、保护和利用生物","C. 让动物都进动物园","D. 比较谁更高等"],"ans":1,"why":"分类能弄清生物间的亲缘关系，更好地认识、保护和利用生物。"}
+{"type":"choice","lv":1,"sec":"s1","q":"提出双名法的科学家是（　）","opts":["A. 达尔文","B. 林奈","C. 巴斯德","D. 袁隆平"],"ans":1,"why":"瑞典博物学家林奈提出了双名法，给每种生物一个全球统一的学名。"},
+{"type":"choice","lv":1,"sec":"s1","q":"生物的学名由哪两部分组成？（　）","opts":["A. 科名+属名","B. 属名+种加词","C. 门名+纲名","D. 目名+科名"],"ans":1,"why":"学名=属名＋种加词。属名在前，种加词在后。"},
+{"type":"choice","lv":2,"sec":"s1","q":"学名的正确书写方式是（　）","opts":["A. 用英文斜体书写","B. 属名小写在前","C. 用拉丁文斜体，属名大写在前，种加词小写在后","D. 用中文书写"],"ans":2,"why":"学名用拉丁文斜体书写，属名第一个字母大写在前，种加词全部小写在后。"},
+{"type":"choice","lv":1,"sec":"s2","q":"生物分类等级由大到小排列正确的是（　）","opts":["A. 界门纲目科属种","B. 界纲门目科属种","C. 界门目纲科属种","D. 种属科目纲门界"],"ans":0,"why":"七级分类由大到小：界、门、纲、目、科、属、种。"},
+{"type":"choice","lv":1,"sec":"s2","q":"最基本的分类单位是（　）","opts":["A. 属","B. 科","C. 种","D. 目"],"ans":2,"why":"种是最基本的分类单位，同种生物的亲缘关系最近。"},
+{"type":"choice","lv":2,"sec":"s2","q":"分类等级越小，生物之间（　）","opts":["A. 共同特征越少","B. 亲缘关系越近","C. 包含种类越多","D. 亲缘关系越远"],"ans":1,"why":"等级越小，共同特征越多，亲缘关系越近。"},
+{"type":"choice","lv":3,"sec":"s2","q":"马和驴交配生骡，骡不能繁殖后代，这说明马和驴（　）","opts":["A. 是同种生物","B. 不是同种生物","C. 是同一属","D. 亲缘关系最近"],"ans":1,"why":"同种生物要能自然交配并产生有繁殖能力的后代。骡不能繁殖，所以马和驴不是同种。"},
+{"type":"choice","lv":2,"sec":"s2","q":"生物分类的主要依据是（　）","opts":["A. 颜色和大小","B. 形态结构和生理功能","C. 生活地点","D. 数量多少"],"ans":1,"why":"分类主要依据形态结构和生理功能等特征。"},
+{"type":"choice","lv":2,"sec":"s1","q":"“杜鹃”既是花又是鸟，这种现象叫（　）","opts":["A. 同物异名","B. 同名异物","C. 双名法","D. 生物分类"],"ans":1,"why":"不同的生物用了相同的名字，叫同名异物，这正是俗名的弊端。"},
+{"type":"choice","lv":1,"sec":"s2","q":"对生物进行分类的主要意义是（　）","opts":["A. 给生物起好听的名字","B. 弄清亲缘关系，更好地认识、保护和利用生物","C. 让动物都进动物园","D. 比较谁更高等"],"ans":1,"why":"分类能弄清生物间的亲缘关系，更好地认识、保护和利用生物。"},
+{"type":"choice","lv":2,"sec":"s1","q":"小明帮妈妈买菜：妈妈说买“马铃薯”，菜贩说“我这叫土豆”；隔壁摊位又把同样的东西叫做“洋芋”。这种现象叫（　）","opts":["A. 同名异物","B. 同物异名","C. 双名法","D. 生物分类"],"ans":1,"why":"同一种生物有多种不同的名称，叫同物异名——这正是俗名的弊端。"},
+{"type":"choice","lv":3,"sec":"s2","q":"园艺基地里有两片“黄瓜”地，结出的黄瓜一种带刺、一种光滑，外形差别很大。判断它们是不是同种生物，最可靠的方法是看它们能否（　）","opts":["A. 种在同一块地里","B. 自然交配并产生有繁殖能力的后代","C. 结出外形相同的果实","D. 卖同样的价格"],"ans":1,"why":"同种生物之间可以自然交配，并且产生有繁殖能力的后代——这是判断“种”的核心标准。"},
+{"type":"tf","lv":1,"sec":"s1","q":"生物的学名由“种名＋属名”组成，种名在前，属名在后。","ans":false,"why":"学名=属名＋种加词，属名在前（第一个字母大写），种加词在后（全部小写），用拉丁文斜体书写。"},
+{"type":"tf","lv":2,"sec":"s2","q":"生物分类等级从大到小依次是：界、门、纲、目、属、科、种。","ans":false,"why":"正确顺序：界、门、纲、目、科、属、种——“科”在“属”前面。"},
+{"type":"tf","lv":2,"sec":"s2","q":"分类等级越大，生物的共同特征越多。","ans":false,"why":"等级越大共同特征越少、亲缘关系越远；等级越小共同特征越多、亲缘关系越近。"},
+{"type":"tf","lv":1,"sec":"s2","q":"马和驴能生出骡，所以马和驴是同种生物。","ans":false,"why":"判断是否同种，看能否自然交配产生“有繁殖能力的后代”。骡不能繁殖后代，所以马和驴不是同种。"},
+{"type":"tf","lv":2,"sec":"s2","q":"分类等级越小，包含的生物种类越少，共同特征越多，亲缘关系越近。","ans":true,"why":"等级与特征成反比：等级越小→共同特征越多→亲缘关系越近。"},
+{"type":"fill","lv":1,"sec":"s1","q":"生物的学名由____和____两部分组成，用拉丁文斜体书写。","a":[["属名"],["种加词"]],"why":"双名法：学名=属名＋种加词，属名在前，种加词在后。"},
+{"type":"fill","lv":1,"sec":"s2","q":"生物分类等级由大到小：界、门、纲、目、____、____、种。","a":[["科"],["属"]],"why":"七级分类由大到小：界、门、纲、目、科、属、种。"},
+{"type":"fill","lv":2,"sec":"s2","q":"分类等级越小，包含的生物种类越少，共同特征越____，亲缘关系越____。","a":[["多"],["近"]],"why":"等级越小→共同特征越多→亲缘关系越近；等级越大则相反。"},
+{"type":"fill","lv":2,"sec":"s2","q":"马和驴交配生出的骡不能繁殖后代，所以马和驴____同种生物。","a":[["不是","不属于"]],"why":"同种生物要能自然交配并产生有繁殖能力的后代，骡不能繁殖，所以马和驴不是同种。"},
+{"type":"order","lv":1,"sec":"s2","q":"请按从大到小的顺序排列生物分类等级：","items":["界","门","纲","目","科","属","种"],"why":"口诀：界门纲目科属种，顺序不能错。"},
+{"type":"order","lv":3,"sec":"s2","q":"请按亲缘关系从近到远的顺序排列以下分类等级：","items":["种","属","科","目","纲","门","界"],"why":"同种＞同属＞同科＞同目……等级越小，亲缘关系越近。"},
+{"type":"essay","lv":3,"sec":"s1","mat":{"title":"给校园植物挂“身份证”","text":["校园科技节上，生物兴趣小组要给校园里的植物制作介绍牌。他们发现：同一种月季，有人叫它“月月红”，有人叫它“胜春”；而“杜鹃”这个名字，既可以指一种花，也可以指一种鸟。","老师建议他们给每种植物标注学名。"]},"subs":[{"q":"同一种月季有多个名字、“杜鹃”既指花又指鸟，分别属于什么现象？这说明什么？","score":4,"key":["同物异名、同名异物","俗名容易造成混乱，所以需要统一的学名"]},{"q":"生物的学名是怎么组成的？书写时有什么规则？","score":4,"key":["学名由属名＋种加词两部分组成","用拉丁文斜体书写，属名在前第一个字母大写，种加词在后全部小写"]},{"q":"给生物统一的学名有什么好处？","score":3,"key":["全世界统一，不会因语言、地区不同产生混乱","方便各国科学家交流"]}],"why":"同物异名/同名异物说明俗名混乱；双名法：属名＋种加词，拉丁文斜体。","q":"阅读材料，回答问题："},
+{"type":"essay","lv":3,"sec":"s2","mat":{"title":"猫和虎的关系有多近？","text":["小明在动物园看到东北虎和家猫长得有几分像。他查了分类资料，填了一张表："],"table":{"head":["动物","所属科","所属属"],"rows":[["家猫","猫科","猫属"],["东北虎","猫科","豹属"]]}},"subs":[{"q":"猫和虎在分类上哪一级相同？哪一级不同？","score":2,"key":["同为猫科","不同属（家猫是猫属，东北虎是豹属）"]},{"q":"生物分类等级与共同特征、亲缘关系有什么关系？","score":5,"key":["分类等级越小，包含的生物种类越少，共同特征越多，亲缘关系越近","等级越大，共同特征越少，亲缘关系越远"]},{"q":"为什么说马和驴不是同种生物？判断“种”的标准是什么？","score":5,"key":["同种生物之间可以自然交配，并且产生有繁殖能力的后代","马和驴交配生骡，骡不能繁殖后代，所以马和驴不是同种生物"]}],"why":"等级越小亲缘越近；种的核心标准：能自然交配产生有繁殖能力的后代。","q":"阅读材料，回答问题："}
 ]}
 ]}
 ]}
+
 </script>
 <script>
 'use strict';
 const DATA = JSON.parse(document.getElementById('DATA').textContent);
 const app = document.getElementById('app');
-function lsGet(k,f){try{const v=localStorage.getItem('biosw_'+k);return v==null?f:JSON.parse(v);}catch(e){return f;}}
-function lsSet(k,v){try{localStorage.setItem('biosw_'+k,JSON.stringify(v));}catch(e){}}
-const state={view:'home',unit:0,ch:0,quiz:null};
+function lsGet(k,f){try{const v=localStorage.getItem('shengwu_'+k);return v==null?f:JSON.parse(v);}catch(e){return f;}}
+function lsSet(k,v){try{localStorage.setItem('shengwu_'+k,JSON.stringify(v));return true;}catch(e){return false;}}
+const KIND={choice:{n:'选择'},tf:{n:'判断'},fill:{n:'填空'},order:{n:'排序'},essay:{n:'材料'}};
+const RANKS=[{n:'青铜',min:0,ic:'🥉'},{n:'白银',min:50,ic:'🥈'},{n:'黄金',min:150,ic:'🥇'},{n:'王者',min:350,ic:'👑'}];
+const state={view:'home',unit:0,ch:0,quiz:null,tab:'points',pick:{show:false,secs:[],lvs:[1,2,3]}};
 const PRAISE=['太棒了！🎉','厉害！👏','满分选手就是你！🏆','继续保持！💪','真不错！⭐','完全正确！🎯','好样的！🚀'];
 const TRYAGAIN=['没关系，记下解析，再练一遍就会了！💪','别灰心，错题已进错题本，下次一定行！📕','进步都是从错题开始的！🌱'];
-function navActive(){
-  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===state.view));
+function qKind(it){return it.t||it.type||'choice';}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function ymd(d){d=d||new Date();return ''+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');}
+function shuffle(a,seed){
+  const arr=a.slice();
+  if(seed==null){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+  let s=seed>>>0;const rnd=()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296;};
+  for(let i=arr.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  return arr;
 }
-function updateBadge(){
-  const wb=lsGet('wrongbook',[]);
-  const b=document.getElementById('wbadge');
-  b.textContent=wb.length||'';b.style.display=wb.length?'inline-block':'none';
-}
+function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function navActive(){document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===state.view));}
+function updateBadge(){const wb=lsGet('wrongbook',[]);const b=document.getElementById('wbadge');b.textContent=wb.length||'';b.style.display=wb.length?'inline-block':'none';}
 function allChapters(){const r=[];DATA.units.forEach((u,ui)=>u.chapters.forEach((c,ci)=>r.push({u:ui,c:ci,ch:c})));return r;}
 function chapterDone(uid,cid){return !!lsGet('done_'+uid+'_'+cid,false);}
 function setDone(uid,cid,v){lsSet('done_'+uid+'_'+cid,v);}
 function wrongCount(){return lsGet('wrongbook',[]).length;}
+function keyOf(w){return w.qi!=null?w.chid+'|i'+w.qi:w.chid+'|q'+w.q;}
 function wrongAdd(q){
   let wb=lsGet('wrongbook',[]);
-  if(!wb.some(w=>w.chid===q.chid&&w.q===q.q)){wb.unshift(q);lsSet('wrongbook',wb);}
+  if(!wb.some(w=>keyOf(w)===keyOf(q))){wb.unshift(q);lsSet('wrongbook',wb);}
   updateBadge();
 }
 function wrongRemove(q){
-  let wb=lsGet('wrongbook',[]).filter(w=>!(w.chid===q.chid&&w.q===q.q));
+  let wb=lsGet('wrongbook',[]).filter(w=>keyOf(w)!==keyOf(q));
   lsSet('wrongbook',wb);updateBadge();
+}
+function statsAdd(ok,essayGot){const s=lsGet('stats',{ans:0,right:0,essay:0});s.ans++;if(ok)s.right++;if(essayGot)s.essay+=essayGot;lsSet('stats',s);}
+function rankOf(right){let r=RANKS[0];for(const x of RANKS){if(right>=x.min)r=x;}return r;}
+function rankNext(right){for(const x of RANKS){if(right<x.min)return x;}return null;}
+let timerId=null;
+function stopTimer(){if(timerId!=null){clearInterval(timerId);timerId=null;}}
+function ensureTimer(){
+  const qz=state.quiz;if(!qz||!qz.deadline)return;
+  if(timerId!=null)return;
+  const tick=()=>{
+    const el=document.getElementById('timer');
+    if(!el){stopTimer();return;}
+    const left=qz.deadline-Date.now();
+    if(left<=0){stopTimer();el.textContent='⏱ 0:00';finishQuiz();return;}
+    const m=Math.floor(left/60000),s=Math.floor(left%60000/1000);
+    el.textContent='⏱ '+m+':'+String(s).padStart(2,'0');
+  };
+  tick();
+  timerId=setInterval(tick,1000);
 }
 function render(){
   updateBadge();navActive();
+  if(state.view!=='quiz')stopTimer();
   if(state.view==='home')renderHome();
   else if(state.view==='chapters')renderChapters();
   else if(state.view==='chapter')renderChapter();
   else if(state.view==='quiz')renderQuiz();
   else if(state.view==='wrong')renderWrong();
+  else if(state.view==='gates')renderGates();
+  else if(state.view==='rank')renderRank();
+  else if(state.view==='mnemo')renderMnemo();
+  else if(state.view==='daily')renderDaily();
   else if(state.view==='about')renderAbout();
   window.scrollTo(0,0);
 }
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+/* ---------- 首页 ---------- */
 function renderHome(){
-  let h='';
+  const st=lsGet('stats',{ans:0,right:0});
+  const r=rankOf(st.right),nx=rankNext(st.right);
+  const dk='daily_'+ymd();
+  const dv=lsGet(dk,null);
+  const pct=nx?Math.round(st.right/Math.max(nx.min,1)*100):100;
+  let h='<div class="rank-card" onclick="goView(\'rank\')">'
+    +'<div class="rank-top"><div class="rank-ic">'+r.ic+'</div><div><div class="rank-name">'+r.n+'段位 · 已答对 '+st.right+' 题</div>'
+    +'<div class="rank-sub">'+(nx?('再答对 '+(nx.min-st.right)+' 题升到 '+nx.n+' '+nx.ic):'已是最高段位！')+'</div></div></div>'
+    +'<div class="rank-pbar"><i style="width:'+Math.min(pct,100)+'%"></i></div></div>';
+  h+='<div class="daily-card" onclick="goView(\'daily\')"><div class="dc-ic">⚡</div>'
+    +'<div class="dc-info"><div class="dc-t">每日挑战</div>'
+    +'<div class="dc-s">'+(dv?('今日最高 '+dv.best+' 分 · 可反复刷'):'今天还没挑战 · 随机10题 · 限时5分钟')+'</div></div>'
+    +'<div class="dc-go">'+(dv?'再战':'开战')+' ›</div></div>';
+  h+='<h2 class="sec">📚 选择单元开始复习</h2>';
   DATA.units.forEach((u,ui)=>{
     const chs=u.chapters;
     const done=chs.filter(c=>chapterDone(u.id,c.id)).length;
@@ -516,10 +720,15 @@ function renderHome(){
       +'<div class="pbar"><i style="width:'+(chs.length?Math.round(done/chs.length*100):0)+'%"></i></div></div>'
       +'<div class="unit-arrow">›</div></div>';
   });
-  app.innerHTML='<h2 class="sec">📚 选择单元开始复习</h2>'+h
-    +'<div class="card about"><p style="font-size:.8rem;color:#8a97a3">💡 学完一章后做“练习”，答对率60%以上自动标记为已掌握；答错的题自动进“错题本”，可以反复重做。</p></div>';
+  h+='<div class="daily-card" style="border-color:#d8e6ff;background:linear-gradient(120deg,#f2f7ff,#fbfdff)" onclick="goView(\'mnemo\')">'
+    +'<div class="dc-ic">🧠</div><div class="dc-info"><div class="dc-t" style="color:#2563a8">记忆口诀卡</div>'
+    +'<div class="dc-s">把知识点编成顺口溜，背得快记得牢</div></div><div class="dc-go" style="color:#2563a8">查看 ›</div></div>';
+  app.innerHTML=h+'<div class="card about"><p style="font-size:.8rem;color:#8a97a3">💡 学完一章后做“练习”，答对率60%以上自动标记为已掌握；答错的题自动进“错题本”，可以反复重做。</p></div>';
 }
+function goView(v){state.view=v;render();}
 function openUnit(ui){state.unit=ui;state.view='chapters';render();}
+function goHome(){state.view='home';render();}
+/* ---------- 章节 ---------- */
 function renderChapters(){
   const u=DATA.units[state.unit];
   let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">'+u.emoji+' '+esc(u.name)+'</div></div>';
@@ -533,8 +742,7 @@ function renderChapters(){
   });
   app.innerHTML=h;
 }
-function goHome(){state.view='home';render();}
-function openChapter(ci){state.ch=ci;state.view='chapter';state.tab='points';render();}
+function openChapter(ci){state.ch=ci;state.view='chapter';state.tab='points';state.pick={show:false,secs:[],lvs:[1,2,3]};render();}
 function goBackChapters(){state.view='chapters';render();}
 function setTab(t){state.tab=t;render();}
 function renderChapter(){
@@ -544,11 +752,11 @@ function renderChapter(){
   let body='';
   if(state.tab==='points'){
     body=c.sections.map(s=>{
-      const pts=s.points.map(p=>'<div class="pt'+(p.k?' key':'')+'"><div class="pt-t">'+(p.k?'':'▫️ ')+esc(p.t)+'</div><div class="pt-d">'+esc(p.d)+'</div></div>').join('');
-      return '<div class="card"><div style="font-weight:800;font-size:.9rem;color:#2b4a3d;margin-bottom:8px">'+esc(s.name)+'</div>'+pts+'</div>';
+      const pts=s.points.map(p=>'<div class="pt'+(p.k?' key':'')+'"><div class="pt-t">'+(p.k?'':'▫️ ')+esc(p.t)+'</div><div class="pt-d">'+esc(p.d)+'</div>'+(p.mn?'<div class="pt-mn">'+esc(p.mn)+'</div>':'')+'</div>').join('');
+      return '<div class="card"><div style="font-weight:800;font-size:.9rem;color:#2b4a3d;margin-bottom:8px">'+esc(s.name)+(s.mn?'<span style="font-size:.72rem;color:#b08a1a;margin-left:6px">🧠'+esc(s.mn)+'</span>':'')+'</div>'+pts+'</div>';
     }).join('');
   }else if(state.tab==='key'){
-    body='<div class="card">'+c.keypoints.map(k=>'<div class="pt key"><div class="pt-t">'+esc(k.t)+'</div><div class="pt-d">'+esc(k.d)+'</div></div>').join('')+'</div>';
+    body='<div class="card">'+c.keypoints.map(k=>'<div class="pt key"><div class="pt-t">'+esc(k.t)+'</div><div class="pt-d">'+esc(k.d)+'</div>'+(k.mn?'<div class="pt-mn">'+esc(k.mn)+'</div>':'')+'</div>').join('')+'</div>';
   }else if(state.tab==='trap'){
     body='<div class="card">'+c.traps.map(t=>'<div class="trap"><div class="w">'+esc(t.w)+'</div><div class="r">'+esc(t.r)+'</div></div>').join('')+'</div>';
   }else if(state.tab==='story'){
@@ -556,9 +764,7 @@ function renderChapter(){
       +c.story.text.map(p=>'<p>'+esc(p)+'</p>').join('')
       +'<div class="st-tip">'+esc(c.story.tip)+'</div></div>';
   }else if(state.tab==='quiz'){
-    body='<div class="card"><div style="font-weight:800;font-size:.92rem;color:#2b4a3d">✍️ 本章练习（'+c.quiz.length+'题）</div>'
-      +'<div style="font-size:.8rem;color:#8a97a3;line-height:1.6;margin:6px 0 10px">每道题选择后立即判对错并看解析。答错的题会进错题本。</div>'
-      +'<button class="next-btn" onclick="startQuiz(false)">开始练习 🚀</button></div>';
+    body=renderQuizPanel(u,c);
   }
   const d=chapterDone(u.id,c.id);
   app.innerHTML='<div class="back-row"><button class="back-btn" onclick="goBackChapters()">← 返回</button><div class="ch-title">'+c.emoji+' '+esc(c.name)+(d?'<span class="done-flag">✓ 已掌握</span>':'')+'</div></div>'
@@ -569,84 +775,361 @@ function toggleDone(){
   const u=DATA.units[state.unit],c=u.chapters[state.ch];
   setDone(u.id,c.id,!chapterDone(u.id,c.id));render();
 }
-function startQuiz(redo){
-  if(redo){
+/* ---------- 练习面板（全部 / 自选 / 闯关） ---------- */
+function renderQuizPanel(u,c){
+  const byT={},byLv={};
+  c.quiz.forEach(q=>{const t=qKind(q);byT[t]=(byT[t]||0)+1;const lv=q.lv||1;byLv[lv]=(byLv[lv]||0)+1;});
+  let h='<div class="card"><div style="font-weight:800;font-size:.92rem;color:#2b4a3d">✍️ 本章练习（'+c.quiz.length+'题）</div>'
+    +'<div style="font-size:.78rem;color:#8a97a3;line-height:1.6;margin:6px 0 10px">题型：'+Object.keys(byT).map(t=>KIND[t].n+byT[t]).join(' · ')+'　难度：基础'+byLv[1]+' 进阶'+byLv[2]+' 挑战'+byLv[3]+'</div>'
+    +'<button class="next-btn" onclick="startQuiz(\'chapter\')">开始练习（全部） 🚀</button>'
+    +'<button class="btn2" onclick="togglePickPanel()">🎯 自选知识点练习'+(state.pick.show?'（收起）':'')+'</button>'
+    +'<button class="btn2" onclick="goView(\'gates\')">🎮 闯关模式（逐节解锁）</button></div>';
+  if(state.pick.show){
+    const secs=c.sections.map((s,si)=>({id:s.id||('s'+(si+1)),name:s.name}));
+    const pc=state.pick;
+    const poolCount=c.quiz.filter(q=>{const it=mkItem(q,u.id,c.id,0,u.emoji+' '+c.name);return (!it.sec||pc.secs.includes(it.sec))&&pc.lvs.includes(it.lv);}).length;
+    h+='<div class="card"><div style="font-weight:800;font-size:.88rem;color:#2b4a3d;margin-bottom:8px">选择知识点（节）</div>'
+      +secs.map(s=>'<div class="pick-sec'+(pc.secs.includes(s.id)?' on':'')+'" onclick="toggleSecPick(\''+s.id+'\')"><input type="checkbox" '+(pc.secs.includes(s.id)?'checked':'')+' disabled><span class="ps-name">'+esc(s.name)+'</span><span class="ps-n">'+c.quiz.filter(q=>(q.sec||null)===s.id).length+'题</span></div>').join('')
+      +'<div style="font-weight:800;font-size:.88rem;color:#2b4a3d;margin:10px 0 8px">选择难度</div>'
+      +'<div class="lv-row">'+[1,2,3].map(l=>'<div class="lv-btn'+(pc.lvs.includes(l)?' on':'')+'" onclick="toggleLvPick('+l+')">'+['基础','进阶','挑战'][l-1]+'</div>').join('')+'</div>'
+      +'<button class="next-btn" onclick="startQuiz(\'custom\')">开始自选练习（'+poolCount+'题）</button></div>';
+  }
+  return h;
+}
+function togglePickPanel(){
+  const pc=state.pick;
+  pc.show=!pc.show;
+  if(pc.show&&!pc.secs.length){
+    const c=DATA.units[state.unit].chapters[state.ch];
+    pc.secs=c.sections.map((s,si)=>s.id||('s'+(si+1)));
+  }
+  render();
+}
+function toggleSecPick(id){const pc=state.pick;const i=pc.secs.indexOf(id);if(i<0)pc.secs.push(id);else pc.secs.splice(i,1);render();}
+function toggleLvPick(l){const pc=state.pick;const i=pc.lvs.indexOf(l);if(i<0)pc.lvs.push(l);else pc.lvs.splice(i,1);render();}
+/* ---------- 组卷 ---------- */
+function mkItem(q,uid,cid,qi,chn){
+  return Object.assign({t:qKind(q),lv:q.lv||1,pt:q.pt||1,sec:q.sec||null,chid:uid+'_'+cid,chn,qi},q);
+}
+function poolOfChapter(uid,cid){
+  const u=DATA.units[uid],c=u.chapters[cid];
+  return c.quiz.map((q,qi)=>mkItem(q,u.id,c.id,qi,u.emoji+' '+c.name));
+}
+function poolOfAll(){
+  const r=[];
+  DATA.units.forEach((u,ui)=>u.chapters.forEach((c,ci)=>r.push.apply(r,poolOfChapter(ui,ci))));
+  return r;
+}
+function startQuiz(mode,extra){
+  extra=extra||{};
+  const qz={i:0,got:0,score:0,objScore:0,objN:0,max:0,wrong:[],done:false,mode:mode,deadline:null,work:{}};
+  if(mode==='wrong'){
     const wb=lsGet('wrongbook',[]);
     if(!wb.length){return;}
-    state.quiz={list:wb.map(w=>({q:w.q,opts:w.opts,ans:w.ans,why:w.why,chid:w.chid,chn:w.chn})),i:0,score:0,wrong:[],fromWrong:true};
+    qz.list=wb.map(w=>Object.assign({},w,{t:w.t||'choice'}));
+    qz.title='错题重做';
+  }else if(mode==='daily'){
+    qz.list=shuffle(poolOfAll(),hashStr(ymd())).slice(0,10);
+    qz.title='每日挑战';
+    qz.deadline=Date.now()+5*60000;
+  }else if(mode==='gate'){
+    const u=DATA.units[state.unit],c=u.chapters[state.ch];
+    const si=extra.si;const sid=c.sections[si].id||('s'+(si+1));
+    qz.list=poolOfChapter(state.unit,state.ch).filter(it=>it.sec===sid);
+    qz.title='闯关 · '+c.sections[si].name;
+    qz.gateSi=si;qz.gateSid=sid;
   }else{
     const u=DATA.units[state.unit],c=u.chapters[state.ch];
-    state.quiz={list:c.quiz.map((q,qi)=>({q:q.q,opts:q.opts,ans:q.ans,why:q.why,chid:u.id+'_'+c.id,chn:u.emoji+' '+c.name})),i:0,score:0,wrong:[],fromWrong:false};
+    let pool=poolOfChapter(state.unit,state.ch);
+    if(mode==='custom'){
+      const pc=state.pick;
+      pool=pool.filter(it=>((!it.sec||pc.secs.includes(it.sec))&&pc.lvs.includes(it.lv)));
+      if(!pool.length){alert('所选范围内没有题目，请调整选择。');return;}
+      qz.title='自选练习';
+    }else{
+      qz.title='本章练习';
+    }
+    qz.list=shuffle(pool);
   }
-  state.view='quiz';render();
+  if(!qz.list.length){alert('这个范围内没有题目。');return;}
+  qz.list.forEach(it=>{const t=qKind(it);if(t!=='essay'){qz.max+=(it.pt||1);qz.objN++;}else{qz.max+=(it.subs||[]).reduce((a,s)=>a+(s.score||0),0);}});
+  state.quiz=qz;state.view='quiz';render();
 }
-function pick(oi){
+/* ---------- 答题页 ---------- */
+function renderQuiz(){
+  const qz=state.quiz,cur=qz.list[qz.i],n=qz.list.length;
+  const t=qKind(cur);
+  const pct=Math.round(qz.i/n*100);
+  const top='<div class="back-row"><button class="back-btn" onclick="quitQuiz()">← 退出</button><div class="ch-title">✍️ '+esc(qz.title||'练习')+'</div></div>';
+  const head='<div class="card"><div class="quiz-top"><span>第 '+(qz.i+1)+' / '+n+' 题</span>'
+    +'<span>已对 '+qz.score+' 题'+(qz.mode==='daily'?'':' · 得分 '+qz.got)+'</span>'
+    +(qz.deadline?'<span id="timer"></span>':'')+'</div>'
+    +'<div class="qbar"><i style="width:'+pct+'%"></i></div>'
+    +'<div class="badges"><span class="qtype '+t+'">'+KIND[t].n+'题</span><span class="lv lv'+(cur.lv||1)+'">'+['基础','进阶','挑战'][(cur.lv||1)-1]+'</span></div>'
+    +'<div class="qtext">'+esc(cur.q||'')+'</div>';
+  let mid='';
+  if(t==='choice')mid=cur.opts.map((o,oi)=>'<button class="opt" onclick="pick('+oi+')"><b>'+String.fromCharCode(65+oi)+'</b>　'+esc(optText(o))+'</button>').join('');
+  else if(t==='tf')mid='<div class="judge-row"><button class="opt" onclick="pick(0)">✔ 正确</button><button class="opt" onclick="pick(1)">✘ 错误</button></div>';
+  else if(t==='fill')mid=(cur.a||cur.ans).map((al,k)=>'<div class="fill-row"><span class="fi-no">第'+(k+1)+'空</span><input class="fill-in" id="fill'+k+'" placeholder="输入答案" autocomplete="off"></div>').join('')+'<button class="next-btn" onclick="submitFill()">提交答案</button>';
+  else if(t==='order'){if(!qz.work.shuf)initOrder(cur);mid=renderOrderQ(cur);}
+  else if(t==='essay')mid=renderEssayQ(cur);
+  app.innerHTML=top+head+mid+'<div class="fb" id="fb"></div>'
+    +'<button class="next-btn" id="nextbtn" style="display:none" onclick="nextQ()">下一题 →</button></div>';
+  const nb=document.getElementById('nextbtn');if(nb)nb.style.display='none';
+  ensureTimer();
+}
+function optText(o){return String(o).replace(/^[A-Da-d][.、．]\s?/,'');}
+function pick(oi){submitAns(oi);}
+function submitFill(){
+  const qz=state.quiz,cur=qz.list[qz.i];
+  const n=(cur.a||cur.ans).length;
+  const arr=[];for(let k=0;k<n;k++){const el=document.getElementById('fill'+k);arr.push(el?el.value:'');}
+  submitAns(arr);
+}
+/* --- 排序题 --- */
+function initOrder(cur){
+  const qz=state.quiz;
+  qz.work.shuf=shuffle(cur.items.map((x,i)=>i));  // 展示顺序 -> 原始下标
+  qz.work.picked=[];  // 已选的展示下标序列
+}
+function renderOrderQ(cur){
+  const qz=state.quiz;
+  return '<div style="font-size:.78rem;color:#8a97a3;margin-bottom:6px">按顺序点击下方选项（可点已选项撤回）</div>'
+    +'<div class="ord-pool">'+qz.work.shuf.map((orig,d)=>'<button class="ord-chip'+(qz.work.picked.includes(d)?' used':'')+'" id="oc'+d+'" onclick="orderPick('+d+')">'+esc(cur.items[orig])+'</button>').join('')+'</div>'
+    +'<div class="ord-line" id="ordline">'+(qz.work.picked.length?qz.work.picked.map((d,k)=>'<span class="ord-chip" onclick="orderPick('+d+')"><span class="ord-no">'+(k+1)+'. </span>'+esc(cur.items[qz.work.shuf[d]])+'</span>').join(''):'<span style="font-size:.78rem;color:#b9c4cc">把选项按正确顺序点进来…</span>')+'</div>'
+    +'<button class="next-btn" onclick="submitOrder()">提交排序</button>';
+}
+function orderPick(d){
+  const qz=state.quiz;if(qz.done)return;
+  const i=qz.work.picked.indexOf(d);
+  if(i>=0)qz.work.picked.splice(i,1);
+  else qz.work.picked.push(d);
+  const pool=document.querySelector('.ord-pool'),line=document.getElementById('ordline');
+  if(pool)pool.innerHTML=renderOrderPoolHTML(qz.list[qz.i]);
+  if(line)line.innerHTML=qz.work.picked.length?qz.work.picked.map((x,k)=>'<span class="ord-chip" onclick="orderPick('+x+')"><span class="ord-no">'+(k+1)+'. </span>'+esc(qz.list[qz.i].items[qz.work.shuf[x]])+'</span>').join(''):'<span style="font-size:.78rem;color:#b9c4cc">把选项按正确顺序点进来…</span>';
+}
+function renderOrderPoolHTML(cur){
+  return state.quiz.work.shuf.map((orig,d)=>'<button class="ord-chip'+(state.quiz.work.picked.includes(d)?' used':'')+'" onclick="orderPick('+d+')">'+esc(cur.items[orig])+'</button>').join('');
+}
+function submitOrder(){const qz=state.quiz;submitAns(qz.work.picked.slice());}
+/* --- 材料分析题 --- */
+function renderEssayQ(cur){
+  const m=cur.mat||{};
+  let h='<div class="essay">';
+  if(m.title)h+='<div class="mat"><div class="mat-t">📄 '+esc(m.title)+'</div>'+((m.text||[]).map(p=>'<p>'+esc(p)+'</p>').join(''))+(m.table?'<div class="mat-table-wrap"><table><thead><tr>'+m.table.head.map(x=>'<th>'+esc(x)+'</th>').join('')+'</tr></thead><tbody>'+m.table.rows.map(r=>'<tr>'+r.map(x=>'<td>'+esc(x)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':'')+'</div>';
+  h+='<div id="essaybody">'
+    +(cur.subs||[]).map((s,si)=>'<div class="subq"><div class="subq-q">('+(si+1)+') '+esc(s.q)+'<span class="sc">'+(s.score||0)+'分</span></div><textarea class="essay-ta" id="essay'+si+'" placeholder="先在这里默写你的答案，再点下方提交对照要点…"></textarea></div>').join('')
+    +'<button class="next-btn" onclick="essaySubmit()">提交答案，对照要点</button></div>';
+  h+='</div>';
+  return h;
+}
+function essaySubmit(){
   const qz=state.quiz;if(qz.done)return;
   const cur=qz.list[qz.i];
+  qz.work.essayState='review';
+  const subs=(cur.subs||[]).map((s,si)=>{
+    const val=document.getElementById('essay'+si);qz.work['essayA'+si]=val?val.value:'';
+    return '<div class="subq"><div class="subq-q">('+(si+1)+') '+esc(s.q)+'<span class="sc">'+(s.score||0)+'分</span></div>'
+      +'<div class="keylist"><div class="k-t">📝 参考要点（勾选你答到的）</div>'
+      +s.key.map((k,ki)=>'<label class="on" id="key'+si+'_'+ki+'" onclick="toggleKey('+si+','+ki+')">☑ '+esc(k)+'</label>').join('')
+      +'<div class="self-row"><button class="self-btn" id="self'+si+'_1" onclick="selfPick('+si+',1)">满分 ✓</button><button class="self-btn" id="self'+si+'_h" onclick="selfPick('+si+',.5)">答到部分</button><button class="self-btn" id="self'+si+'_0" onclick="selfPick('+si+',0)">没答到</button></div></div></div>';
+  }).join('');
+  const wrap=document.getElementById('essaybody');
+  wrap.innerHTML=subs+'<button class="next-btn" id="essayDoneBtn" style="display:none" onclick="essayDone()">完成自评，看得分</button>';
+  (cur.subs||[]).forEach((s,si)=>qz.work['self'+si]=null);
+}
+function toggleKey(si,ki){
+  const el=document.getElementById('key'+si+'_'+ki);
+  el.classList.toggle('on');
+  el.textContent=(el.classList.contains('on')?'☑ ':'☐ ')+state.quiz.list[state.quiz.i].subs[si].key[ki];
+}
+function selfPick(si,k){
+  const qz=state.quiz;
+  qz.work['self'+si]=k;
+  ['1','h','0'].forEach(x=>{const el=document.getElementById('self'+si+'_'+x);if(el)el.classList.toggle('on',(x==='1'&&k===1)||(x==='h'&&k===.5)||(x==='0'&&k===0));});
+  const cur=qz.list[qz.i];
+  if(cur.subs.every((s,i2)=>qz.work['self'+i2]!=null)){
+    const b=document.getElementById('essayDoneBtn');if(b)b.style.display='block';
+  }
+}
+function essayDone(){
+  const qz=state.quiz,cur=qz.list[qz.i];
+  const ks=cur.subs.map((s,si)=>qz.work['self'+si]||0);
+  submitAns(ks);
+}
+/* ---------- 判分 ---------- */
+function normAns(s){return String(s).replace(/\s+/g,'').replace(/[，。、；：！？,.;:!?（）()]/g,'').toLowerCase();}
+function nearMiss(a,b){
+  a=normAns(a);b=normAns(b);
+  if(Math.abs(a.length-b.length)>1)return false;
+  if(a===b)return true;
+  const s=a.length<b.length?a:b,l=a.length<b.length?b:a;
+  if(s.length===l.length){let d=0;for(let i=0;i<s.length;i++){if(s[i]!==l[i])d++;}return d<=1;}
+  let i=0,j=0,d=0;while(i<s.length&&j<l.length){if(s[i]!==l[j]){d++;j++;if(d>1)return false;}else{i++;j++;}}return d<=1;
+}
+function submitAns(val){
+  const qz=state.quiz;if(qz.done)return;
+  const cur=qz.list[qz.i],t=qKind(cur);
+  let res=null;
+  if(t==='choice'||t==='tf')res=gradeTap(cur,val);
+  else if(t==='fill')res=gradeFill(cur,val);
+  else if(t==='order')res=gradeOrder(cur,val);
+  else if(t==='essay')res=gradeEssay(cur,val);
+  afterAnswer(cur,res);
+}
+function gradeTap(it,oi){
+  const t=qKind(it);
+  const ok=t==='tf'?((oi===0)===it.ans):(oi===Number(it.ans));
+  const rightIdx=t==='tf'?(it.ans?0:1):Number(it.ans);
   const optEls=document.querySelectorAll('.opt');
   optEls.forEach(o=>o.classList.add('dim'));
   const fb=document.getElementById('fb');
-  if(oi===cur.ans){
-    optEls[oi].classList.add('right');qz.score++;
-    fb.className='fb ok';fb.innerHTML='🎉 '+(PRAISE[Math.floor(Math.random()*PRAISE.length)])+'<span class="why">📝 解析：'+esc(cur.why)+'</span>';
+  if(ok){
+    optEls[oi].classList.add('right');
+    fb.className='fb ok';fb.innerHTML='🎉 '+(PRAISE[Math.floor(Math.random()*PRAISE.length)])+'<span class="why">📝 解析：'+esc(it.why)+'</span>';
   }else{
-    optEls[oi].classList.add('wrong');optEls[cur.ans].classList.add('right');
-    qz.wrong.push(cur);
-    fb.className='fb bad';fb.innerHTML='❌ 答错了<span class="why">📝 解析：'+esc(cur.why)+'</span>';
+    optEls[oi].classList.add('wrong');optEls[rightIdx].classList.add('right');
+    fb.className='fb bad';fb.innerHTML='❌ 答错了<span class="why">📝 解析：'+esc(it.why)+'</span>';
   }
+  return {ok:ok,got:ok?(it.pt||1):0,html:fb.innerHTML};
+}
+function matchFill(s,al){
+  s=normAns(s);
+  if(s.length<2)return false;  // 少于2个字不判（防虚词/误触）
+  return al.some(a=>{
+    const na=normAns(a);
+    if(s===na)return true;
+    // 关键词判定：孩子的答案含标准答案（或其关键词），或反之——有关键词就判对
+    return (na.length>=2&&s.includes(na))||(s.length>=2&&na.includes(s));
+  });
+}
+function gradeFill(it,arr){
+  const pairs=(it.a||it.ans);
+  const okAll=pairs.every((al,k)=>matchFill(arr[k],al));
+  const near=pairs.some((al,k)=>!matchFill(arr[k],al)&&al.some(a=>nearMiss(arr[k],a)));
+  const ansShow=pairs.map(al=>al[0]).join('、');
+  const fb=document.getElementById('fb');
+  if(okAll){
+    fb.className='fb ok';fb.innerHTML='🎉 填空正确！<span class="why">📝 解析：'+esc(it.why)+'</span>';
+  }else{
+    fb.className='fb bad';
+    fb.innerHTML='❌ 有空格不对<span class="why">📝 答案：'+esc(ansShow)+'｜解析：'+esc(it.why)+'</span>'
+      +(near?'<button class="btn2" style="margin-top:8px" onclick="fillOverride()">我写的其实是对的（拼写小误差）</button>':'');
+  }
+  return {ok:okAll,got:okAll?(it.pt||1):0,html:fb.innerHTML,near:near};
+}
+function fillOverride(){
+  const qz=state.quiz,cur=qz.list[qz.i];
+  qz.work.fillOverride=true;
+  afterAnswer(cur,{ok:true,got:(cur.pt||1),html:'👍 算你对！<span class="why">📝 解析：'+esc(cur.why)+'</span>',override:true});
+}
+function gradeOrder(it,seq){
+  const qz=state.quiz,shuf=qz.work.shuf;
+  const ok=seq.length===it.items.length&&seq.every((d,k)=>shuf[d]===k);
+  const fb=document.getElementById('fb');
+  if(ok){
+    fb.className='fb ok';fb.innerHTML='🎉 顺序完全正确！<span class="why">📝 解析：'+esc(it.why)+'</span>';
+  }else{
+    fb.className='fb bad';fb.innerHTML='❌ 顺序有误<span class="why">📝 正确顺序：'+esc(it.items.join(' → '))+'｜解析：'+esc(it.why)+'</span>';
+  }
+  return {ok:ok,got:ok?(it.pt||1):0,html:fb.innerHTML};
+}
+function gradeEssay(it,ks){
+  let got=0,full=true;
+  it.subs.forEach((s,si)=>{
+    const k=ks[si]||0;got+=Math.round((s.score||0)*k);
+    if(k!==1)full=false;
+  });
+  const fb=document.getElementById('fb');
+  const max=(it.subs||[]).reduce((a,s)=>a+(s.score||0),0);
+  if(full){
+    fb.className='fb ok';fb.innerHTML='🏆 全部要点都答到了，满分 '+max+' 分！<span class="why">📝 解析：'+esc(it.why)+'</span>';
+  }else{
+    fb.className='fb bad';fb.innerHTML='📝 自评得分 '+got+' / '+max+' 分<span class="why">没答全的要点要记住哦：'+esc(it.why)+'</span>';
+  }
+  return {ok:full,got:got,html:fb.innerHTML};
+}
+function afterAnswer(cur,res){
+  const qz=state.quiz;
+  qz.got+=res.got;
+  if(res.ok){qz.score++;if(qKind(cur)!=='essay')qz.objScore++;}
+  else if(!res.override)qz.wrong.push(cur);
+  statsAdd(res.ok,qKind(cur)==='essay'?res.got:0);
   qz.done=true;
   const nb=document.getElementById('nextbtn');
   nb.style.display='block';
   nb.textContent=(qz.i<qz.list.length-1)?'下一题 →':'查看成绩 🏁';
 }
+/* ---------- 收尾 ---------- */
 function nextQ(){
   const qz=state.quiz;
-  if(qz.i<qz.list.length-1){qz.i++;qz.done=false;renderQuiz();}
+  if(qz.i<qz.list.length-1){qz.i++;qz.done=false;qz.work={};renderQuiz();}
   else{finishQuiz();}
 }
-function renderQuiz(){
-  const qz=state.quiz,cur=qz.list[qz.i],n=qz.list.length;
-  const pct=Math.round(qz.i/n*100);
-  app.innerHTML='<div class="back-row"><button class="back-btn" onclick="quitQuiz()">← 退出</button><div class="ch-title">✍️ 练习'+(qz.fromWrong?'（错题重做）':'')+'</div></div>'
-    +'<div class="card"><div class="quiz-top"><span>第 '+(qz.i+1)+' / '+n+' 题</span><span>已对 '+qz.score+' 题</span></div>'
-    +'<div class="qbar"><i style="width:'+pct+'%"></i></div>'
-    +'<div class="qtext">'+esc(cur.q)+'</div>'
-    +cur.opts.map((o,oi)=>'<button class="opt" onclick="pick('+oi+')"><b>'+(oi===0?'A':oi===1?'B':oi===2?'C':'D')+'</b>　'+esc(o.slice(2))+'</button>').join('')
-    +'<div class="fb" id="fb"></div>'
-    +'<button class="next-btn" id="nextbtn" style="display:none" onclick="nextQ()">下一题 →</button></div>';
-  document.getElementById('nextbtn').style.display='none';
-}
 function quitQuiz(){
-  if(state.quiz&&state.quiz.fromWrong)state.view='wrong';
+  stopTimer();
+  if(state.quiz&&state.quiz.mode==='wrong')state.view='wrong';
+  else if(state.quiz&&state.quiz.mode==='gate')state.view='gates';
+  else if(state.quiz&&state.quiz.mode==='daily')state.view='daily';
   else state.view='chapter';
   state.quiz=null;render();
 }
 function finishQuiz(){
-  const qz=state.quiz,n=qz.list.length,pct=Math.round(qz.score/n*100);
-  if(qz.fromWrong){
+  stopTimer();
+  const qz=state.quiz,n=qz.list.length;
+  const pct=qz.max?Math.round(qz.got/qz.max*100):0;
+  const pctObj=qz.objN?Math.round(qz.objScore/qz.objN*100):0;
+  if(qz.mode==='wrong'){
     const wb=lsGet('wrongbook',[]);
-    const keep=qz.wrong.map(w=>w.chid+'|'+w.q);
-    wb.forEach(w=>{if(!keep.includes(w.chid+'|'+w.q))wrongRemove(w);});
+    const keep=qz.wrong.map(w=>keyOf(w));
+    wb.forEach(w=>{if(!keep.includes(keyOf(w)))wrongRemove(w);});
   }else{
     qz.wrong.forEach(w=>wrongAdd(w));
-    if(pct>=60){const u=DATA.units[state.unit];setDone(u.id,u.chapters[state.ch].id,true);}
+    if(qz.mode==='chapter'&&pctObj>=60){const u=DATA.units[state.unit];setDone(u.id,u.chapters[state.ch].id,true);}
+    if(qz.mode==='daily'){
+      const dk='daily_'+ymd();
+      const old=lsGet(dk,null);
+      if(!old||pct>old.best)lsSet(dk,{best:pct,right:qz.score,total:n,ts:Date.now()});
+    }
+    if(qz.mode==='gate'&&pctObj>=80)gatePass(qz.gateSi,pctObj);
   }
+  const st=lsGet('stats',{ans:0,right:0});
+  const r=rankOf(st.right),nx=rankNext(st.right);
   const stars=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':pct>=60?'⭐':'';
   const msg=pct>=90?'完美通关！知识全在脑子里了！':pct>=70?'掌握得不错，错题多看看！':pct>=60?'及格啦！把错题本过一遍更稳！':(TRYAGAIN[Math.floor(Math.random()*TRYAGAIN.length)]);
-  const wl=qz.wrong.map((w,i)=>'<div style="padding:4px 0;border-bottom:1px dashed #f0d5d8">'+(i+1)+'. '+esc(w.q)+' <b style="color:#c0392b">答案：'+(w.ans===0?'A':w.ans===1?'B':w.ans===2?'C':'D')+'</b></div>').join('');
+  const wl=qz.wrong.map((w,i)=>'<div style="padding:4px 0;border-bottom:1px dashed #f0d5d8">'+(i+1)+'. '+esc(w.q)+'</div>').join('');
+  let gateNote='';
+  if(qz.mode==='gate'){
+    gateNote=pctObj>=80?'<div class="score-msg" style="color:#1e7a48;font-weight:700">🎉 闯关成功！下一节已解锁！</div>':('<div class="score-msg">闯关需答对80%（客观题），再来一次！</div>');
+  }
   app.innerHTML='<div class="card score-box">'
     +'<div class="score-emoji">'+(pct>=90?'🏆':pct>=70?'🎉':pct>=60?'😊':'💪')+'</div>'
-    +'<div class="score-num">'+qz.score+' / '+n+' 题</div>'
+    +'<div class="score-num">'+qz.score+' / '+n+' 题'+(qz.mode==='daily'?' · '+pct+'分':'')+'</div>'
     +'<div class="score-stars">'+stars+'</div>'
-    +'<div class="score-msg">'+msg+'</div>'
+    +'<div class="score-msg">'+msg+'　'+r.ic+' '+r.n+'段位'+(nx?' · 再对'+(nx.min-st.right)+'题升'+nx.n:'')+'</div>'
+    +gateNote
     +(qz.wrong.length?'<div class="wrong-mini"><b>本次错题：</b>'+wl+'</div>':'<div class="score-msg" style="color:#1e7a48">全对！一个错题都没有！🎊</div>')
-    +'<div class="btn-row"><button class="next-btn" onclick="startQuiz('+(qz.fromWrong?'true':'false')+')">再来一遍 🔄</button>'
-    +'<button class="next-btn" style="background:#fff;color:#2fa866;box-shadow:none;border:2px solid #2fa866" onclick="afterQuiz()">完成 ✅</button></div></div>';
+    +'<div class="btn-row"><button class="next-btn" onclick="startQuiz(\''+qz.mode+'\','+(qz.mode==='gate'?'{si:'+qz.gateSi+'}':'{}')+')">再来一遍 🔄</button>'
+    +'<button class="btn2" onclick="afterQuiz()">完成 ✅</button></div></div>';
 }
 function afterQuiz(){
-  if(state.quiz&&state.quiz.fromWrong){state.view='wrong';}
+  const m=state.quiz?state.quiz.mode:'chapter';
+  state.quiz=null;
+  if(m==='wrong')state.view='wrong';
+  else if(m==='gate')state.view='gates';
+  else if(m==='daily')state.view='daily';
   else{state.view='chapter';state.tab='points';}
-  state.quiz=null;render();
+  render();
+}
+/* ---------- 错题本 ---------- */
+function ansText(w){
+  const t=w.t||w.type||'choice';
+  if(t==='tf')return w.ans?'✔ 正确':'✘ 错误';
+  if(t==='fill')return ((w.a||w.ans||[[]])[0]&&(w.a||w.ans)[0][0])||'见解析';
+  if(t==='order')return w.items?w.items.join(' → '):'见解析';
+  if(t==='essay')return '见要点（重做时对照）';
+  if(w.opts&&w.opts[w.ans]!=null)return optText(w.opts[w.ans]);
+  return '';
 }
 function renderWrong(){
   const wb=lsGet('wrongbook',[]);
@@ -655,21 +1138,103 @@ function renderWrong(){
     return;
   }
   let h='<div class="back-row"><div class="ch-title">📕 错题本（'+wb.length+'题）</div></div>';
-  h+=wb.map((w,i)=>'<div class="wrong-item"><span class="w-tag">'+esc(w.chn)+'</span>'
-    +'<div class="w-q">'+(i+1)+'. '+esc(w.q)+'</div>'
-    +'<div class="w-a">正确答案：<b>'+(w.ans===0?'A':w.ans===1?'B':w.ans===2?'C':'D')+'</b>　'+esc(w.opts[w.ans].slice(2))+'</div>'
-    +'<div class="w-why">📝 '+esc(w.why)+'</div></div>').join('');
-  h+='<div class="btn-row"><button class="next-btn" onclick="startQuiz(true)">错题重做 🔁</button>'
+  h+=wb.map((w,i)=>{
+    const t=w.t||w.type||'choice';
+    return '<div class="wrong-item"><span class="w-tag">'+esc(w.chn||'')+' · '+(KIND[t]?KIND[t].n:'选择')+'</span>'
+      +'<div class="w-q">'+(i+1)+'. '+esc(w.q||'')+'</div>'
+      +'<div class="w-a">正确答案：<b>'+esc(ansText(w))+'</b></div>'
+      +(w.why?'<div class="w-why">📝 '+esc(w.why)+'</div>':'')+'</div>';
+  }).join('');
+  h+='<div class="btn-row"><button class="next-btn" onclick="startQuiz(\'wrong\')">错题重做 🔁</button>'
     +'<button class="btn2" style="color:#c0392b;border-color:#c0392b" onclick="clearWrong()">清空错题本 🗑</button></div>';
   app.innerHTML=h;
 }
 function clearWrong(){if(confirm('确定清空所有错题吗？')){lsSet('wrongbook',[]);updateBadge();render();}}
+/* ---------- 每日挑战 ---------- */
+function renderDaily(){
+  const dk='daily_'+ymd();
+  const dv=lsGet(dk,null);
+  let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">⚡ 每日挑战</div></div>';
+  h+='<div class="card"><div style="font-weight:800;font-size:.95rem;color:#8a5a00;margin-bottom:8px">规则</div>'
+    +'<p style="font-size:.83rem;color:#54636e;line-height:1.8">①每天从全册随机抽 10 题，限时 5 分钟；②同一人当天反复进入拿到同一套题，刷的是速度不是运气；③只记当日最高分；④答对的题累计进段位。</p>'
+    +(dv?'<div style="margin-top:10px;font-size:.85rem;color:#2b4a3d;font-weight:700">今日最高：'+dv.best+' 分（'+dv.right+'/'+dv.total+' 题）</div>':'')
+    +'<button class="next-btn" onclick="startQuiz(\'daily\')">'+(dv?'再战今日挑战 ⚡':'开始今日挑战 ⚡')+'</button></div>';
+  app.innerHTML=h;
+}
+/* ---------- 闯关 ---------- */
+function gateKey(uid,cid){return 'gate_'+uid+'_'+cid;}
+function gateState(uid,cid){return lsGet(gateKey(uid,cid),{});}
+function gatePass(si,pct){
+  const uid=DATA.units[state.unit].id,cid=DATA.units[state.unit].chapters[state.ch].id;
+  const g=gateState(uid,cid);
+  const old=g[si]||{};
+  g[si]={p:1,best:Math.max(old.best||0,pct)};
+  lsSet(gateKey(uid,cid),g);
+}
+function renderGates(){
+  const u=DATA.units[state.unit],c=u.chapters[state.ch];
+  const g=gateState(u.id,c.id);
+  let h='<div class="back-row"><button class="back-btn" onclick="goBackChapters()">← 返回</button><div class="ch-title">🎮 闯关 · '+esc(c.name)+'</div></div>';
+  h+='<div class="card"><p style="font-size:.8rem;color:#8a97a3;line-height:1.7">按节逐关挑战：本节的题答对80%以上，自动解锁下一节。全部通关你就是本章擂主！</p></div>';
+  c.sections.forEach((s,si)=>{
+    const sid=s.id||('s'+(si+1));
+    const unlocked=(si===0)||!!g[si-1];
+    const passed=!!g[si];
+    h+='<div class="gate-item'+(unlocked?'':' lock')+'" '+(unlocked?'onclick="startGate('+si+')"':'')+'>'
+      +'<div class="gate-no">'+(passed?'✓':(si+1))+'</div>'
+      +'<div class="gate-info"><div class="gate-name">'+esc(s.name)+'</div>'
+      +'<div class="gate-meta">'+(passed?('已通关 · 最高 '+g[si].best+'%'):(unlocked?'点击开始闯关':'先通过上一关'))+'</div></div>'
+      +'<div class="gate-go">'+(passed?'✅':(unlocked?'挑战 ›':'🔒'))+'</div></div>';
+  });
+  app.innerHTML=h;
+}
+function startGate(si){
+  state.tab='quiz';
+  startQuiz('gate',{si:si});
+}
+/* ---------- 段位 ---------- */
+function renderRank(){
+  const st=lsGet('stats',{ans:0,right:0});
+  const r=rankOf(st.right),nx=rankNext(st.right);
+  let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">🏆 段位称号</div></div>';
+  h+='<div class="rank-card"><div class="rank-top"><div class="rank-ic">'+r.ic+'</div><div><div class="rank-name">'+r.n+'段位</div>'
+    +'<div class="rank-sub">累计答对 '+st.right+' 题 · 共答题 '+st.ans+' 题</div></div></div>'
+    +'<div class="rank-pbar"><i style="width:'+(nx?Math.round(st.right/Math.max(nx.min,1)*100):100)+'%"></i></div>'
+    +'<div class="rank-sub" style="margin-top:6px">'+(nx?('再答对 '+(nx.min-st.right)+' 题升到 '+nx.n+' '+nx.ic):'已是最高段位！')+'</div></div>';
+  RANKS.forEach(x=>{
+    h+='<div class="card unit-card"><div class="unit-emoji" style="font-size:1.5rem">'+x.ic+'</div>'
+      +'<div class="unit-info"><div class="unit-name">'+x.n+(x===r?'（当前）':'')+'</div>'
+      +'<div class="unit-meta">累计答对 '+x.min+' 题'+(x===RANKS[0]?'以上':'解锁')+'</div></div></div>';
+  });
+  app.innerHTML=h;
+}
+/* ---------- 口诀卡 ---------- */
+function renderMnemo(){
+  let h='<div class="back-row"><button class="back-btn" onclick="goHome()">← 返回</button><div class="ch-title">🧠 记忆口诀卡</div></div>';
+  let n=0;
+  DATA.units.forEach(u=>{
+    u.chapters.forEach(c=>{
+      const items=[];
+      c.sections.forEach(s=>{if(s.mn)items.push({t:s.name,mn:s.mn});s.points.forEach(p=>{if(p.mn)items.push({t:p.t,mn:p.mn});});});
+      c.keypoints.forEach(k=>{if(k.mn)items.push({t:k.t,mn:k.mn});});
+      if(items.length){
+        h+='<h2 class="sec">'+u.emoji+' '+esc(c.name)+'</h2>';
+        items.forEach(it=>{n++;h+='<div class="mn-card"><div class="mn-t">'+esc(it.t)+'</div><div class="mn-m">'+esc(it.mn)+'</div></div>';});
+      }
+    });
+  });
+  if(!n)h+='<div class="card score-box"><div class="score-emoji">🧠</div><div class="score-msg">口诀还在收集中，先去看看知识点吧！</div></div>';
+  app.innerHTML=h;
+}
+/* ---------- 关于 ---------- */
 function renderAbout(){
   app.innerHTML='<div class="card about">'
     +'<h3>📕 关于本复习助手</h3>'
     +'<p>内容依据 <b>苏科版（江苏凤凰科学技术出版社）义务教育教科书·生物学七年级上册（2024秋版）</b> 整理，适用于江苏徐州初一学生。</p>'
     +'<h3>🧭 怎么用</h3>'
     +'<p>①按单元逐章学习“知识点”，重点看🔑标记和“重点”页；②考前重点过“易错点”页，考试避坑；③学完做“练习”，答对率60%以上自动标记已掌握；④错题自动进错题本，反复重做到全会为止。</p>'
+    +'<h3>🎮 趣味玩法</h3>'
+    +'<p>⚡每日挑战：每天10题限时赛；🏆段位称号：答题升级青铜→白银→黄金→王者；🎮闯关模式：按节逐关解锁；🧠记忆口诀卡：顺口溜背得快。</p>'
     +'<h3>📱 离线使用</h3>'
     +'<p>本文件是单文件网页，不需要联网。发送到手机后用浏览器打开即可；建议收藏到浏览器书签或添加到桌面。</p>'
     +'<h3>⚠️ 说明</h3>'
@@ -682,7 +1247,7 @@ document.getElementById('nav').addEventListener('click',e=>{
   if(v==='home')state.view='home';
   else if(v==='wrong')state.view='wrong';
   else if(v==='about')state.view='about';
-  state.quiz=null;render();
+  stopTimer();state.quiz=null;render();
 });
 render();
 </script>
